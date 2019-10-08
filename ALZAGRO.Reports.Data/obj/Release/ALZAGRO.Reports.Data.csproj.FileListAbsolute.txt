@@ -1,0 +1,15 @@
+C:\Users\isidoro.caminos\Desarrollos\Codigo\W\alzagro-webapp\ALZAGRO.Reports.Data\bin\Release\ALZAGRO.Reports.Data.dll.config
+C:\Users\isidoro.caminos\Desarrollos\Codigo\W\alzagro-webapp\ALZAGRO.Reports.Data\bin\Release\ALZAGRO.Reports.Data.dll
+C:\Users\isidoro.caminos\Desarrollos\Codigo\W\alzagro-webapp\ALZAGRO.Reports.Data\bin\Release\ALZAGRO.Reports.Data.pdb
+C:\Users\isidoro.caminos\Desarrollos\Codigo\W\alzagro-webapp\ALZAGRO.Reports.Data\bin\Release\AutoMapper.dll
+C:\Users\isidoro.caminos\Desarrollos\Codigo\W\alzagro-webapp\ALZAGRO.Reports.Data\bin\Release\EntityFramework.dll
+C:\Users\isidoro.caminos\Desarrollos\Codigo\W\alzagro-webapp\ALZAGRO.Reports.Data\bin\Release\EntityFramework.SqlServer.dll
+C:\Users\isidoro.caminos\Desarrollos\Codigo\W\alzagro-webapp\ALZAGRO.Reports.Data\bin\Release\System.Linq.Dynamic.dll
+C:\Users\isidoro.caminos\Desarrollos\Codigo\W\alzagro-webapp\ALZAGRO.Reports.Data\bin\Release\AutoMapper.pdb
+C:\Users\isidoro.caminos\Desarrollos\Codigo\W\alzagro-webapp\ALZAGRO.Reports.Data\bin\Release\AutoMapper.xml
+C:\Users\isidoro.caminos\Desarrollos\Codigo\W\alzagro-webapp\ALZAGRO.Reports.Data\bin\Release\EntityFramework.xml
+C:\Users\isidoro.caminos\Desarrollos\Codigo\W\alzagro-webapp\ALZAGRO.Reports.Data\bin\Release\EntityFramework.SqlServer.xml
+C:\Users\isidoro.caminos\Desarrollos\Codigo\W\alzagro-webapp\ALZAGRO.Reports.Data\obj\Release\ALZAGRO.Reports.Data.csprojAssemblyReference.cache
+C:\Users\isidoro.caminos\Desarrollos\Codigo\W\alzagro-webapp\ALZAGRO.Reports.Data\obj\Release\ALZAGRO.Reports.Data.csproj.CopyComplete
+C:\Users\isidoro.caminos\Desarrollos\Codigo\W\alzagro-webapp\ALZAGRO.Reports.Data\obj\Release\ALZAGRO.Reports.Data.dll
+C:\Users\isidoro.caminos\Desarrollos\Codigo\W\alzagro-webapp\ALZAGRO.Reports.Data\obj\Release\ALZAGRO.Reports.Data.pdb

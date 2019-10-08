@@ -1,0 +1,81 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27004.2010
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "01-ALZAGRO", "01-ALZAGRO", "{D048224C-13B0-4483-9096-3ADFA9F14D3E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{994CCFA3-20A2-4987-A12A-F31F226D01C6}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "00- Common", "00- Common", "{E4432590-BE36-4108-8A1C-9B5B7AE87D05}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mvz.Fwk", "Mvz.Fwk\Mvz.Fwk.csproj", "{1EFCA742-2AD1-4941-8A62-7CE1D1BB7EFD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mvz.CrossCutting", "Mvz.CrossCutting\Mvz.CrossCutting.csproj", "{EDFD2ADC-B97B-40D2-85BF-A63561791E7B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ALZAGRO.AppRendicionGastos.Application", "ALZAGRO.AppRendicionGastos.Application\ALZAGRO.AppRendicionGastos.Application.csproj", "{2B0131AB-CD43-47FE-8D0E-2C80EE069762}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ALZAGRO.AppRendicionGastos.Data", "ALZAGRO.AppRendicionGastos.Data\ALZAGRO.AppRendicionGastos.Data.csproj", "{FDB8609C-3FA4-425C-BA71-4A71A7C43EC6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ALZAGRO.AppRendicionGastos.Domain", "ALZAGRO.AppRendicionGastos.Domain\ALZAGRO.AppRendicionGastos.Domain.csproj", "{3E8BB046-05BD-4D27-94A7-C13AD4F3E192}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ALZAGRO.AppRendicionGastos.WebUI", "ALZAGRO.AppRendicionGastos.WebUI\ALZAGRO.AppRendicionGastos.WebUI.csproj", "{32415527-525D-490D-8B46-7BA4C3D45F7C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ALZAGRO.Reports.Data", "ALZAGRO.Reports.Data\ALZAGRO.Reports.Data.csproj", "{852DABD1-2FCA-4638-A7A4-30C0612BECF3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "02-ExternalDataSource", "02-ExternalDataSource", "{2407D736-A925-43CA-8167-BA26892CFCB2}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1EFCA742-2AD1-4941-8A62-7CE1D1BB7EFD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1EFCA742-2AD1-4941-8A62-7CE1D1BB7EFD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1EFCA742-2AD1-4941-8A62-7CE1D1BB7EFD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1EFCA742-2AD1-4941-8A62-7CE1D1BB7EFD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EDFD2ADC-B97B-40D2-85BF-A63561791E7B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EDFD2ADC-B97B-40D2-85BF-A63561791E7B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EDFD2ADC-B97B-40D2-85BF-A63561791E7B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EDFD2ADC-B97B-40D2-85BF-A63561791E7B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2B0131AB-CD43-47FE-8D0E-2C80EE069762}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2B0131AB-CD43-47FE-8D0E-2C80EE069762}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2B0131AB-CD43-47FE-8D0E-2C80EE069762}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2B0131AB-CD43-47FE-8D0E-2C80EE069762}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FDB8609C-3FA4-425C-BA71-4A71A7C43EC6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FDB8609C-3FA4-425C-BA71-4A71A7C43EC6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FDB8609C-3FA4-425C-BA71-4A71A7C43EC6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FDB8609C-3FA4-425C-BA71-4A71A7C43EC6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3E8BB046-05BD-4D27-94A7-C13AD4F3E192}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3E8BB046-05BD-4D27-94A7-C13AD4F3E192}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3E8BB046-05BD-4D27-94A7-C13AD4F3E192}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3E8BB046-05BD-4D27-94A7-C13AD4F3E192}.Release|Any CPU.Build.0 = Release|Any CPU
+		{32415527-525D-490D-8B46-7BA4C3D45F7C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{32415527-525D-490D-8B46-7BA4C3D45F7C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{32415527-525D-490D-8B46-7BA4C3D45F7C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{32415527-525D-490D-8B46-7BA4C3D45F7C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{852DABD1-2FCA-4638-A7A4-30C0612BECF3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{852DABD1-2FCA-4638-A7A4-30C0612BECF3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{852DABD1-2FCA-4638-A7A4-30C0612BECF3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{852DABD1-2FCA-4638-A7A4-30C0612BECF3}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{2B0131AB-CD43-47FE-8D0E-2C80EE069762} = {D048224C-13B0-4483-9096-3ADFA9F14D3E}
+		{FDB8609C-3FA4-425C-BA71-4A71A7C43EC6} = {D048224C-13B0-4483-9096-3ADFA9F14D3E}
+		{3E8BB046-05BD-4D27-94A7-C13AD4F3E192} = {D048224C-13B0-4483-9096-3ADFA9F14D3E}
+		{32415527-525D-490D-8B46-7BA4C3D45F7C} = {D048224C-13B0-4483-9096-3ADFA9F14D3E}
+		{852DABD1-2FCA-4638-A7A4-30C0612BECF3} = {2407D736-A925-43CA-8167-BA26892CFCB2}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {93430E2E-B9CE-4B40-9196-4D1440835062}
+	EndGlobalSection
+EndGlobal

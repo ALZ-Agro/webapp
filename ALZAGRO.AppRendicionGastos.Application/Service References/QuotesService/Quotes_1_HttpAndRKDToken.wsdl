@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:sns="http://www.reuters.com/ns/2006/05/01/webservices/rkd/Quotes_1" xmlns:tns="http://www.reuters.com/ns/2006/05/01/webservices/rkd/Quotes_1/HttpAndRKDToken" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:cache="http://www.reuters.com/ns/2008/03/01/webservices/rkd/Cache_1" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:faults="http://www.reuters.com/ns/2006/05/01/webservices/rkd/Faults_1" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:common="http://www.reuters.com/ns/2006/05/01/webservices/rkd/Common_1" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="Quotes_1_HttpAndRKDToken" targetNamespace="http://www.reuters.com/ns/2006/05/01/webservices/rkd/Quotes_1/HttpAndRKDToken" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Thomson Reuters Knowledge API - This WSDL document has been dynamically generated. Do not modify this document.</wsdl:documentation>
+  <wsp:Policy wsu:Id="HttpAndRKDToken_IQuotes_1_HttpAndRKDToken_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <wsaw:UsingAddressing />
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://www.reuters.com/ns/2006/05/01/webservices/rkd/Quotes_1/HttpAndRKDToken/Imports">
+      <xsd:import schemaLocation="http://api.trkd.thomsonreuters.com/schemas/Quotes/Quotes_1.xsd" namespace="http://www.reuters.com/ns/2006/05/01/webservices/rkd/Quotes_1" />
+      <xsd:import schemaLocation="http://api.trkd.thomsonreuters.com/schemas/Faults_1.xsd" namespace="http://www.reuters.com/ns/2006/05/01/webservices/rkd/Faults_1" />
+      <xsd:import schemaLocation="http://api.trkd.thomsonreuters.com/schemas/Serialization_200310.xsd" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://api.trkd.thomsonreuters.com/schemas/Common_1.xsd" namespace="http://www.reuters.com/ns/2006/05/01/webservices/rkd/Common_1" />
+      <xsd:import schemaLocation="http://api.trkd.thomsonreuters.com/schemas/Cache_1.xsd" namespace="http://www.reuters.com/ns/2008/03/01/webservices/rkd/Cache_1" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IQuotes_1_HttpAndRKDToken_IQuotes_1_HttpAndRKDToken_RetrieveItem_1_InputMessage">
+    <wsdl:part name="request" element="sns:RetrieveItem_Request_1" />
+  </wsdl:message>
+  <wsdl:message name="IQuotes_1_HttpAndRKDToken_IQuotes_1_HttpAndRKDToken_RetrieveItem_1_OutputMessage">
+    <wsdl:part name="response" element="sns:RetrieveItem_Response_1" />
+  </wsdl:message>
+  <wsdl:message name="IQuotes_1_HttpAndRKDToken_IQuotes_1_HttpAndRKDToken_RetrieveItem_1_ClientErrorReference_FaultMessage">
+    <wsdl:part name="detail" element="faults:ClientErrorReference" />
+  </wsdl:message>
+  <wsdl:message name="IQuotes_1_IQuotes_1_HttpAndRKDToken_RetrieveItem_2_InputMessage">
+    <wsdl:part name="request" element="sns:RetrieveItem_Request_2" />
+  </wsdl:message>
+  <wsdl:message name="IQuotes_1_IQuotes_1_HttpAndRKDToken_RetrieveItem_2_OutputMessage">
+    <wsdl:part name="response" element="sns:RetrieveItem_Response_2" />
+  </wsdl:message>
+  <wsdl:message name="IQuotes_1_IQuotes_1_HttpAndRKDToken_RetrieveItem_2_ClientErrorReference_FaultMessage">
+    <wsdl:part name="detail" element="faults:ClientErrorReference" />
+  </wsdl:message>
+  <wsdl:message name="IQuotes_1_IQuotes_1_HttpAndRKDToken_RetrieveItem_3_InputMessage">
+    <wsdl:part name="request" element="sns:RetrieveItem_Request_3" />
+  </wsdl:message>
+  <wsdl:message name="IQuotes_1_IQuotes_1_HttpAndRKDToken_RetrieveItem_3_OutputMessage">
+    <wsdl:part name="response" element="sns:RetrieveItem_Response_3" />
+  </wsdl:message>
+  <wsdl:message name="IQuotes_1_IQuotes_1_HttpAndRKDToken_RetrieveItem_3_ClientErrorReference_FaultMessage">
+    <wsdl:part name="detail" element="faults:ClientErrorReference" />
+  </wsdl:message>
+  <wsdl:message name="Authorization">
+    <wsdl:part name="AuthorizationPart" element="common:Authorization" />
+  </wsdl:message>
+  <wsdl:message name="CacheRequest">
+    <wsdl:part name="CacheRequestPart" element="cache:CacheRequest" />
+  </wsdl:message>
+  <wsdl:message name="CacheResponse">
+    <wsdl:part name="CacheResponsePart" element="cache:CacheResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IQuotes_1">
+    <wsdl:operation name="RetrieveItem_1">
+      <wsdl:input wsaw:Action="http://www.reuters.com/ns/2006/05/01/webservices/rkd/Quotes_1/RetrieveItem_1" name="RetrieveItem_1_RequestMessage" message="tns:IQuotes_1_HttpAndRKDToken_IQuotes_1_HttpAndRKDToken_RetrieveItem_1_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.reuters.com/ns/2006/05/01/webservices/rkd/Quotes_1/RetrieveItem_1_Reply" name="RetrieveItem_1_ResponseMessage" message="tns:IQuotes_1_HttpAndRKDToken_IQuotes_1_HttpAndRKDToken_RetrieveItem_1_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.reuters.com/ns/2006/05/01/webservices/rkd/Faults_1/Fault_1_Reply" name="ClientErrorReference" message="tns:IQuotes_1_HttpAndRKDToken_IQuotes_1_HttpAndRKDToken_RetrieveItem_1_ClientErrorReference_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RetrieveItem_2">
+      <wsdl:input wsaw:Action="http://www.reuters.com/ns/2006/05/01/webservices/rkd/Quotes_1/RetrieveItem_2" name="RetrieveItem_2_RequestMessage" message="tns:IQuotes_1_IQuotes_1_HttpAndRKDToken_RetrieveItem_2_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.reuters.com/ns/2006/05/01/webservices/rkd/Quotes_1/RetrieveItem_2_Reply" name="RetrieveItem_2_ResponseMessage" message="tns:IQuotes_1_IQuotes_1_HttpAndRKDToken_RetrieveItem_2_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.reuters.com/ns/2006/05/01/webservices/rkd/Faults_1/Fault_1_Reply" name="ClientErrorReference" message="tns:IQuotes_1_IQuotes_1_HttpAndRKDToken_RetrieveItem_2_ClientErrorReference_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RetrieveItem_3">
+      <wsdl:input wsaw:Action="http://www.reuters.com/ns/2006/05/01/webservices/rkd/Quotes_1/RetrieveItem_3" name="RetrieveItem_3_RequestMessage" message="tns:IQuotes_1_IQuotes_1_HttpAndRKDToken_RetrieveItem_3_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.reuters.com/ns/2006/05/01/webservices/rkd/Quotes_1/RetrieveItem_3_Reply" name="RetrieveItem_3_ResponseMessage" message="tns:IQuotes_1_IQuotes_1_HttpAndRKDToken_RetrieveItem_3_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.reuters.com/ns/2006/05/01/webservices/rkd/Faults_1/Fault_1_Reply" name="ClientErrorReference" message="tns:IQuotes_1_IQuotes_1_HttpAndRKDToken_RetrieveItem_3_ClientErrorReference_FaultMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="HttpAndRKDToken_IQuotes_1_HttpAndRKDToken" type="tns:IQuotes_1">
+    <wsp:PolicyReference URI="#HttpAndRKDToken_IQuotes_1_HttpAndRKDToken_policy" />
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="RetrieveItem_1">
+      <soap12:operation soapAction="http://www.reuters.com/ns/2006/05/01/webservices/rkd/Quotes_1/RetrieveItem_1" style="document" />
+      <wsdl:input name="RetrieveItem_1_RequestMessage">
+        <soap12:body use="literal" />
+        <soap12:header message="tns:CacheRequest" part="CacheRequestPart" use="literal" />
+        <soap12:header wsdl:required="true" message="tns:Authorization" part="AuthorizationPart" use="literal" />
+      </wsdl:input>
+      <wsdl:output name="RetrieveItem_1_ResponseMessage">
+        <soap12:body use="literal" />
+        <soap12:header message="tns:CacheResponse" part="CacheResponsePart" use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="ClientErrorReference">
+        <soap12:fault use="literal" name="ClientErrorReference" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="RetrieveItem_2">
+      <soap12:operation soapAction="http://www.reuters.com/ns/2006/05/01/webservices/rkd/Quotes_1/RetrieveItem_2" style="document" />
+      <wsdl:input name="RetrieveItem_2_RequestMessage">
+        <soap12:body use="literal" />
+        <soap12:header message="tns:CacheRequest" part="CacheRequestPart" use="literal" />
+        <soap12:header wsdl:required="true" message="tns:Authorization" part="AuthorizationPart" use="literal" />
+      </wsdl:input>
+      <wsdl:output name="RetrieveItem_2_ResponseMessage">
+        <soap12:body use="literal" />
+        <soap12:header message="tns:CacheResponse" part="CacheResponsePart" use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="ClientErrorReference">
+        <soap12:fault use="literal" name="ClientErrorReference" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="RetrieveItem_3">
+      <soap12:operation soapAction="http://www.reuters.com/ns/2006/05/01/webservices/rkd/Quotes_1/RetrieveItem_3" style="document" />
+      <wsdl:input name="RetrieveItem_3_RequestMessage">
+        <soap12:body use="literal" />
+        <soap12:header message="tns:CacheRequest" part="CacheRequestPart" use="literal" />
+        <soap12:header wsdl:required="true" message="tns:Authorization" part="AuthorizationPart" use="literal" />
+      </wsdl:input>
+      <wsdl:output name="RetrieveItem_3_ResponseMessage">
+        <soap12:body use="literal" />
+        <soap12:header message="tns:CacheResponse" part="CacheResponsePart" use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="ClientErrorReference">
+        <soap12:fault use="literal" name="ClientErrorReference" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Quotes_1">
+    <wsdl:port name="HttpAndRKDToken_IQuotes_1_HttpAndRKDToken" binding="tns:HttpAndRKDToken_IQuotes_1_HttpAndRKDToken">
+      <soap12:address location="http://api.trkd.thomsonreuters.com/api/Quotes/Quotes.svc" />
+      <wsa10:EndpointReference>
+        <wsa10:Address>http://api.trkd.thomsonreuters.com/api/Quotes/Quotes.svc</wsa10:Address>
+      </wsa10:EndpointReference>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns="http://www.reuters.com/ns/2006/05/01/webservices/rkd/Common_1" xmlns:mstns="http://www.reuters.com/ns/2006/05/01/webservices/rkd/Common_1" elementFormDefault="qualified" targetNamespace="http://www.reuters.com/ns/2006/05/01/webservices/rkd/Common_1" id="Common_1" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:simpleType name="ApplicationIDType">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="[A-Za-z0-9]+" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="TokenValueType">
+    <xs:restriction base="xs:hexBinary">
+      <xs:minLength value="48" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="AuthorizationType">
+    <xs:sequence>
+      <xs:element ref="mstns:ApplicationID" />
+      <xs:element ref="mstns:Token" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Authorization" type="mstns:AuthorizationType" />
+  <xs:element name="Token" type="mstns:TokenValueType" />
+  <xs:element name="ApplicationID" type="mstns:ApplicationIDType" />
+</xs:schema>

@@ -1,0 +1,406 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{2B0131AB-CD43-47FE-8D0E-2C80EE069762}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ALZAGRO.AppRendicionGastos.Application</RootNamespace>
+    <AssemblyName>ALZAGRO.AppRendicionGastos.Application</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Autofac, Version=3.5.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\packages\Autofac.3.5.0\lib\net40\Autofac.dll</HintPath>
+    </Reference>
+    <Reference Include="Autofac.Integration.WebApi, Version=3.4.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\packages\Autofac.WebApi2.3.4.0\lib\net45\Autofac.Integration.WebApi.dll</HintPath>
+    </Reference>
+    <Reference Include="AutoMapper">
+      <HintPath>..\packages\AutoMapper.3.3.1\lib\net40\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="AutoMapper.Net4">
+      <HintPath>..\packages\AutoMapper.3.3.1\lib\net40\AutoMapper.Net4.dll</HintPath>
+    </Reference>
+    <Reference Include="CsvHelper, Version=7.0.0.0, Culture=neutral, PublicKeyToken=8c4959082be5c823, processorArchitecture=MSIL">
+      <HintPath>..\packages\CsvHelper.7.1.1\lib\net45\CsvHelper.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Excel, Version=2.1.2.3, Culture=neutral, PublicKeyToken=93517dbe6a4012fa, processorArchitecture=MSIL">
+      <HintPath>..\packages\ExcelDataReader.2.1.2.3\lib\net45\Excel.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="FcmSharp, Version=2.4.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\FcmSharp.2.4.0\lib\net45\FcmSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="FluentValidation">
+      <HintPath>..\packages\FluentValidation.5.6.2.0\lib\Net45\FluentValidation.dll</HintPath>
+    </Reference>
+    <Reference Include="FluentValidation.WebApi">
+      <HintPath>..\packages\FluentValidation.WebApi.5.6.2.0\lib\Net45\FluentValidation.WebApi.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.Apis, Version=1.32.2.0, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
+      <HintPath>..\packages\Google.Apis.1.32.2\lib\net45\Google.Apis.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.Apis.Auth, Version=1.32.2.0, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
+      <HintPath>..\packages\Google.Apis.Auth.1.32.2\lib\net45\Google.Apis.Auth.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.Apis.Auth.PlatformServices, Version=1.32.2.0, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
+      <HintPath>..\packages\Google.Apis.Auth.1.32.2\lib\net45\Google.Apis.Auth.PlatformServices.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.Apis.Core, Version=1.32.2.0, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
+      <HintPath>..\packages\Google.Apis.Core.1.32.2\lib\net45\Google.Apis.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.Apis.PlatformServices, Version=1.32.2.0, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
+      <HintPath>..\packages\Google.Apis.1.32.2\lib\net45\Google.Apis.PlatformServices.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.10.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data.Entity.Design" />
+    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Linq.Dynamic, Version=1.0.6132.35681, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Linq.Dynamic.1.0.7\lib\net40\System.Linq.Dynamic.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.0\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Threading.Tasks.Extensions.4.3.0\lib\portable-net45+win8+wp8+wpa81\System.Threading.Tasks.Extensions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Http, Version=5.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.0\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Contracts\IDataService.cs" />
+    <Compile Include="Contracts\INotificationAppService.cs" />
+    <Compile Include="Contracts\ICategoryAppService.cs" />
+    <Compile Include="Contracts\IPaymentAppService.cs" />
+    <Compile Include="Contracts\IProviderAppService.cs" />
+    <Compile Include="Contracts\IExpenseAppService.cs" />
+    <Compile Include="Contracts\IUserAppService.cs" />
+    <Compile Include="Criterias\StatusChangeListCriteria.cs" />
+    <Compile Include="Criterias\ExpenseListViewCriteria.cs" />
+    <Compile Include="Criterias\NotificationListViewCriteria.cs" />
+    <Compile Include="Criterias\NotificationUpdateCriteria.cs" />
+    <Compile Include="Criterias\ProviderListViewCriteria.cs" />
+    <Compile Include="Criterias\UserListViewCriteria.cs" />
+    <Compile Include="Dtos\AnalyticsDto.cs" />
+    <Compile Include="Dtos\ChangeExpenseStatusDto.cs" />
+    <Compile Include="Dtos\ChangeExpenseStatusResult.cs" />
+    <Compile Include="Dtos\DeviceDto.cs" />
+    <Compile Include="Dtos\ExpenseListDto.cs" />
+    <Compile Include="Dtos\ExpenseNotificationDetailDto.cs" />
+    <Compile Include="Dtos\ExpenseStatusesLogDto.cs" />
+    <Compile Include="Dtos\ExportExpenseReportDto.cs" />
+    <Compile Include="Dtos\ExportExpenseDto.cs" />
+    <Compile Include="Dtos\ExportProviderDto.cs" />
+    <Compile Include="Dtos\ImportProviderDto.cs" />
+    <Compile Include="Dtos\LegalConditionDto.cs" />
+    <Compile Include="Dtos\ImageExistDto.cs" />
+    <Compile Include="Dtos\NotificationDataDto.cs" />
+    <Compile Include="Dtos\NotificationDto.cs" />
+    <Compile Include="Dtos\ApprovalReasonDto.cs" />
+    <Compile Include="Dtos\ProviderReportDto.cs" />
+    <Compile Include="Dtos\SearchProviderDto.cs" />
+    <Compile Include="Dtos\RefusalReasonDto.cs" />
+    <Compile Include="Dtos\SearchUserDto.cs" />
+    <Compile Include="Dtos\CategoryDto.cs" />
+    <Compile Include="Dtos\ChangePasswordDto.cs" />
+    <Compile Include="Dtos\CompanyDto.cs" />
+    <Compile Include="Dtos\ConfigDto.cs" />
+    <Compile Include="Dtos\ExpenseDto.cs" />
+    <Compile Include="Dtos\ForgotDto.cs" />
+    <Compile Include="Dtos\ImageDto.cs" />
+    <Compile Include="Dtos\LoginDto.cs" />
+    <Compile Include="Dtos\PaymentDto.cs" />
+    <Compile Include="Dtos\ProviderDto.cs" />
+    <Compile Include="Dtos\RequestDto.cs" />
+    <Compile Include="Dtos\RoleDto.cs" />
+    <Compile Include="Dtos\SyncStatusDto.cs" />
+    <Compile Include="Dtos\AliquotDto.cs" />
+    <Compile Include="Dtos\UserCompanyDto.cs" />
+    <Compile Include="Dtos\UserCompanyGroupDto.cs" />
+    <Compile Include="Dtos\UserCompanyGroupPlainDto.cs" />
+    <Compile Include="Dtos\UserDto.cs" />
+    <Compile Include="Dtos\UserGroupDto.cs" />
+    <Compile Include="Dtos\VendorAnalyticsDto.cs" />
+    <Compile Include="ExtensionMethods\CloneObject.cs" />
+    <Compile Include="InputValidators\ChangePasswordDtoValidator.cs" />
+    <Compile Include="InputValidators\UserDtoValidator.cs" />
+    <Compile Include="Mappers\AutoMapperConfiguration.cs" />
+    <Compile Include="Mappers\CsvMapper.cs" />
+    <Compile Include="Mappers\CsvNormalizers.cs" />
+    <Compile Include="Mappers\DomainToDtoMappingProfile.cs" />
+    <Compile Include="Mappers\DtoToDomainMappingProfile.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service References\CacheService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\CommonService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\FaultsService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\QuotesService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\TokenManagementHttpsAnonymousService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\TokenManagementService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Services\CategoryAppService.cs" />
+    <Compile Include="Services\DataService.cs" />
+    <Compile Include="Services\ErrorAppService.cs" />
+    <Compile Include="Services\NotificationAppService.cs" />
+    <Compile Include="Services\PaymentAppService.cs" />
+    <Compile Include="Services\ProviderAppService.cs" />
+    <Compile Include="Services\ExpenseAppService.cs" />
+    <Compile Include="Services\UserAppService.cs" />
+    <Compile Include="UI\ExpensesListSearchResultViewModel.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ALZAGRO.AppRendicionGastos.Data\ALZAGRO.AppRendicionGastos.Data.csproj">
+      <Project>{FDB8609C-3FA4-425C-BA71-4A71A7C43EC6}</Project>
+      <Name>ALZAGRO.AppRendicionGastos.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ALZAGRO.AppRendicionGastos.Domain\ALZAGRO.AppRendicionGastos.Domain.csproj">
+      <Project>{3E8BB046-05BD-4D27-94A7-C13AD4F3E192}</Project>
+      <Name>ALZAGRO.AppRendicionGastos.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Mvz.Fwk\Mvz.Fwk.csproj">
+      <Project>{1EFCA742-2AD1-4941-8A62-7CE1D1BB7EFD}</Project>
+      <Name>Mvz.Fwk</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+    <None Include="Service References\CacheService\Cache_1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\CommonService\Common_1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\FaultsService\Faults_1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\QuotesService\Cache_1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\QuotesService\Common_1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\QuotesService\Faults_1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\QuotesService\Mdp.CalculadorIndemnizacion.Application.QuotesService.CacheResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\QuotesService\Mdp.CalculadorIndemnizacion.Application.QuotesService.ItemResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\QuotesService\Mdp.CalculadorIndemnizacion.Application.QuotesService.ItemResponse_Short_Or_Full.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\QuotesService\Mdp.CalculadorIndemnizacion.Application.QuotesService.RetrieveItem_1_ResponseMessage.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\QuotesService\Mdp.CalculadorIndemnizacion.Application.QuotesService.RetrieveItem_2_ResponseMessage.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\QuotesService\Mdp.CalculadorIndemnizacion.Application.QuotesService.RetrieveItem_3_ResponseMessage.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\QuotesService\QuotesCommon.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\QuotesService\Quotes_1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\QuotesService\Quotes_1_HttpAndRKDToken.wsdl" />
+    <None Include="Service References\QuotesService\Serialization_200310.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\TokenManagementHttpsAnonymousService\Cache_1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\TokenManagementHttpsAnonymousService\Common_1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\TokenManagementHttpsAnonymousService\Faults_1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\TokenManagementHttpsAnonymousService\Mdp.CalculadorIndemnizacion.Application.TokenManagementHttpsAnonymousService.CacheResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\TokenManagementHttpsAnonymousService\Mdp.CalculadorIndemnizacion.Application.TokenManagementHttpsAnonymousService.CreateToken_Response.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\TokenManagementHttpsAnonymousService\Serialization_200310.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\TokenManagementHttpsAnonymousService\TokenManagement_1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\TokenManagementHttpsAnonymousService\TokenManagement_1_HttpsAndAnonymous.wsdl" />
+    <None Include="Service References\TokenManagementService\Common_1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\TokenManagementService\TokenManagement_1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\CacheService\" />
+    <WCFMetadataStorage Include="Service References\CommonService\" />
+    <WCFMetadataStorage Include="Service References\FaultsService\" />
+    <WCFMetadataStorage Include="Service References\QuotesService\" />
+    <WCFMetadataStorage Include="Service References\TokenManagementHttpsAnonymousService\" />
+    <WCFMetadataStorage Include="Service References\TokenManagementService\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\TokenManagementService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\TokenManagementService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\TokenManagementService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\TokenManagementHttpsAnonymousService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\TokenManagementHttpsAnonymousService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\TokenManagementHttpsAnonymousService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\CacheService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\CacheService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\CacheService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\CommonService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\CommonService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\CommonService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\FaultsService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\FaultsService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\FaultsService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\QuotesService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\QuotesService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\QuotesService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Exceptions\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="923de930-72d8-407c-a60f-42396d81bab1" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://api.trkd.thomsonreuters.com/schemas/Quotes/wsdl/Quotes_1_HttpAndRKDToken.wsdl" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="Quotes_1.xsd" MetadataType="Schema" ID="5a6f5628-27b0-4f32-b0f0-a36c15bc429c" SourceId="1" SourceUrl="http://api.trkd.thomsonreuters.com/schemas/Quotes/Quotes_1.xsd" />
+    <MetadataFile FileName="Cache_1.xsd" MetadataType="Schema" ID="35ceabdd-0c98-4fe1-823c-d441a89b0a4d" SourceId="1" SourceUrl="http://api.trkd.thomsonreuters.com/schemas/Cache_1.xsd" />
+    <MetadataFile FileName="Quotes_1_HttpAndRKDToken.wsdl" MetadataType="Wsdl" ID="ea030501-33a4-4b76-a74c-d77c1039a1db" SourceId="1" SourceUrl="http://api.trkd.thomsonreuters.com/schemas/Quotes/wsdl/Quotes_1_HttpAndRKDToken.wsdl" />
+    <MetadataFile FileName="Serialization_200310.xsd" MetadataType="Schema" ID="24bd36a0-c85f-4668-a2ef-4b3630139731" SourceId="1" SourceUrl="http://api.trkd.thomsonreuters.com/schemas/Serialization_200310.xsd" />
+    <MetadataFile FileName="Faults_1.xsd" MetadataType="Schema" ID="e4b8252c-a307-43f1-9f0e-cd80b39bbac7" SourceId="1" SourceUrl="http://api.trkd.thomsonreuters.com/schemas/Faults_1.xsd" />
+    <MetadataFile FileName="Common_1.xsd" MetadataType="Schema" ID="f7c6fa83-0293-4520-93ac-fd3b1b70e11d" SourceId="1" SourceUrl="http://api.trkd.thomsonreuters.com/schemas/Common_1.xsd" />
+    <MetadataFile FileName="QuotesCommon.xsd" MetadataType="Schema" ID="9e6fbb0a-d700-4e34-a54c-f0cf6452a86b" SourceId="1" SourceUrl="http://api.trkd.thomsonreuters.com/schemas/Quotes/QuotesCommon.xsd" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns="http://www.reuters.com/ns/2006/05/01/webservices/rkd/Quotes_1" xmlns:omm="http://www.reuters.com/ns/2006/05/01/webservices/rkd/QuotesCommon" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://www.reuters.com/ns/2006/05/01/webservices/rkd/Quotes_1" version="1.0" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:import schemaLocation="QuotesCommon.xsd" namespace="http://www.reuters.com/ns/2006/05/01/webservices/rkd/QuotesCommon" />
+  <xsd:annotation>
+    <xsd:documentation>
+      <p xmlns="http://www.reuters.com/ns/2006/05/01/webservices/rkd/Quotes_1">
+        This schema defines types for use in ItemService web service description. Main functionaliy
+        include:
+      </p>
+      <li xmlns="http://www.reuters.com/ns/2006/05/01/webservices/rkd/Quotes_1">
+        The ability to subscribe to items published into the RMDS (including Reuters Market Pricing
+        information)
+      </li>
+      <li xmlns="http://www.reuters.com/ns/2006/05/01/webservices/rkd/Quotes_1">
+        The ability to permission the content via an exchange-compliant Discretionary Access Server
+        (DACS)
+      </li>
+    </xsd:documentation>
+  </xsd:annotation>
+  <xsd:complexType name="RetrieveItem_Request_1">
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" name="ItemRequest" type="omm:ItemRequest" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="RetrieveItem_Request_2">
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" name="ItemRequest" type="ItemRequest_2" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="RetrieveItem_Request_3">
+    <xsd:complexContent mixed="false">
+      <xsd:extension base="RetrieveItem_Request_2">
+        <xsd:attribute default="false" name="TrimResponse" type="xsd:boolean" />
+        <xsd:attribute default="false" name="IncludeChildItemQoS" type="xsd:boolean" />
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="ItemRequest_2">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="Fields" type="xsd:string" />
+      <xsd:element maxOccurs="unbounded" name="RequestKey" type="InstrumentKey_2" />
+    </xsd:sequence>
+    <xsd:attribute default="false" name="IncludeHints" type="xsd:boolean" />
+    <xsd:attribute default="true" name="ExpandChains" type="xsd:boolean" />
+    <xsd:attribute default="List" name="Scope" type="omm:Scope" />
+    <xsd:attribute default="false" name="ProvideChainLinks" type="xsd:boolean" />
+    <xsd:attribute default="false" name="EnableEmptyLinks" type="xsd:boolean" />
+    <xsd:anyAttribute />
+  </xsd:complexType>
+  <xsd:complexType name="InstrumentKey_2">
+    <xsd:attribute name="Name" type="xsd:string" use="required" />
+    <xsd:attribute default="RIC" name="NameType" type="xsd:string" />
+    <xsd:anyAttribute />
+  </xsd:complexType>
+  <xsd:complexType name="RetrieveItem_Response_1">
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" name="ItemResponse" type="omm:ItemResponse" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="RetrieveItem_Response_2">
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" name="ItemResponse" type="omm:ItemResponse_Short_Or_Full" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="RetrieveItem_Request_1" type="RetrieveItem_Request_1">
+    <xsd:annotation>
+      <xsd:documentation>
+        <p xmlns="http://www.reuters.com/ns/2006/05/01/webservices/rkd/Quotes_1">
+          This element defines request message for web service operation RetrieveNews_1 on
+          NewsService_1. Request message can contain one or many ItemRequest.
+        </p>
+      </xsd:documentation>
+    </xsd:annotation>
+  </xsd:element>
+  <xsd:element name="RetrieveItem_Request_2" type="RetrieveItem_Request_2" />
+  <xsd:element name="RetrieveItem_Request_3" type="RetrieveItem_Request_3" />
+  <xsd:element name="RetrieveItem_Response_1" type="RetrieveItem_Response_1">
+    <xsd:annotation>
+      <xsd:documentation>
+        <p xmlns="http://www.reuters.com/ns/2006/05/01/webservices/rkd/Quotes_1">
+          This elemenet defines response message for web service operation RetrieveItem_1 on
+          ItemService_1. Response message can contain one or many ItemResponse, one each for an
+          ItemRequest.
+        </p>
+      </xsd:documentation>
+    </xsd:annotation>
+  </xsd:element>
+  <xsd:element name="RetrieveItem_Response_2" type="RetrieveItem_Response_1" />
+  <xsd:element name="RetrieveItem_Response_3" type="RetrieveItem_Response_2" />
+</xsd:schema>

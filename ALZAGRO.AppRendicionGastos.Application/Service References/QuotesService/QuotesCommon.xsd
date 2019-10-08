@@ -1,0 +1,393 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:omm="http://www.reuters.com/ns/2006/05/01/webservices/rkd/QuotesCommon" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://www.reuters.com/ns/2006/05/01/webservices/rkd/QuotesCommon" version="1.0" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:annotation>
+    <xsd:documentation>
+      <p>This schema defines common data types used across web services defined in IFP SDS.</p>
+    </xsd:documentation>
+  </xsd:annotation>
+  <xsd:complexType name="DataBuffer">
+    <xsd:choice>
+      <xsd:element name="Int8" type="xsd:byte" />
+      <xsd:element name="UInt8" type="xsd:unsignedByte" />
+      <xsd:element name="Int16" type="xsd:short" />
+      <xsd:element name="UInt16" type="xsd:unsignedShort" />
+      <xsd:element name="Int32" type="xsd:integer" />
+      <xsd:element name="UInt32" type="xsd:unsignedInt" />
+      <xsd:element name="Int64" type="xsd:long" />
+      <xsd:element name="UInt64" type="xsd:unsignedLong" />
+      <xsd:element name="Float" type="xsd:float" />
+      <xsd:element name="Double" type="xsd:double" />
+      <xsd:element name="Date" type="xsd:date" />
+      <xsd:element name="Time" type="xsd:time" />
+      <xsd:element name="DateTime" type="xsd:dateTime" />
+      <xsd:element name="Utf8String" type="xsd:string" />
+      <xsd:element name="AsciiString" type="xsd:string" />
+      <xsd:element name="RmtesString" type="xsd:string" />
+      <xsd:element name="Binary" type="xsd:base64Binary" />
+    </xsd:choice>
+  </xsd:complexType>
+  <xsd:simpleType name="DataType">
+    <xsd:annotation>
+      <xsd:documentation>
+        <p>
+					The DataType enumeration indicates the internal representation of data, to help
+					client applications extract data from an item response in a strongly typed manner.
+				</p>
+      </xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="Int8" />
+      <xsd:enumeration value="UInt8" />
+      <xsd:enumeration value="Int16" />
+      <xsd:enumeration value="UInt16" />
+      <xsd:enumeration value="Int32" />
+      <xsd:enumeration value="UInt32" />
+      <xsd:enumeration value="Int64" />
+      <xsd:enumeration value="UInt64" />
+      <xsd:enumeration value="Float" />
+      <xsd:enumeration value="Double" />
+      <xsd:enumeration value="Date" />
+      <xsd:enumeration value="Time" />
+      <xsd:enumeration value="DateTime" />
+      <xsd:enumeration value="Utf8String" />
+      <xsd:enumeration value="RmtesString" />
+      <xsd:enumeration value="AsciiString" />
+      <xsd:enumeration value="Binary" />
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:complexType name="FieldList">
+    <xsd:annotation>
+      <xsd:documentation>
+        <p>
+					A node that provides field name, value, and type information through entries known as
+					Fields.
+				</p>
+      </xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element minOccurs="0" maxOccurs="unbounded" name="Field" type="omm:Field" />
+    </xsd:sequence>
+    <xsd:anyAttribute />
+  </xsd:complexType>
+  <xsd:complexType name="FieldList_Short_Or_Full">
+    <xsd:choice>
+      <xsd:element minOccurs="0" maxOccurs="unbounded" name="F" type="omm:Field_Short" />
+      <xsd:element minOccurs="0" maxOccurs="unbounded" name="Field" type="omm:Field" />
+    </xsd:choice>
+    <xsd:anyAttribute />
+  </xsd:complexType>
+  <xsd:complexType name="Field">
+    <xsd:annotation>
+      <xsd:documentation>
+        <p>
+					The Field represents a data field for an Item in RMDS cache. Each Field object contains
+					information such as field name, value, data type, display hint, and such. Display hints
+					suggest how the data is to be displayed: decimal, fraction, date, or date time, and so
+					on. Here are sample values for hints:
+				</p>
+        <li>HINT_INTEGER = 0</li>
+        <li>HINT_STRING = 64;</li>
+        <p>Fraction can be 1, /2, /4, /8, /16, /32, /64, /128, or /256</p>
+        <li>HINT_FRACTION_START = 1;</li>
+        <li>HINT_FRACTION_END = 8;</li>
+        <p>Decimal places can be 0 through 9.</p>
+        <li>HINT_DECIMAL_START = 16</li>
+        <li>HINT_DECIMAL_END = 25</li>
+        <p>DD MMM YY</p>
+        <li>HINT_DATE = 258</li>
+        <p>00:00 format</p>
+        <li>HINT_TIME = 259</li>
+        <p>00:00:00 format</p>
+        <li>HINT_TIME_SECONDS = 260</li>
+      </xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexContent mixed="false">
+      <xsd:extension base="omm:DataBuffer">
+        <xsd:attribute name="DataType" type="omm:DataType" use="required" />
+        <xsd:attribute name="Name" type="xsd:string" use="required" />
+        <xsd:attribute name="Hint" type="xsd:int" />
+        <xsd:anyAttribute />
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="Field_Short">
+    <xsd:simpleContent>
+      <xsd:extension base="xsd:string">
+        <xsd:attribute name="n" type="xsd:string" use="required" />
+        <xsd:attribute name="h" type="xsd:int" />
+        <xsd:anyAttribute />
+      </xsd:extension>
+    </xsd:simpleContent>
+  </xsd:complexType>
+  <xsd:complexType name="InstrumentKey">
+    <xsd:annotation>
+      <xsd:documentation>
+        <p>
+					ItemKey (InstrumentKey) is used to specify request constriants such as Item name (e.g., CSCO), service
+					name (e.g., RSF), and NameType (e.g., RIC or ISIN).
+				</p>
+        <p>Name is the instrument (e.g., CSCO.O or MSFT.O) for which you want data.</p>
+        <p>If service (datafeed) is not specified, the server’s default datafeed will be used.</p>
+        <p>NameType identifes the symbol type (e.g., RIC or ISIN).</p>
+      </xsd:documentation>
+    </xsd:annotation>
+    <xsd:attribute name="Name" type="xsd:string" use="required" />
+    <xsd:attribute name="Service" type="xsd:string" />
+    <xsd:attribute default="RIC" name="NameType" type="xsd:string" />
+    <xsd:anyAttribute />
+  </xsd:complexType>
+  <xsd:complexType name="ItemRequest">
+    <xsd:annotation>
+      <xsd:documentation>
+        <p>
+					An ItemRequest specifies request attributes to extract a specific item from the RMDS
+					cache. Request attributes include request key (item name, namespace a.k.a. symbology,
+					and service name), field list, desired quality of service, and worst acceptable quality of
+					service. For each ItemRequest, user can specify a list of field names such as
+					TRDPRC_1, SYMBOL, BID, ASK, etc., or just fetch the entire field set as applicable to the
+					requested item name(s). Set the flag IncludeHints to true to receive hints on how to
+					display the data.
+				</p>
+      </xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="QoS" type="omm:QoS" />
+      <xsd:element minOccurs="0" name="WorstQoS" type="omm:QoS" />
+      <xsd:element minOccurs="0" name="Fields" type="xsd:string" />
+      <xsd:element maxOccurs="unbounded" name="RequestKey" type="omm:InstrumentKey" />
+    </xsd:sequence>
+    <xsd:attribute default="false" name="IncludeHints" type="xsd:boolean" />
+    <xsd:attribute default="true" name="ExpandChains" type="xsd:boolean" />
+    <xsd:attribute default="List" name="Scope" type="omm:Scope" />
+    <xsd:attribute default="false" name="ProvideChainLinks" type="xsd:boolean" />
+    <xsd:attribute default="false" name="EnableEmptyLinks" type="xsd:boolean" />
+    <xsd:anyAttribute />
+  </xsd:complexType>
+  <xsd:simpleType name="Scope">
+    <xsd:restriction base="xsd:Name">
+      <xsd:enumeration value="All" />
+      <xsd:enumeration value="AllExcept" />
+      <xsd:enumeration value="List" />
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:complexType name="ItemResponse">
+    <xsd:annotation>
+      <xsd:documentation>
+        <p>
+					Each ItemResponse represents the response for a single ItemRequest. A response can be
+					sent in one of the following ways:
+				</p>
+        <li>
+					A single Item, if the ItemRequest contains a single symbol name (e.g., CSCO.O).
+				</li>
+        <li>
+					A list of Item nodes, if the ItemRequest contains multiple RequestKeys (as for example with
+					a watch list).
+				</li>
+        <li>
+					A single Item with a list of ChildItem nodes, if the RequestKey represents an index
+					chain (0#^SPX), option chain (0#CSCO.O), statistics, or a dynamic chain such as
+					volume gainers (^AV.O) or net gainers (^NG.N).
+				</li>
+        <p>
+					In addition, ItemResponse will return other information, such as status if there's any
+					error, and the user's permissioned quality of service.
+				</p>
+      </xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="Status" type="omm:Status" />
+      <xsd:element minOccurs="0" maxOccurs="unbounded" name="Item" type="omm:Item" />
+    </xsd:sequence>
+    <xsd:anyAttribute />
+  </xsd:complexType>
+  <xsd:complexType name="ItemResponse_Short_Or_Full">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="Status" type="omm:Status" />
+      <xsd:element minOccurs="0" maxOccurs="unbounded" name="Item" type="omm:Item_Short_Or_Full" />
+    </xsd:sequence>
+    <xsd:anyAttribute />
+  </xsd:complexType>
+  <xsd:complexType name="Item">
+    <xsd:annotation>
+      <xsd:documentation>
+        <p>
+					Each Item represents the response for a single RequestKey in the ItemRequest. If an
+					item name represents a symbol list (a.k.a. chain), the Item would contain, in addition to
+					the data for the main Item, a list of ChildItem elements containing data for the chain's
+					constituents.
+				</p>
+      </xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element name="RequestKey" type="omm:InstrumentKey" />
+      <xsd:element minOccurs="0" name="QoS" type="omm:QoS" />
+      <xsd:element minOccurs="0" name="Status" type="omm:Status" />
+      <xsd:element name="Fields" type="omm:FieldList" />
+      <xsd:element minOccurs="0" maxOccurs="unbounded" name="ChildItem" type="omm:ChildItem" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="Item_Short_Or_Full">
+    <xsd:annotation>
+      <xsd:documentation>
+        <p>
+					Each Item represents the response for a single RequestKey in the ItemRequest. If an
+					item name represents a symbol list (a.k.a. chain), the Item would contain, in addition to
+					the data for the main Item, a list of ChildItem elements containing data for the chain's
+					constituents.
+				</p>
+      </xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element name="RequestKey" type="omm:InstrumentKey" />
+      <xsd:element minOccurs="0" name="QoS" type="omm:QoS" />
+      <xsd:element minOccurs="0" name="Status" type="omm:Status" />
+      <xsd:element name="Fields" type="omm:FieldList_Short_Or_Full" />
+      <xsd:element minOccurs="0" maxOccurs="unbounded" name="ChildItem" type="omm:ChildItem_Short_Or_Full" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="ChildItem">
+    <xsd:annotation>
+      <xsd:documentation>
+        <p>
+					Each ChildItem represents a constituent of a chain (e.g., Item RIC .AV.O and constituent
+					RIC MSFT.O)
+				</p>
+      </xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="QoS" type="omm:QoS" />
+      <xsd:element minOccurs="0" name="Status" type="omm:Status" />
+      <xsd:element name="Fields" type="omm:FieldList" />
+    </xsd:sequence>
+    <xsd:attribute name="Name" type="xsd:string" use="required" />
+  </xsd:complexType>
+  <xsd:complexType name="ChildItem_Short_Or_Full">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="QoS" type="omm:QoS" />
+      <xsd:element minOccurs="0" name="Status" type="omm:Status" />
+      <xsd:element name="Fields" type="omm:FieldList_Short_Or_Full" />
+    </xsd:sequence>
+    <xsd:attribute name="Name" type="xsd:string" use="required" />
+  </xsd:complexType>
+  <xsd:complexType name="Status">
+    <xsd:annotation>
+      <xsd:documentation>
+        <p>
+					Status is used to convey the state of an ItemRequest. Status can be present at multiple
+					nodes in the response hierarchy, depending on the status type: in the ItemResponse node if
+					the status is global (e.g., Service Down), in the ItemNode if the status is specific to the
+					requested symbol (e.g., Invalid Symbol), or in the ChildItem node if the status is specific to a
+					constituent (e.g. Temporarily Unavailable). Status may also contain additional source-specific
+					messages such as a detailed error message, back-end error ID, or both.
+				</p>
+      </xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element name="StatusMsg" type="omm:StatusMsg" />
+      <xsd:element name="StatusCode" nillable="true" type="xsd:int" />
+      <xsd:any minOccurs="0" namespace="##any" processContents="lax" />
+    </xsd:sequence>
+    <xsd:anyAttribute />
+  </xsd:complexType>
+  <xsd:complexType name="QoS">
+    <xsd:annotation>
+      <xsd:documentation>
+        <p>
+					QoS is used to represent the desired quality of service in an ItemRequest, and the user's
+					permissioned quality of service in the ItemResponse. Quality of Service is a categorical
+					method of classifying traffic into separate tiers to provide differentiated services within
+					a network. Note that a user will only receive the QoS that he/she is permissioned for.
+				</p>
+      </xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element name="TimelinessInfo" type="omm:TimelinessInfo" />
+      <xsd:element name="RateInfo" type="omm:RateInfo" />
+      <xsd:any minOccurs="0" namespace="##any" processContents="lax" />
+    </xsd:sequence>
+    <xsd:anyAttribute />
+  </xsd:complexType>
+  <xsd:complexType name="TimelinessInfo">
+    <xsd:annotation>
+      <xsd:documentation>
+        <p>
+					Timelinessinfo consists of one of the timeliness types and a positive number, depending on
+					the timeliness type, representing the actual delay in seconds.
+				</p>
+      </xsd:documentation>
+    </xsd:annotation>
+    <xsd:attribute name="Timeliness" type="omm:Timeliness" use="required" />
+    <xsd:attribute name="TimeInfo" type="xsd:unsignedInt" />
+    <xsd:anyAttribute />
+  </xsd:complexType>
+  <xsd:simpleType name="Timeliness">
+    <xsd:annotation>
+      <xsd:documentation>
+        <p>
+					Timeliness may be one of the following types: REALTIME, DELAYED, DELAYED_UNKNOWN, or
+					UNSPECIFIED.  Real-time implies no delay is applied to the data. Delayed Unknown implies a
+					fixed delay (such as 60 seconds) is applied to the data. Unspecified implies that the Timeliness
+					has not been defined.
+				</p>
+      </xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction base="xsd:Name">
+      <xsd:enumeration value="REALTIME" />
+      <xsd:enumeration value="DELAYED" />
+      <xsd:enumeration value="DELAYED_UNKNOWN" />
+      <xsd:enumeration value="UNSPECIFIED" />
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:complexType name="RateInfo">
+    <xsd:annotation>
+      <xsd:documentation>
+        <p>The actual rate of data as specified by the Rate.</p>
+      </xsd:documentation>
+    </xsd:annotation>
+    <xsd:attribute name="Rate" type="omm:Rate" use="required" />
+    <xsd:attribute name="TimeInfo" type="xsd:unsignedInt" />
+    <xsd:anyAttribute />
+  </xsd:complexType>
+  <xsd:simpleType name="Rate">
+    <xsd:annotation>
+      <xsd:documentation>
+        <p>
+					Rate may have one of the following values ??? TICK_BY_TICK, JIT_CONFLATED ("just in time"),
+					UNSPECIFIED, or TIME_CONFLATED (i.e., any positive number representing the actual rate in
+					milliseconds). Tick-By-Tick implies the application receives every update. In this case the
+					period (i.e., the time interval between successive events) varies based on the market
+					activity.
+				</p>
+      </xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction base="xsd:Name">
+      <xsd:enumeration value="TICK_BY_TICK" />
+      <xsd:enumeration value="JIT_CONFLATED" />
+      <xsd:enumeration value="UNSPECIFIED" />
+      <xsd:enumeration value="TIME_CONFLATED" />
+      <xsd:enumeration value="PERIODIC_REFRESH" />
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="StatusMsg">
+    <xsd:annotation>
+      <xsd:documentation>
+        <p>
+					StatusMsg defines a list of messages to help map source-specific error messages to one
+					of these generic, user-friendly messages.
+				</p>
+      </xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction base="xsd:Name">
+      <xsd:enumeration value="STALE" />
+      <xsd:enumeration value="ACCESS_DENIED" />
+      <xsd:enumeration value="SERVICE_DOWN" />
+      <xsd:enumeration value="SERVICE_UNKNOWN" />
+      <xsd:enumeration value="ITEM_UNKNOWN" />
+      <xsd:enumeration value="NO_RESPONSE" />
+      <xsd:enumeration value="ITEM_TEMP_UNAVAILABLE" />
+      <xsd:enumeration value="INVALID_FIELDS" />
+      <xsd:enumeration value="OK" />
+    </xsd:restriction>
+  </xsd:simpleType>
+</xsd:schema>

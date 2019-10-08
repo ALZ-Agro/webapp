@@ -1,0 +1,33 @@
+﻿.user-edit {
+    list-style: lower-greek;
+
+    
+
+    md-input-container {
+        margin: 18px 10px;
+      
+    }
+
+    .md-icon-button {
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+    .remove-icon {
+        position: relative;
+
+        .md-button {
+            position: absolute;
+            left: 0;
+
+            md-icon {
+                margin-left: 0;
+                /*margin-top:5px;*/
+            }
+        }
+    }
+
+    .md-button[disabled] {
+        color: rgba(0,0,0,0.34) !important;
+    }
+}

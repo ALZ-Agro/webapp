@@ -1,0 +1,32 @@
+﻿
+<md-dialog aria-label="Importar Datos" class="import-data-modal" flex="60">
+        <md-toolbar>
+            <div class="md-toolbar-tools green">
+                <h2 class="color-white">Importar Datos</h2>
+                <span flex></span>
+                <md-button class="md-icon-button close-button padding-0" layout="row" layout-align="center center" ng-click="cancel()">
+                    <md-icon class="margin-0 zmdi zmdi-close color-white" aria-label="Close dialog"></md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+
+        <md-dialog-content class="md-padding">
+            <div layout="row" layout-wrap class="md-padding" layout-align="center center">
+             
+                <div flex="100" layout="row"><!-- && format == 'csv'">-->
+                    <md-button flex class="to-capitalize" style="margin-right: 0px;padding-right: 3px;margin-top: 0px;"
+                               ngf-select
+                               ngf-change="readFile($files)"
+                               ng-disabled="status =='uploading'"
+                               ngf-multiple="false"
+                               ngf-allow-dir="false"   
+                               ngf-accept="'text/csv';'*excel'"
+                               aria-label="upload"
+                               ngf-validate="{size: {min: 10, max: '20MB'}}">
+                        <!-- ngf-resize-if="$width > 1000 || $height > 1000" -->
+                        Seleccionar Archivo
+                    </md-button>
+                </div>
+            </div>
+        </md-dialog-content>
+</md-dialog>

@@ -1,0 +1,249 @@
+﻿#export-date-container {
+   position:relative;
+}
+
+#export-date {
+    text-align: end;
+    padding-right: 261px;
+}
+
+#export-date-container::after {
+    font-size: 18px;
+    left: 91px;
+    top: 17px;
+    position: absolute !important;
+}
+
+@media (max-width: 599px) {
+    #export-date-container::after {
+        left: 88px !important;
+    }
+    #export-date {
+        padding-right: 261px!important;
+    }
+}
+
+.expenses-list {
+
+    .filters-card {
+        > div {
+            padding: 10px 10px 0px 10px;
+        }
+        /*padding: 0 20px !important;*/
+        .md-datepicker-button {
+            display: none !important;
+        }
+
+        ._md-datepicker-floating-label._md-datepicker-has-calendar-icon > label:not(.md-no-float):not(.md-container-ignore) {
+            left: 0px !important;
+            width: 100% !important;
+        }
+    }
+
+
+    div.md-datepicker-input-container {
+        width: 100%;
+    }
+
+    div.flex-25 md-input-container:not(._md-datepicker-floating-label) {
+        margin: 18px 5px !important;
+    }
+
+    div .flex-25 md-input-container._md-datepicker-floating-label {
+        display: flex;
+        margin-bottom: 12px !important;
+    }
+
+    .md-icon-button + .md-datepicker-input-container {
+        margin-left: 0px !important;
+    }
+
+    .md-alz-content-theme button.md-datepicker-button {
+        margin: -2.5px 6px 0px;
+    }
+
+    md-card.flex-25 {
+        color: white;
+
+        .sub-title {
+            font-size: 0.8em;
+        }
+
+        .md-title {
+            font-size: 1.6em !important;
+        }
+    }
+
+    @media (max-width: 959px) and (min-width: 600px) {
+        #filters {
+            flex: auto !important;
+            padding-top: 30px;
+            height: 243px;
+            overflow: hidden !important;
+        }
+
+        md-card {
+            overflow-y: auto !important;
+        }
+
+        .date-div div {
+            margin-top: 30px !important;
+            width: 100%;
+        }
+    }
+
+    @media (max-width: 599px) {
+        md-card #filters:first-child {
+            margin-top: 20px;
+        }
+
+        .md-errors-spacer {
+            display: none !important;
+        }
+
+        .layout-row > .flex-xs-100 {
+            margin: 10px !important;
+        }
+
+        md-card {
+            overflow-y: auto !important;
+        }
+
+        .date-div div:not(.md-datepicker-expand-triangle) {
+            width: 100% !important;
+        }
+
+        .date-div {
+            input {
+                max-width: 100% !important;
+            }
+        }
+    }
+
+    @media (max-width: 1279px) {
+        md-card.filters-card {
+            margin: 0px 0px 10px 0px !important;
+            max-width: 100% !important;
+        }
+
+        md-card.flex-25 {
+            margin: 10px 0px 0px !important;
+            padding: 10px;
+        }
+    }
+
+    md-input-container {
+        margin: 0 !important;
+    }
+
+    .date-div.vendor {
+        margin-top:25px!important;
+    }
+
+    .date-div {
+        margin-top: 10px !important;
+
+        > div {
+            width: 90% !important;
+
+            md-datepicker {
+                padding: 0 !important;
+                width: 100% !important;
+                min-width: 99% !important;
+            }
+        }
+    }
+
+    .margin-5 {
+        /*margin-right: 5px !important;*/
+    }
+
+    md-select-value {
+        font-size: 14px !important;
+    }
+
+    .no-hide-placeholder {
+        text-overflow: clip !important;
+    }
+
+    .table-toolbar-label {
+        div {
+            color: rgba(0,0,0,0.54);
+            font-size: 0.8em;
+            height: 10px;
+        }
+    }
+
+    .width-table-status {
+        width: 65px !important;
+    }
+
+    .flex-74 {
+        -webkit-box-flex: 1;
+        -ms-flex: 1 1 74%;
+        flex: 1 1 74%;
+        flex-grow: 1;
+        flex-shrink: 1;
+        flex-basis: 74%;
+        max-width: 74%;
+        max-height: 100%;
+        box-sizing: border-box;
+    }
+
+    .layout-row > .flex-74 {
+        -webkit-box-flex: 1;
+        -ms-flex: 1 1 74%;
+        flex: 1 1 74%;
+        max-width: 74%;
+        max-height: 100%;
+        box-sizing: border-box;
+    }
+
+    .layout-row > .flex-74 {
+        -webkit-box-flex: 1;
+        -ms-flex: 1 1 74%;
+        flex: 1 1 74%;
+        max-width: 74%;
+        max-height: 100%;
+        box-sizing: border-box;
+    }
+
+    mvz-table {
+        md-toolbar.md-table-toolbar.md-default-theme:not(.md-menu-toolbar).md-default, md-toolbar.md-table-toolbar:not(.md-menu-toolbar).md-default {
+            background-color: rgba(0,0,0,0.09) !important;
+        }
+
+        td > div {
+            margin: 0 3px !important;
+        }
+
+        th.text-center > span {
+            padding-left: 15px !important;
+        }
+
+
+        md-checkbox:not([disabled]).md-checked .md-ink-ripple {
+            color: #5B7823 !important;
+
+            .md-icon {
+                background-color: #5B7823 !important;
+
+                &::after {
+                    border-color: white !important;
+                }
+            }
+        }
+
+        md-checkbox .md-alz-content-theme:not([disabled]).md-primary.md-checked .md-icon {
+            background-color: #5B7823 !important;
+        }
+
+        .btn-actions {
+            min-width: 36px !important;
+        }
+    }
+
+    md-select-value {
+        border-color: rgba(0,0,0,0.12) !important;
+    }
+}

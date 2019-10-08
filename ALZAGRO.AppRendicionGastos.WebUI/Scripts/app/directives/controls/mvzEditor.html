@@ -1,0 +1,30 @@
+﻿<div layout="row" flex layout-wrap>
+    <div flex="{{help?'90':''}}">
+        <md-input-container class="md-block">
+            <label for="{{name}}">
+                {{label}}
+                <span ng-if="validationRules.indexOf('required') != -1" class="required">*</span>
+            </label>
+            <input name="{{name}}"
+                   type="{{type}}"
+                   ng-model="model"
+                   ng-keyup="onKeyUp($event)"
+                   validation="{{isDisabled?'':validationRules}}"
+                   validation-callback="validationCallBack"
+                   validate-on="blur"
+                   ng-disabled="isDisabled"
+                   ng-readonly="isReadonly"
+                   ng-change="onChangeInput(model)"
+                   ng-blur="onBlurInput(model)"
+                   maxlength="{{maxLength}}"
+                   min="{{min}}"
+                   step="{{step}}" />
+        </md-input-container>
+    </div>
+    <div flex="10" ng-if="help">
+        <md-button class="md-icon-button margin-0 padding-0">
+            <md-icon class="fa fa-question-circle md-48 font-size-2" style="margin-top:5px!important" aria-label=""></md-icon>
+            <md-tooltip>{{help}}</md-tooltip>
+        </md-button>
+    </div>
+</div>

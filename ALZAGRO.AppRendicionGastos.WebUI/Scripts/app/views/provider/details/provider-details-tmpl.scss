@@ -1,0 +1,73 @@
+﻿.provider-details {
+
+
+    .details-title {
+        margin-bottom: 10px !important;
+
+        h2 {
+            color: rgba(0,0,0,0.87) !important;
+        }
+    }
+
+    small {
+        font-size: 10px !important;
+        color: rgba(0,0,0,0.54) !important;
+    }
+
+    .details-subtitle {
+        margin: 0px 0px 10px !important;
+        color: rgba(0,0,0,0.54) !important;
+    }
+
+    .close-button {
+        font-size: 1.2em;
+        width: 30%;
+        padding: 3px 35px;
+        color: rgba(0,0,0,0.87);
+        border-radius: 5px;
+    }
+
+    md-card {
+        min-height: 200px;
+    }
+
+    .md-fab {
+        background-color: white !important;
+
+        md-icon {
+            color: black !important;
+            padding: 0;
+            list-style: none;
+            display: flex;
+            align-items: center;
+            font-size: 1.5em;
+            justify-content: center;
+        }
+    }
+
+    .md-fab[disabled] md-icon {
+        color: rgba(0,0,0,0.54) !important;
+    }
+
+    .left-arrow {
+        margin: 0px 11px 0px 10px;
+    }
+
+    .right-arrow {
+        margin: 0px 10px 0px 11px;
+    }
+    /// PHONE
+    @media (max-width: 599px) {
+        md-card {
+            /*height: 100% !important;*/
+        }
+
+        .details-title {
+            height: 80px !important;
+        }
+
+        .close-button{
+            font-size:14px!important;
+        }
+    }
+}

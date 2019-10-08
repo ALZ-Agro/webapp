@@ -1,0 +1,51 @@
+﻿<md-content class="provider-details" ng-if="provider">
+    <div layout="row" layout-wrap>
+        <div flex="100" layout-wrap layout="row">
+            <md-card flex="100" class="margin-left-10 margin-top-10 padding-10 details-card" >
+                <div layout="row" layout-xs="row" layout-sm="row" layout-wrap>
+                    <div flex="100" class="details-title">
+                        <h2 class="margin-0">Detalles</h2>
+                    </div>
+                    <div flex="33" flex-md="33" flex-sm="50" flex-xs="100">
+                        <small>Proveedor</small>
+                        <h4 class="details-subtitle">{{provider.legalName}}</h4>
+                        <!--<mvz-editor type="text"
+                                    name="legalName"
+                                    model="provider.legalName"
+                                    validation="required"></mvz-editor>-->
+                    </div>
+                    <div flex="33" flex-md="33" flex-sm="50" flex-xs="100">
+                        <small>Posición ante el IVA</small>
+                        <h4 class="details-subtitle">{{provider.legalCondition.description}}</h4>
+                    </div>
+                    <div flex="33" flex-md="33" flex-sm="50" flex-xs="100">
+                        <small>CUIT</small>
+                        <h4 class="details-subtitle">{{getFormattedCUIT()}}</h4>
+                    </div>
+                    <div flex="33" flex-md="33" flex-sm="50" flex-xs="100">
+                        <small>Nombre de contacto</small>
+                        <h4 class="details-subtitle">{{provider.contactFullName}}</h4>
+                    </div>
+                    <div flex="33" flex-md="33" flex-sm="50" flex-xs="100">
+                        <small>Nombre de contacto</small>
+                        <h4 class="details-subtitle">{{provider.contactFullName}}</h4>
+                    </div>
+                </div>
+            </md-card>
+        </div>
+        <div flex="100" layout="row" class="margin-top-20 layout-align-xs-center">
+            <md-button class="md-fab" aria-label="Anterior" ng-click="goToPreviusProvider()" ng-disabled="!previusProvider">
+                <md-tooltip>Ir al proveedor anterior</md-tooltip>
+                <md-icon class="fa fa-chevron-left left-arrow"></md-icon>
+            </md-button>
+            <md-button class="md-raised close-button" ng-click="goBack()">
+                CERRAR
+            </md-button>
+            <md-button class="md-fab" aria-label="Siguiente" ng-click="goToNextProvider()" ng-disabled="!nextProvider">
+                <md-tooltip position="top">Ir al proveedor siguiente</md-tooltip>
+                <md-icon class="fa fa-chevron-right right-arrow"></md-icon>
+            </md-button>
+        </div>
+
+    </div>
+</md-content>

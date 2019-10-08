@@ -1,0 +1,25 @@
+﻿<div>
+    <md-autocomplete flex
+                     md-input-name="{{name}}"
+                     ng-disabled="isDisabled"
+                     ng-model="model"
+                     md-input-minlength="1"
+                     md-input-maxlength="40"
+                     md-search-text="searchText"
+                     md-items="item in searchItems()"
+                     md-floating-label="{{label}}"
+                     md-selected-item="model"
+                     md-selected-item-change="onSelect(model)"
+                     md-item-text="item[selectedDisplay]"
+                     md-delay="600">
+        <md-item-template>
+            <label ng-repeat="field in display.split(',')">{{item[field]}}<span ng-if="!$last"> - </span></label>
+        </md-item-template>
+        <md-not-found ng-show="searchText.length > 2">
+            {{notFoundMessage}}
+        </md-not-found>
+    </md-autocomplete>
+</div>
+
+
+

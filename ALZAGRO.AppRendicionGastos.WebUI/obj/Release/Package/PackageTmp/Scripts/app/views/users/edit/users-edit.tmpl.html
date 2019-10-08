@@ -1,0 +1,150 @@
+﻿<md-content class="padded-content-page padding-35 user-edit">
+    <md-card class="padding-20">
+        <form class="form-horizontal form-label form-label-left"
+              novalidate name="form">
+            <div layout="row" layout-align="start start" layout-wrap>
+                <div flex="33" flex-xs="100">
+                    <mvz-editor label="Usuario"
+                                name="txtUsername"
+                                type="text"
+                                model="user.username"
+                                validation-rules="max_len:100|required"
+                                max-length="50">
+                    </mvz-editor>
+                </div>
+                <div flex="33" flex-xs="100">
+                    <mvz-editor label="Contraseña"
+                                name="password"
+                                type="password"
+                                model="user.password"
+                                validation-rules="max_len:100|{{isEditing?'':'required'}}"
+                                max-length="50">
+                    </mvz-editor>
+                </div>
+                <div flex="33" flex-xs="100">
+                    <mvz-editor label="Nombre"
+                                name="txtFirstName"
+                                type="text"
+                                model="user.firstName"
+                                validation-rules="max_len:100|alpha_spaces|required">
+                    </mvz-editor>
+                </div>
+                <div flex="33" flex-xs="100">
+                    <mvz-editor label="Apellido"
+                                name="txtLastName"
+                                type="text"
+                                model="user.lastName"
+                                validation-rules="max_len:100|alpha_spaces|required">
+                    </mvz-editor>
+                </div>
+                <div flex="33" flex-xs="100">
+                    <mvz-editor label="E-mail"
+                                name="txtEmail"
+                                type="email"
+                                model="user.email"
+                                pattern="/^(([^<>()\[\]\\.,;:\s@']+(\.[^<>()\[\]\\.,;:\s@']+)*)|('.+'))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/"
+                                validation-rules="email|required">
+                    </mvz-editor>
+                </div>
+                <div flex="33" flex-xs="100">
+                    <mvz-select model="user.role"
+                                label="Tipo de usuario"
+                                display="description"
+                                value="id"
+                                options="userRoleOptions"
+                                placeholder="Tipo de usuario"
+                                is-required="false"
+                                name="role"
+                                prevent-clear="true"
+                                required-message="Este campo es requerido."
+                                validation-rules="required"></mvz-select>
+                </div>
+                <div flex="33" flex-xs="100">
+                    <mvz-editor label="Código"
+                                name="idERP"
+                                type="text"
+                                model="user.id_Erp"
+                                validation-rules="pattern=/^[a-zA-Z0-9]{1,5}$/:alt=Debe ser un código alfanumérico de hasta 5 dígitos.|{{hasSelectedUserRole()? 'required':''}}">
+                    </mvz-editor>
+                </div>
+                <div flex="33" flex-xs="100">
+                    <mvz-checkbox model="user.isLocked"
+                                  label="Acceso bloqueado"
+                                  name="isLocked">
+                    </mvz-checkbox>
+                </div>
+                <div flex="100">
+                    <div flex="100" layout="row" ng-repeat="userCompanyGroup in user.userCompanyGroups" ng-if="user.role == 2">
+                        <div flex="33" flex-xs="100">
+                            <div ng-if="userCompanyGroup.company.name">
+                                <mvz-editor label="Compañía"
+                                            name="company{{$index}}"
+                                            type="text"
+                                            disabled="true"
+                                            model="userCompanyGroup.company.name"></mvz-editor>
+                            </div>
+
+                            <div ng-if="!userCompanyGroup.company.name">
+                                <mvz-select model="userCompanyGroup.company.id"
+                                            label="Compañía"
+                                            display="name"
+                                            value="id"
+                                            options="companies"
+                                            placeholder="Compañía"
+                                            on-select="removeCompanyOption"
+                                            is-required="false"
+                                            name="company{{$index}}"
+                                            prevent-clear="true"
+                                            required-message="Este campo es requerido."
+                                            validation-rules="required"></mvz-select>
+                            </div>
+                        </div>
+                        <div flex="33" flex-xs="100">
+                            <div ng-if="userCompanyGroup.userGroup.description">
+                                <mvz-editor label="Grupo del usuario"
+                                            name="usergroup{{$index}}"
+                                            type="text"
+                                            disabled="true"
+                                            model="userCompanyGroup.userGroup.description"></mvz-editor>
+                            </div>
+                            <div ng-if="!userCompanyGroup.userGroup.description">
+                                <mvz-select model="userCompanyGroup.userGroup.id"
+                                            label="Grupo del usuario"
+                                            display="description"
+                                            value="id"
+                                            on-select="onGroupSelected"
+                                            options="userGroups"
+                                            placeholder="Grupo del usuario"
+                                            is-required="false"
+                                            name="usergroup{{$index}}"
+                                            prevent-clear="true"
+                                            required-message="Este campo es requerido."
+                                            validation-rules="required"></mvz-select>
+                            </div>
+                        </div>
+                        <div flex="10" flex-xs="100" layout="row" layout-align="center center" class="remove-icon">
+                            <button class="md-button md-icon-button" ng-click="removeUserCompany(userCompanyGroup,$index)">
+                                <md-icon class="zmdi zmdi-close font-size-2"></md-icon>
+                                <md-tooltip>Eliminar relación</md-tooltip>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                </div>
+        </form>
+        <div layout="row" layout-xs="column" class="view-button">
+        <div flex="80" flex-xs="20" layout-xs="column" class="button-reset-password-container">
+            <md-button ng-show="user.id" class="md-secondary"
+                       ng-click="resetPassword()">Resetear Contraseña</md-button>
+            <button class="md-button" ng-if="user.role == 2" ng-disabled="user.userCompanyGroups.length == 4" ng-click="addNewUserCompanyGroup()">
+                Agregar nueva compañía
+                <!--<md-icon class="zmdi zmdi-plus font-text-2"></md-icon>-->
+            </button>
+        </div>
+        <div flex="20" flex-xs="10">
+            <mvz-edit-tool-bar cancel-url="triangular.users-list"
+                               save-callback="save()" />
+        </div>
+        </div>
+    </md-card>
+</md-content>

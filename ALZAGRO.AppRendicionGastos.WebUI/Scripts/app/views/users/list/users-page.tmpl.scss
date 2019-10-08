@@ -1,0 +1,20 @@
+﻿.seed-list {
+    list-style: lower-greek;
+}
+.import-button{
+    position:fixed!important;
+    bottom:50px!important;
+    right:100px!important;
+}
+
+.users-list {
+    td > div.ng-scope {
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+    }
+
+    .no-minimize {
+        display: flex;
+        width: 115px;
+    }
+}

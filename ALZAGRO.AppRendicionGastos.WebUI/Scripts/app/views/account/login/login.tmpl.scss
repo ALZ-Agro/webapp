@@ -1,0 +1,124 @@
+// Login
+
+.login-frame {
+    background-image: url("../../../Content/images/1500x500-dark-min.png");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+
+    md-input-container {
+        padding: 2px 5%;
+        margin: 5px 0 !important;
+
+        label {
+            padding: 0 5% !important;
+        }
+    }
+
+    .md-button.md-alz-sidebar-theme.md-hue-1.md-raised {
+        color: white !important;
+    }
+
+    .btn-alzagro-static {
+        color: white !important;
+        font-weight: normal !important;
+        border-radius: 21px;
+        background-color: #7BA529 !important;
+    }
+
+    md-card {
+        max-width: 700px;
+        border-radius: 5px !important;
+        height: 100vh;
+        max-height: 100vh;
+        margin: 1vw 5vh;
+
+        @media only screen and (max-device-height: 700px) {
+            border-radius: unset !important;
+            margin: 0 !important;
+        }
+    }
+
+    md-checkbox {
+        margin: 0;
+    }
+
+    md-checkbox.md-alz-content-theme.md-checked .md-icon {
+        background-color: #7BA529 !important;
+    }
+
+    md-checkbox .md-alz-content-theme.md-checked .md-ink-ripple {
+        color: #7BA529 !important;
+    }
+
+    img {
+        display: inline-block;
+        margin: 45px 45px 20px 45px !important;
+        width: auto;
+        max-height: 200px !important;
+        height: initial !important;
+    }
+
+    md-content {
+        flex-shrink: 0;
+        border-radius: 5px !important;
+        overflow: hidden !important;
+    }
+
+    .padding-15 {
+        padding: 15px;
+    }
+
+    .login-background {
+        background: #888; /* For browsers that do not support gradients */
+        background: -webkit-linear-gradient(left, #888, #666); /* For Safari 5.1 to 6.0 */
+        background: -o-linear-gradient(right, #888, #666); /* For Opera 11.1 to 12.0 */
+        background: -moz-linear-gradient(right, #888, #666); /* For Firefox 3.6 to 15 */
+        background: linear-gradient(to right, #888, #666); /* Standard syntax */
+    }
+
+    md-toolbar {
+        margin-bottom: 3vw;
+        /*min-height: 180px;*/
+        display: block;
+        align-items: center;
+
+        .md-headline {
+            margin: 0;
+        }
+    }
+
+
+    md-content {
+        background: #ffffff !important;
+    }
+
+    md-toolbar {
+        min-height: 150px;
+        // border-bottom: 8px solid #F4F430;
+    }
+
+    .login-footer {
+        margin-top: 2vw;
+
+        .md-button.md-alz-content-theme.md-primary {
+            color: #5B7823 !important;
+        }
+        /*.logo-capacitaciones {
+            float: right;
+            margin-right: 1.5em;
+        }
+
+        img {
+            width: 120px;
+            height: 40px !important;
+        }*/
+    }
+}
+
+.login {
+    width: 400px;
+
+    .logo-container {
+        background-color: #FFFFFF !important;
+    }
+}

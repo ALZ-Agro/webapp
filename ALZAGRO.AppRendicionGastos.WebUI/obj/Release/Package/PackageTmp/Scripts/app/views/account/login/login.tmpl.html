@@ -1,0 +1,64 @@
+<md-card class="login login-mobile login-view" id="login-card">
+    <md-content class="padding-15">
+        <md-toolbar class="text-center logo-container">
+            <img ng-src="../Content/images/logo_top.jpg" alt="{{vm.triSettings.name}}">
+        </md-toolbar>
+        <form novalidate name="login">
+
+            <md-input-container class="md-block input-text">
+                <label for="email">Email</label>
+                <input id="loginEmail" label="email" name="email" type="text" ng-model="vm.user.email" validation="required" ng-keypress="($event.charCode==13)?vm.loginClick():return" />
+                <div ng-messages="login.email.$error" md-auto-hide="false" ng-show="login.email.$touched">
+                    <div ng-message when="required"><span>Ingresa un correo electr&oacute;nico.</span></div>
+                </div>
+            </md-input-container>
+            <md-input-container class="md-block input-text">
+                <label for="password">Contrase&ntilde;a</label>
+                <input id="loginPassword" label="password" name="password" type="password" ng-model="vm.user.password" ng-keypress="($event.charCode==13)?vm.loginClick():return" validation="required" />
+                <div ng-messages="login.password.$error" md-auto-hide="false" ng-show="login.password.$touched">
+                    <div ng-message when="required"><span>Ingresa una contrase&ntilde;a.</span></div>
+                </div>
+            </md-input-container>
+
+
+            <!--<mvz-editor label="Correo electrónico"
+                        name="inputUser"
+                        type="text"
+                        model="vm.user.email"
+                        validation-rules="required"
+                        on-enter-function="vm.loginClick()"
+                        max-length="50">
+            </mvz-editor>
+
+            <mvz-editor label="Contraseña"
+                        name="inputPassword"
+                        type="password"
+                        on-enter-function="vm.loginClick()"
+                        model="vm.user.password"
+                        validation-rules="required"
+                        max-length="50">
+            </mvz-editor>-->
+
+            <div layout="row" layout-align="space-between center">
+                <mvz-checkbox label="Recordar mis datos"
+                              name="inputRememberMe"
+                              model="vm.user.rememberMe" />
+
+             
+            </div>
+            <div layout="row" layout-align="center center" class="login-footer">
+                <md-input-container>
+                    <md-button flex class="md-primary" href="/forgot">
+                        ¿Olvidaste tu Contraseña?
+                    </md-button>
+                </md-input-container>
+            </div>
+            <md-button md-theme="alz-sidebar" class="btn-alzagro-static color full-width md-button md-hue-1 md-ink-ripple md-raised"
+                       ng-click="vm.loginClick()">
+                Iniciar Sesión
+            </md-button>
+        </form>
+
+    </md-content>
+</md-card>
+

@@ -1,0 +1,36 @@
+.import-data-modal {
+    .header {
+        md-icon {
+            color: #d14949;
+            font-size: 14rem;
+            position: relative;
+            margin-bottom: 6rem;
+            left: -6rem;
+            top: -3rem;
+        }
+
+        h2 {
+            font-weight: 600;
+        }
+    }
+
+    .content {
+        overflow-x: hidden;
+    }
+
+    .close-button {
+        margin: auto !important;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        right: 0;
+
+        md-icon {
+            font-size: 2em !important;
+        }
+    }
+
+    .zdmi-close-circle-o {
+        margin-top:10px!important;
+    }
+}

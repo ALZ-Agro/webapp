@@ -1,0 +1,37 @@
+﻿<md-content class="padded-content-page padding-35">
+    <!--<h3 class="md-display-1 padding-bottom-20">
+        Mi Perfil
+    </h3>-->
+
+    <md-card class="padding-20">
+        <form class="form-horizontal form-label form-label-left"
+              novalidate name="form">
+
+            <mvz-editor label="Nombre"
+                        name="txtFirstName"
+                        type="text"
+                        model="user.firstName"
+                        validation-rules="max_len:100|alpha_spaces|required">
+            </mvz-editor>
+
+            <mvz-editor label="Apellido"
+                        name="txtLastName"
+                        type="text"
+                        model="user.lastName"
+                        validation-rules="max_len:100|alpha_spaces|required">
+            </mvz-editor>
+
+            <mvz-editor label="E-mail"
+                        name="txtEmail"
+                        type="email"
+                        model="user.email"
+                        pattern="/^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/"
+                        validation-rules="email|required">
+            </mvz-editor>
+
+            <mvz-edit-tool-bar cancel-url="triangular.reports-ranking"
+                               save-callback="save()" />
+
+        </form>
+    </md-card>
+</md-content>

@@ -1,0 +1,41 @@
+﻿<div class="mvz-file-upload">
+    <label for="{{name}}">
+        {{label}}
+    </label>
+
+    <md-button class="md-primary md-raised md-fab"
+               ngf-select="upload($files)"
+               ng-disabled="status =='uploading'"
+               ngf-multiple="multipleFiles"
+               aria-label="upload">
+        <md-icon md-font-icon
+                 ng-class="{ 'zmdi zmdi-upload': status == 'idle',
+                         'fa fa-spinner fa-pulse': status == 'uploading',
+                         'zmdi zmdi-check': status == 'complete'}">
+
+        </md-icon>
+    </md-button>
+</div>
+<!--<div ng-show="files.length>0" class="">
+    <div ng-repeat="file in files track by $index">
+        <span>
+            {{file.fileName}}
+        </span>
+        <md-button ng-click="removeFile($index)">
+            <i class="fa fa-trash fa-2x" aria-hidden="true"></i>
+        </md-button>
+    </div>
+</div>-->
+<div ng-if="model" class="">
+    <div class="img-preview-container">
+        <div>
+            <span>
+                {{model}}
+            </span>
+            <md-button ng-click="removeFile()">
+                <i class="fa fa-trash fa-2x" aria-hidden="true"></i>
+            </md-button>
+        </div>       
+        <img class="img-preview" src="/Resources/{{entity}}/{{model}}" />
+    </div>
+</div>

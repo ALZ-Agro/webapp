@@ -1,0 +1,130 @@
+﻿<md-content class="padded-content-page expenses-list">
+    <div layout="row"  layout-wrap class="margin-bottom-20">
+        <md-card class="filters-card layout-align-center-stretch" layout="row" layout-sm="column" flex="74" flex-md="100" flex-sm="100" flex-xs="100">
+            <div flex="100" layout="row" layout-wrap id="filters">
+                <div flex="{{loggedUser && loggedUser.role != 'Usuario'?'30':'20'}}" flex-sm="{{loggedUser && loggedUser.role != 'Usuario'?'25':'20'}}" flex-xs="100" class="layout layout-align-center-center margin-5">
+                    <mvz-select model="config.params.categoryId"
+                                display="description"
+                                options="categories"
+                                label="Categorías"
+                                is-required="false"
+                                value="id"
+                                prevent-clear="true"
+                                on-select="filterBy"
+                                name="categoryId"></mvz-select>
+                </div>
+                <div flex="{{loggedUser && loggedUser.role != 'Usuario'?'25':'20'}}" flex-sm="{{loggedUser && loggedUser.role != 'Usuario'?'25':'20'}}" flex-xs="100" class="layout layout-align-center-center margin-5">
+                    <mvz-select model="config.params.syncStatusId"
+                                display="description"
+                                options="syncStatuses"
+                                label="Estado"
+                                is-required="false"
+                                value="id"
+                                prevent-clear="true"
+                                on-select="filterBy"
+                                name="syncStatus"></mvz-select>
+                </div>
+                <div flex="{{loggedUser && loggedUser.role != 'Usuario'?'25':'20'}}" flex-sm="{{loggedUser && loggedUser.role != 'Usuario'?'25':'20'}}" flex-xs="100" ng-if="loggedUser && loggedUser.role != 'Usuario'" class="layout layout-align-center-center margin-5">
+                    <mvz-select model="config.params.userId"
+                                display="fullName"
+                                options="users"
+                                prevent-clear="true"
+                                is-required="false"
+                                label="Vendedor"
+                                on-select="filterBy"
+                                value="id"
+                                name="users"></mvz-select>
+                </div>
+                <div flex="{{loggedUser && loggedUser.role != 'Usuario'?'20':'20'}}" flex-sm="{{loggedUser && loggedUser.role != 'Usuario'?'25':'20'}}" flex-xs="100" ng-if="loggedUser && loggedUser.role != 'Usuario'" class="layout layout-align-center-center margin-5">
+                    <mvz-select model="config.params.exported"
+                                display="description"
+                                on-select="filterBy"
+                                prevent-clear="true"
+                                options="exportedOptionns"
+                                label="Exportados"
+                                is-required="false"
+                                value="id"
+                                name="exportados"></mvz-select>
+                </div>
+                <div flex="{{loggedUser && loggedUser.role != 'Usuario'?'30':'20'}}" flex-sm="{{loggedUser && loggedUser.role != 'Usuario'?'25':'20'}}" flex-xs="100" class="layout layout-align-center-center margin-5">
+                    <mvz-select model="config.params.paymentId"
+                                display="description"
+                                on-select="filterBy"
+                                prevent-clear="true"
+                                options="payments"
+                                is-required="false"
+                                label="Forma de pago"
+                                value="id"
+                                name="payment"></mvz-select>
+                </div>
+                <div flex="{{loggedUser && loggedUser.role != 'Usuario'?'25':'20'}}" flex-sm="{{loggedUser && loggedUser.role != 'Usuario'?'25':'20'}}" flex-xs="100" class="layout layout-align-center-end margin-5 date-div" ng-class="{'vendor': !userIsAdminOrHigher}">
+                   <div>
+                       <mvz-date-picker model="config.params.startDate"
+                                        options="startDateOptions"
+                                        label="Fecha desde"
+                                        on-change="startDateSelected"
+                                        name="fromDate">
+                       </mvz-date-picker>
+                   </div>
+                </div>
+                <div flex="{{loggedUser && loggedUser.role != 'Usuario'?'25':'20'}}" flex-sm="{{loggedUser && loggedUser.role != 'Usuario'?'25':'20'}}" flex-xs="100" class="layout margin-5 date-div" ng-class="{'vendor': !userIsAdminOrHigher}"
+                     layout-align-sm="center end">
+                    <div>
+                        <mvz-date-picker model="config.params.endDate"
+                                         options="endDateOptions"
+                                         label="Fecha hasta"
+                                         on-change="endDateSelected"
+                                         name="toDate">
+                        </mvz-date-picker>
+                    </div>
+                </div>
+                <div flex="20" flex-sm="20" flex-xs="100" class="layout margin-5"
+                     layout-align-sm="center end">
+                    <div>
+                        <button class="md-button" ng-click="cleanFilters()">
+                            Limpiar filtros
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </md-card>
+        <md-card flex="25" flex-md="100" flex-sm="100" flex-xs="100" class="margin-left-10 text-center green" layout="column" layout-align="center center">
+            <div class="sub-title">Subtotal listado</div>
+            <div class="md-title">{{subTotal?subTotal:0 | currency:'$':2}}</div>
+        </md-card>
+    </div>
+    <md-card>
+        <mvz-table columns="columns"
+                   action-name="list"
+                   controller-name="expense"
+                   update-params="getParams()"
+                   allow-advanced-search="false"
+                   auto-load="true"
+                   show-actions="true"
+                   on-action-callback="actionCallback"
+                   allow-edit="false"
+                   edit-url="triangular.expense-details"
+                   allow-delete="false"
+                   clean-table="true"
+                   actions="actions"
+                   show-multi-select="true"
+                   custom-toolbar="customToolbar"
+                   show-filters="false"
+                   force-show-toolbar="false"
+                   table-limit-options="tableLimitOptions"
+                   allow-selection="true"
+                   disable-search-description="true"
+                   title="Listado de gastos"
+                   show-filter="false" />
+    </md-card>
+</md-content>
+<div ng-if="userIsAdminOrHigher">
+    <button class="md-button md-fab md-fab-bottom-right"
+            style="background-color:#7BA529!important;bottom: 25px;"
+            md-theme="alz-content"
+            aria-label="Export"
+            ng-click="generateReport()">
+        <md-icon class="fa fa-bar-chart fa-2x" style="color:white;font-size: 1.5em !important;"></md-icon>
+        <md-tooltip md-direction="top">Generar reporte</md-tooltip>
+    </button>
+</div>

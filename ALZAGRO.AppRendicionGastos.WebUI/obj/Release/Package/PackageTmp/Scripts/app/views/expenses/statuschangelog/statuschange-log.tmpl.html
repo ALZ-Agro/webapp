@@ -1,0 +1,32 @@
+﻿<md-dialog aria-label="Logs de estados para el gasto" class="statusChangeDialog">
+    <form ng-cloak>
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>Cambios de estado</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="cancel()">
+                    <md-icon class="alz-cancel" aria-label="cerrar ventana"></md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+
+        <md-dialog-content>
+            <div class="md-dialog-content">
+                <mvz-table columns="columns"
+                           action-name="statusLog"
+                           controller-name="expense"
+                           update-params="getParams()"
+                           allow-advanced-search="true"
+                           auto-load="true"
+                           show-filters="false"
+                           on-action-callback="actionCallback"
+                           allow-edit="false"
+                           show-actions="'false'"
+                           allow-delete="false"
+                           actions="actions"
+                           table-limit-options="tableLimitOptions"
+                           title="" />
+            </div>
+        </md-dialog-content>
+    </form>
+</md-dialog>

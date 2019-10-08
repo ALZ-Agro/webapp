@@ -1,0 +1,978 @@
+﻿<md-toolbar class="md-table-toolbar md-default" ng-if="customToolbar && (selected || !forceShowToolbar)">
+    <div class="md-toolbar-tools customToolbar">
+        <h2 class="md-title">{{ getSelectedLength() == 0 ? title : getSelectedLength() + ' seleccionados.' }}</h2>
+        <div flex></div>
+        <div layout="row">
+            <div ng-repeat="item in customToolbar">
+                <div ng-if="item.visible">
+                    <md-button ng-click="customToolbarCallback(item.callback)"
+                               aria-label="{{item.label}}"
+                               ng-disabled="customToolbarDisabled(item.isDisabled)"
+                               class="{{item.customClass || ''}}">
+                        <md-tooltip>{{item.label}}</md-tooltip>
+                        <md-icon class="alz-{{item.icon}} {{item.customIconClass || ''}} customToolbarIcon"></md-icon>
+                    </md-button>
+                </div>
+            </div>
+        </div>
+    </div>
+</md-toolbar>
+<md-toolbar ng-show="!showFilter && showFilters" class="md-table-toolbar md-default">
+    <div class="md-toolbar-tools">
+        <h2 class="md-title">{{title}}</h2>
+        <div flex></div>
+        <div ng-repeat="button in customButtons" ng-if="!button.hide">
+            <md-button ng-click="customToolbarCallback(button.callback)"
+                       aria-label="{{button.label}}"
+                       ng-disabled="customToolbarDisabled(button.isDisabled)"
+                       ng-if="button.iconOnly || button.hide"
+                       class="{{button.customClass || ''}}">
+                <md-tooltip>{{button.label}}</md-tooltip>
+                <md-icon class="alz-{{button.icon}} {{button.customIconClass || ''}} customToolbarIcon"></md-icon>
+            </md-button>
+            <md-button class="{{button.customClass || ''}}"
+                       ng-click="customButtonsCallback(button.callback)"
+                       ng-disabled="customToolbarDisabled(item.isDisabled)"
+                       ng-if="!button.iconOnly || button.hide">
+                {{button.description}}
+            </md-button>
+           
+        </div>
+        <md-button class="md-icon-button"
+                   ng-click="showFiltersToolbar()"
+                   ng-disabled="selected"
+                   ng-hide="!showFilters || isEditingOrder">
+            <md-icon md-font-icon="zmdi zmdi-search"></md-icon>
+        </md-button>
+    </div>
+</md-toolbar>
+<md-toolbar ng-show="showFilter && !selected && showFilters" class="md-table-toolbar md-default">
+    <form flex="" name="filter.form">
+        <div ng-hide="disableSearchDescription" layout="row" class="md-toolbar-tools">
+            <md-icon md-font-icon="zmdi zmdi-search"></md-icon>
+            <input type="text"
+                   class="search"
+                   ng-model="query.partialDescription"
+                   ng-model-options="filter.options"
+                   placeholder="Buscar"
+                   style="width:100%;">
+            <md-button class="md-icon-button" ng-show="showClear" ng-click="clear()">
+                <md-icon md-font-icon="zmdi zmdi-refresh"></md-icon>
+                <md-tooltip>Limpiar Filtros</md-tooltip>
+            </md-button>
+            <md-button class="md-icon-button" ng-click="removeFilter()">
+                <md-icon md-font-icon="zmdi zmdi-close"></md-icon>
+                <md-tooltip>Cerrar Filtros</md-tooltip>
+            </md-button>
+        </div>
+        <div ng-show="disableSearchDescription" layout="row" class="md-toolbar-tools" style="height:20px;">
+            <md-button class="md-icon-button" ng-show="showClear" ng-click="clear()" style="margin-top:44px;">
+                <md-icon md-font-icon="zmdi zmdi-refresh"></md-icon>
+                <md-tooltip>Limpiar Filtros</md-tooltip>
+            </md-button>
+            <md-button class="md-icon-button" ng-click="removeFilter()" style="margin-top:44px;">
+                <md-icon md-font-icon="zmdi zmdi-close"></md-icon>
+                <md-tooltip>Cerrar Filtros</md-tooltip>
+            </md-button>
+        </div>
+        <div layout="row" layout-wrap class="filters-container">
+            <div flex="25"
+                 flex-xs="100"
+                 ng-repeat="filter in advancedFilters track by $index"
+                 ng-if="filter.visible === undefined || filter.visible">
+                <md-input-container class="md-block md-padding margin-0" ng-if="filter.isSelect && filter.disabled">
+                    <label for="{{filter.label}}">
+                        {{filter.label}}
+                    </label>
+                    <md-select class="md-subhead"
+                               ng-disabled="{{filter.disabled}}"
+                               name="{{filter.name}}"
+                               ng-model="filter.model"
+                               model="filter.model"
+                               ng-change="changeFilter(filter, filter.customCallback)">
+                        <md-option ng-value="item.id" ng-repeat="item in filter.options" ng-if="filter.applyFilter">
+                            {{filter.applyFilter(item)}}
+                        </md-option>
+                        <md-option ng-value="item.id" ng-repeat="item in filter.options" ng-if="!filter.applyFilter">
+                            {{item[filter.showField]}}
+                        </md-option>
+                    </md-select>
+                </md-input-container>
+                <md-input-container class="md-block md-padding margin-0" ng-if="filter.isSelect && !filter.disabled">
+                    <label for="{{filter.label}}">
+                        {{filter.label}}
+                    </label>
+                    <md-select class="md-subhead"
+                               name="{{filter.name}}"
+                               ng-model="filter.model"
+                               model="filter.model"
+                               ng-change="changeFilter(filter, filter.customCallback)">
+                        <md-option ng-value="item.id" ng-repeat="item in filter.options" ng-if="filter.applyFilter">
+                            {{filter.applyFilter(item)}}
+                        </md-option>
+                        <md-option ng-value="item.id" ng-repeat="item in filter.options" ng-if="!filter.applyFilter">
+                            {{item[filter.showField]}}
+                        </md-option>
+                    </md-select>
+                </md-input-container>
+                <md-input-container class="md-block md-padding dateFilter margin-0" ng-if="filter.isDateLong">
+                    <input mdc-datetime-picker
+                           date="true"
+                           lang="es-ar"
+                           time="false"
+                           type="text"
+                           auto-ok="true"
+                           click-outside-to-close="true"
+                           placeholder="{{filter.label}}"
+                           today-text="{{filter.labelForTimeNow}}"
+                           cancel-text="{{filter.cancelText}}"
+                           format="DD/MM/YYYY"
+                           ng-change="changeFilter(filter, filter.customCallback)"
+                           ok-text="{{filter.acceptText}}"
+                           ng-model="filter.model">
+                </md-input-container>
+                <md-input-container class="md-block md-padding dateFilter margin-0" ng-if="filter.isDate">
+                    <md-datepicker class="date-picker"
+                                   ng-model="filter.model"
+                                   name="{{filter.name}}"
+                                   label="{{filter.label}}"
+                                   placeholder="{{filter.label}}"
+                                   md-min-date="filter.minDate"
+                                   md-max-date="filter.maxDate"
+                                   validation="{{filter.validationRules}}"
+                                   ng-change="changeFilter(filter, filter.customCallback)"
+                                   ng-disabled="filter.disabled"
+                                   md-current-view="day"
+                                   md-hide-icons="calendar">
+                    </md-datepicker>
+                </md-input-container>
+                <md-input-container class="md-block margin-0" ng-if="filter.isBoolean">
+                    <md-checkbox ng-model="filter.model" ng-change="changeFilter()">
+                        <span style="color:rgba(0,0,0,0.38);">{{filter.label}}</span>
+                    </md-checkbox>
+                </md-input-container>
+                <md-input-container class="md-block md-padding margin-0" ng-if="filter.isSearch">
+                    <mvz-search selecteditem="filter.model"
+                                is-disabled="filter.disabled"
+                                on-select="setSearchFilter(filter, changeFilter)"
+                                display="{{filter.showField}}"
+                                label="{{filter.label}}"
+                                controller-name="{{filter.controllername}}"
+                                action-name="{{filter.actionname}}"
+                                not-found-message="{{filter.notfound}}"
+                                name="{{filter.name}}"
+                                is-required="filter.required"></mvz-search>
+                </md-input-container>
+                <md-input-container class="md-block md-padding margin-0" ng-if="filter.isHour">
+                    <input mdc-datetime-picker
+                           date="false"
+                           time="true"
+                           type="text"
+                           auto-ok="true"
+                           click-outside-to-close="true"
+                           short-time="true"
+                           placeholder="{{filter.label}}"
+                           today-text="{{filter.labelForTimeNow}}"
+                           cancel-text="{{filter.cancelText}}"
+                           format="hh:mm a"
+                           ng-change="changeFilter(filter, filter.customCallback)"
+                           ok-text="{{filter.acceptText}}"
+                           week-start="0"
+                           ng-model="filter.model">
+                </md-input-container>
+                <md-input-container class="md-block margin-0" ng-if="filter.isRating">
+                    <star-rating-comp label-text="'Calificación'"
+                                      label-position="'top'"
+                                      num-of-stars="5"
+                                      star-type="'icon'"
+                                      id="rating"
+                                      on-rating-change="changeRatingFilter(filter, $event)">
+                    </star-rating-comp>
+                </md-input-container>
+            </div>
+        </div>
+    </form>
+</md-toolbar>
+<md-content ng-show="extras.length != 0" class="extras-container">
+    <div layout="row" class="extra-title-container">
+        <label class="extra-title"><b>{{extras[1].title}}</b></label>
+    </div>
+    <div ng-repeat="extra in extras" ng-if="!extra.title && !extra.action" class="extra-data-container">
+        <label class="extra-label">{{extra.label}}</label>
+        <span class="extra-name">{{resume[extra.name] ? (resume[extra.name] |number:2) : '0'}}</span>
+    </div>
+    <div style="float:right; margin-top:-39px">
+        <md-button ng-click="extras[0].action($event)"
+                   data-toggle="tooltip"
+                   data-placement="top">
+            <md-icon md-font-icon="zmdi zmdi-info"></md-icon>
+        </md-button>
+    </div>
+</md-content>
+<md-tabs md-border-bottom md-dynamic-height ng-if="groupBy">
+    <md-tab ng-repeat="tab in groupBy.labels" label="{{tab.label}}">
+        <md-content class="md-padding">
+            <md-table-container>
+                <table md-table class="md-primary md-data-table" md-progress="promise">
+                    <thead md-head md-order="query.orderBy" md-on-reorder="getSource">
+                        <tr md-row>
+                            <th md-column ng-if="showMultiSelect">
+                                <md-tooltip>Seleccionar Todos</md-tooltip>
+                                <md-checkbox ng-click="addAll(selectAll)" ng-model="selectAll" ng-value="selectAll" ng-checked="isSelectAllChecked()" id="selectAllFromTable" class="flat md-primary" aria-label="selected" />
+                            </th>
+                            <th md-column ng-if="allowSelection && !showMultiSelect"></th>
+                            <th md-column ng-repeat="column in columns track by $index"
+                                md-numberic md-order-by="{{isSorteable(column)?column.orderBy ? column.orderBy :column.parentRoot ? capitalize(column.parentRoot) + '.' + capitalize(column.name) : capitalize(column.name):''}}"
+                                ng-class="{'text-right': column.alignRight,'text-center':column.textCenter, 'first-column-padding': $index==0 && !showMultiSelect, 'date-margin': column.isDate}"
+                                ng-attr-style="{{column.headerStyle}}"
+                                ng-if="column.visible === undefined || column.visible">
+                                <!--<span style="display:block;" ng-bind-html="column.headerName"></span>-->
+                                <span>
+                                    {{column.headerName}}
+                                    <md-tooltip md-direction="top" style="font-size:12px;"
+                                                ng-if="column.tooltip">
+                                        {{column.tooltip}}
+                                    </md-tooltip>
+                                </span>
+                            </th>
+                            <th md-column ng-show="{{showActions}}" class="header-actions {{actionsClass}}">
+                            </th>
+                        </tr>
+                    </thead>
+                    {{query.order}}
+                    <tbody md-body>
+                        <tr md-row ng-show="data.length == 0">
+                            <td md-cell colspan="{{columns.length + 2}}" class="alert alert-info text-center">
+                                <span>
+                                    No se encontraron resultados.
+                                </span>
+                            </td>
+                        </tr>
+                        <tr md-row md-auto-select md-select="item" ng-dblclick="edit(item.id, item)" ng-repeat="item in data[tab.value] track by $index">
+                            <td ng-if="allowSelection" md-cell class="a-center middle-align col-check-action">
+                                <md-checkbox ng-model="item.selected" class="flat md-primary" aria-label="selected" />
+                            </td>
+                            <td md-cell ng-repeat="column in columns track by $index"
+                                ng-class="{'text-right': column.alignRight,'text-center': column.alignCenter, 'first-column-padding': $index==0 && !showMultiSelect, 'date-margin': column.isDate}" class="{{column.customClass}}" ng-show="{{column.visible === undefined}} || column.visible">
+                                <div ng-if="!column.isArray">
+                                    <div ng-if="!column.isDate && !column.link && !column.isCheckeable &&
+                                       !column.applyFilter && !column.isDecimal && !column.dynamicData && !column.isImage &&
+                                       !column.getClass && !column.isRating && !column.isStatus && !column.isHour && !column.isFullDate && !column.isEditable && !column.isButton && !column.customTemplate && !column.isBoolean">
+                                        <span ng-if="column.parentRoot">
+                                            {{item[column.parentRoot][column.name]}}
+                                        </span>
+                                        <span ng-if="!column.parentRoot">
+                                            {{item[column.name]}}
+                                        </span>
+                                    </div>
+                                    <div ng-if="column.isImage" class="column-image">
+                                        <div ng-if="column.parentRoot">
+                                            <img ng-src="{{item[column.parentRoot][column.name]}}" alt="{{item[column.description]}}"
+                                                 ng-if="item[column.parentRoot][column.name] != ''" />
+                                            <img ng-src="/Content/images/no_image.png" alt="No estableciste una imagen."
+                                                 ng-if="item[column.parentRoot][column.name] == ''" />
+                                        </div>
+                                        <div ng-if="!column.parentRoot">
+                                            <img ng-src="{{item[column.name]}}" alt="{{item[column.description]}}"
+                                                 ng-if="item[column.name] != ''" />
+                                            <img ng-src="/Content/images/no_image.png" alt="No estableciste una imagen."
+                                                 ng-if="item[column.name] == ''" />
+                                        </div>
+                                    </div>
+                                    <div ng-if="column.getClass" ng-class="column.getClass(item)">
+                                        <span ng-if="column.parentRoot">
+                                            {{item[column.parentRoot][column.name]}}
+                                        </span>
+                                        <span ng-if="!column.parentRoot">
+                                            {{item[column.name]}}
+                                        </span>
+                                    </div>
+                                    <div ng-if="column.dynamicData">
+                                        {{column.dynamicData(item)}}
+                                    </div>
+                                    <span ng-if="column.isHour">
+                                        {{item[column.name] | date:'HH:mm'}}
+                                    </span>
+                                    <span ng-if="column.isDate">
+                                        {{item[column.name] | date:'dd-MM-yyyy'}}
+                                    </span>
+                                    <span ng-if="column.isFullDate">
+                                        {{item[column.name] | date:'dd/MM/yyyy HH:mm'}}
+                                    </span>
+                                    <span ng-if="column.isDecimal">
+                                        {{item[column.name] | number:2}}
+                                    </span>
+                                    <div ng-if="column.applyFilter" class="{{column.class?column.class:''}}">
+                                        <span ng-if="column.parentRoot">
+                                            {{column.applyFilter(item[column.parentRoot][column.name])}}
+                                        </span>
+                                        <span ng-if="!column.parentRoot">
+                                            {{column.applyFilter(item[column.name])}}
+                                        </span>
+                                    </div>
+
+                                     <span ng-if="column.isButton">
+                                        <md-button class="btn-toolbar btn-actions btn-portfolio"
+                                                    ng-disabled="column.isDisabled(item)"
+                                                    ng-show="column.applyValidation(item,column)"
+                                                    style="pointer-events:none;"
+                                                    data-toggle="tooltip" data-placement="top"
+                                                    ng-click="onAction(column.actionName,item, $event)">
+                                            <md-tooltip>{{column.tooltip}}</md-tooltip>
+                                            <md-icon class="s48" ng-show="column.icon" md-font-icon="zmdi zmdi-{{column.icon}}" aria-hidden="true" style="{{column.customStyle}};pointer-events: fill">
+                                            </md-icon>
+
+                                            <span ng-show="column.title">
+                                                {{column.title}}
+                                            </span>
+                                        </md-button>
+                                    </span>
+
+                                    <div ng-if="column.isEditable">
+                                        <md-input-container>
+                                            <label>{{column.label}}</label>
+                                            <input ng-model="item[column.name]" name="{{column.label}}{{$index}}" ng-if="!column.validationRules && !column.applyValidation" />
+                                            <input ng-model="item[column.name]" name="{{column.label}}{{$index}}" ng-if="column.validationRules && !colum.applyValidation" validation="{{column.validationRules}}" />
+                                            <input ng-model="item[column.name]" name="{{column.label}}{{$index}}" ng-if="column.applyValidation && !column.validationRules" validation="custom:validationFn(column,item)" />
+                                            <input ng-model="item[column.name]" name="{{column.label}}{{$index}}" ng-if="column.applyValidation && column.validationRules" validation="custom:validationFn(column,item)|{{column.validationRules}}" />
+                                        </md-input-container>
+                                    </div>
+                                    <span ng-if="column.isBoolean">
+                                        <md-checkbox ng-model="item[column.name]" class="flat readonly" aria-label="selected" ng-click="column.customCallback(item)" />
+                                    </span>
+                                    <div ng-if="column.isStatus">
+                                        <span ng-if="item[column.name]" ng-click="column.customCallback(item)">
+                                            <i class="zmdi zmdi-hc-2x zmdi-{{column.statusOnIcon}} {{column.customClass}} {{column.trueClass}}"></i>
+                                        </span>
+                                        <span ng-if="!(item[column.name])">
+                                            <i class="zmdi zmdi-hc-2x zmdi-{{column.statusOffIcon}} {{column.customClass}} {{column.falseClass}}"></i>
+                                        </span>
+                                    </div>
+                                    <div ng-if="column.isRating" ng-init="rating = item[column.name]">
+                                        <star-rating-comp rating="rating"
+                                                          show-half-stars="true"
+                                                          read-only="true"
+                                                          num-of-stars="5"
+                                                          star-type="'icon'">
+                                        </star-rating-comp>
+                                    </div>
+                                    <span ng-if="column.isCheckeable">
+                                        <md-checkbox ng-disabled="column.applyValidation(item)"
+                                                     ng-model="item[column.name]"
+                                                     ng-click="onAction(column.actionName,item, $event)">
+                                        </md-checkbox>
+                                        <md-tooltip md-direction="bottom" style="margin-top:12px;font-size:12px;"
+                                                    ng-show="column.applyValidation(item)">
+                                            {{column.tooltip}}
+                                        </md-tooltip>
+                                    </span>
+                                    <div layout="row" class="actions-container" ng-if="column.applyValidation" ng-click="onAction(column.link,item,$event)">
+                                        <md-button ng-disabled="column.applyValidation(item)"
+                                                   ng-show="column.link && column.icon" class="btn-toolbar btn-actions"
+                                                   data-toggle="tooltip" data-placement="top">
+                                            <md-icon md-font-icon="{{column.icon}}"></md-icon>
+                                        </md-button>
+                                    </div>
+
+                                    <a ng-if="column.link && column.title"
+                                       ng-click="onAction(column.link,item,$event)" title="{{colum.title}}" href="">
+                                        {{column.title}}
+                                    </a>
+                                </div>
+                                <div ng-if="column.isArray">
+                                    <div ng-repeat="subItem in item[column.name]" ng-if="!column.applyFilter" class="middle-align table-items">
+                                        <span class="{{column.customClass}}">{{subItem[column.itemTitleName]}}</span>
+                                    </div>
+                                    <div ng-repeat="subItem in item[column.name]" ng-if="column.applyFilter" class="middle-align table-items">
+                                        <span class="{{column.customClass}}">{{column.applyFilter(subItem[column.itemTitleName])}}</span>
+                                    </div>
+                                    <div ng-if="!item[column.name] || item[column.name].length == 0" class="middle-align table-items">
+                                        <span class="{{column.customClass}}">{{column.noItemMessage}}</span>
+                                    </div>
+                                </div>
+                            </td>
+                            <td md-cell ng-show="showActions" class="action">
+                                <div layout="row" class="actions-container">
+                                    <md-button ng-show="allowEdit && !showMultiSelect && item.id != 0"
+                                               class="btn-toolbar btn-actions"
+                                               data-toggle="tooltip"
+                                               data-placement="top"
+                                               ng-click="edit(item.id,item)">
+                                        <md-icon class="s48" md-font-icon="zmdi zmdi-edit" aria-hidden="true"></md-icon>
+                                        <md-tooltip>Editar</md-tooltip>
+                                    </md-button>
+                                    <md-button ng-show="allowDelete && !showMultiSelect"
+                                               class="btn-toolbar btn-actions"
+                                               ng-click="remove(item.id)"
+                                               data-toggle="tooltip"
+                                               data-placement="top">
+                                        <md-icon class="s48" md-font-icon="zmdi zmdi-delete" aria-hidden="true"></md-icon>
+                                    </md-button>
+                                    <md-button ng-show="item.showDelete"
+                                               class="btn-toolbar btn-actions"
+                                               ng-click="remove(item.id)"
+                                               data-toggle="tooltip"
+                                               data-placement="top">
+                                        <md-icon class="s48" md-font-icon="zmdi zmdi-delete" aria-hidden="true"></md-icon>
+                                    </md-button>
+                                    <md-button class="btn-toolbar btn-actions btn-portfolio"
+                                               ng-repeat="action in actions"
+                                               ng-disabled="action.isDisabled(item)"
+                                               ng-show="action.applyValidation(item,action)"
+                                               ng-click="onAction(action.name,item,$event)"
+                                               data-toggle="tooltip"
+                                               data-placement="top">
+                                        <md-icon class="s48" ng-show="action.icon" md-font-icon="zmdi zmdi-{{action.icon}}" ng-attr-style="{{action.customStyle}}" aria-hidden="true"></md-icon>
+                                        <md-tooltip>{{action.tooltip}}</md-tooltip>
+                                        <span ng-show="action.title">
+                                            {{action.title}}
+                                        </span>
+                                    </md-button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </md-table-container>
+        </md-content>
+    </md-tab>
+</md-tabs>
+            <md-table-container ng-if="!isMobile && !groupBy">
+                <table md-table class="md-primary md-data-table" md-progress="promise">
+                    <!--md-row-select="allowSelection"
+                    ng-model="selectedItems"-->
+                    <thead md-head md-order="query.orderBy" md-on-reorder="getSource">
+                        <tr md-row>
+                            <th md-column ng-if="showMultiSelect">
+                                <md-tooltip>Seleccionar Todos</md-tooltip>
+                                <md-checkbox ng-click="addAll(selectAll)" ng-model="selectAll" ng-checked="isSelectAllChecked()" id="selectAllFromTable"class="flat md-primary" aria-label="selected" />
+                            </th>
+                            <th md-column ng-if="allowSelection && !showMultiSelect"></th>
+                            <th md-column ng-repeat="column in columns track by $index"
+                                md-numberic md-order-by="{{isSorteable(column)?column.orderBy ? column.orderBy :column.parentRoot ? capitalize(column.parentRoot) + '.' + capitalize(column.name) : capitalize(column.name):''}}"
+                                ng-class="{'text-right': column.alignRight,'text-center':column.textCenter, 'first-column-padding': $index==0 && !showMultiSelect, 'date-margin': column.isDate}"
+                                ng-attr-style="{{column.headerStyle}}"
+                                ng-if="column.visible === undefined || column.visible">
+                                <!--<span style="display:block;" ng-bind-html="column.headerName"></span>-->
+                                <span>
+                                    {{column.headerName}}
+                                    <md-tooltip md-direction="top" style="font-size:12px;"
+                                                ng-if="column.tooltip && !column.hideTooltip">
+                                        {{column.tooltip}}
+                                    </md-tooltip>
+                                </span>
+                            </th>
+                            <th md-column ng-show="{{showActions}}" class="header-actions {{actionsClass}}">
+                            </th>
+                        </tr>
+                    </thead>
+                    {{query.order}}
+                    <tbody md-body>
+                        <tr md-row ng-show="data.length == 0">
+                            <td md-cell colspan="{{columns.length + 2}}" class="alert alert-info text-center">
+                                <span>
+                                    No se encontraron resultados.
+                                </span>
+                            </td>
+                        </tr>
+                        <!--<tr md-row ng-show="data.length == 0 && promise">
+                            <td md-cell colspan="{{columns.length + 2}}" class="alert alert-info text-center">
+                                <span>
+                                    Cargando...
+                                </span>
+                            </td>
+                        </tr>-->
+                        <tr md-row md-auto-select md-select="item" ng-dblclick="edit(item.id, item)" ng-repeat="item in data track by $index" ng-class="{'selected':item.selected}">
+                            <td ng-if="allowSelection" md-cell class="a-center middle-align col-check-action">
+                                <!--<md-checkbox ng-model="item.selected" ng-click="setData()" class="flat" aria-label="selected" />-->
+                                <md-checkbox ng-model="item.selected" class="flat md-primary" aria-label="selected" />
+                            </td>
+                            <td md-cell ng-repeat="column in columns track by $index"
+                                ng-class="{'text-right': column.alignRight,'text-center': column.alignCenter, 'first-column-padding': $index==0 && !showMultiSelect, 'date-margin': column.isDate}" class="{{column.customClass}}" ng-show="{{column.visible === undefined}} || column.visible">
+                                <div ng-if="!column.isArray">
+                                    <div ng-if="!column.isDate && !column.link && !column.isCheckeable &&
+                                       !column.applyFilter && !column.isDecimal && !column.dynamicData && !column.isImage &&
+                                       !column.getClass && !column.isRating && !column.isStatus && !column.isHour && !column.isFullDate && !column.isEditable && !column.isButton && !column.isCurrency && !column.customTemplate && !column.isBoolean">
+                                        <span ng-if="column.parentRoot">
+                                            {{item[column.parentRoot][column.name]}}
+                                        </span>
+                                        <span ng-if="!column.parentRoot">
+                                            {{item[column.name]}}
+                                        </span>
+                                    </div>
+                                    <div ng-if="column.isImage" class="column-image">
+                                        <div ng-if="column.parentRoot">
+                                            <img ng-src="{{item[column.parentRoot][column.name]}}" alt="{{item[column.description]}}"
+                                                 ng-if="item[column.parentRoot][column.name] != ''" />
+                                            <img ng-src="/Content/images/no_image.png" alt="No estableciste una imagen."
+                                                 ng-if="item[column.parentRoot][column.name] == ''" />
+                                        </div>
+                                        <div ng-if="!column.parentRoot">
+                                            <img ng-src="{{item[column.name]}}" alt="{{item[column.description]}}"
+                                                 ng-if="item[column.name] != ''" />
+                                            <img ng-src="/Content/images/no_image.png" alt="No estableciste una imagen."
+                                                 ng-if="item[column.name] == ''" />
+                                        </div>
+                                    </div>
+                                    <div ng-if="column.getClass" ng-class="column.getClass(item)">
+                                        <span ng-if="column.parentRoot">
+                                            {{item[column.parentRoot][column.name]}}
+                                        </span>
+                                        <span ng-if="!column.parentRoot">
+                                            {{item[column.name]}}
+                                        </span>
+                                    </div>
+                                    <div ng-if="column.dynamicData">
+                                        {{column.dynamicData(item)}}
+                                    </div>
+                                    <span ng-if="column.isHour">
+                                        {{item[column.name] | date:'HH:mm'}}
+                                    </span>
+                                    <span ng-if="column.isDate">
+                                        {{item[column.name] | date:'dd-MM-yyyy'}}
+                                    </span>
+                                    <span ng-if="column.isFullDate">
+                                        {{item[column.name] | date:'dd/MM/yyyy HH:mm'}}
+                                    </span>
+                                    <span ng-if="column.isDecimal">
+                                        {{item[column.name] | number:2}}
+                                    </span>
+                                    <div ng-if="column.applyFilter" class="{{column.class?column.class:''}}">
+                                        <span ng-if="column.parentRoot">
+                                            {{column.applyFilter(item[column.parentRoot][column.name])}}
+                                        </span>
+                                        <span ng-if="!column.parentRoot">
+                                            {{column.applyFilter(item[column.name])}}
+                                        </span>
+                                    </div>
+
+                                    <!--<div ng-if="column.customTemplate">
+                                        <span class="{{item.getCustomClass(item[column.name])}}">
+                                            {{item[column.name]}}
+                                        </span>
+                                    </div>-->
+
+                                    <span ng-if="column.isCurrency">
+                                        {{item[column.name] | currency: '$':2}}
+                                    </span>
+                                    <div ng-if="column.isEditable">
+                                        <md-input-container>
+                                            <label>{{column.label}}</label>
+                                            <input ng-model="item[column.name]" name="{{column.label}}{{$index}}" ng-if="!column.validationRules && !column.applyValidation" />
+                                            <input ng-model="item[column.name]" name="{{column.label}}{{$index}}" ng-if="column.validationRules && !colum.applyValidation" validation="{{column.validationRules}}" />
+                                            <input ng-model="item[column.name]" name="{{column.label}}{{$index}}" ng-if="column.applyValidation && !column.validationRules" validation="custom:validationFn(column,item)" />
+                                            <input ng-model="item[column.name]" name="{{column.label}}{{$index}}" ng-if="column.applyValidation && column.validationRules" validation="custom:validationFn(column,item)|{{column.validationRules}}" />
+                                        </md-input-container>
+                                    </div>
+                                    <span ng-if="column.isBoolean">
+                                        <md-checkbox ng-model="item[column.name]" class="flat readonly" aria-label="selected" ng-click="column.customCallback(item)" />
+                                    </span>
+                                    <div ng-if="column.isStatus">
+                                        <span ng-if="item[column.name]" ng-click="column.customCallback(item)">
+                                            <i class="zmdi zmdi-hc-2x zmdi-{{column.statusOnIcon}} {{column.customClass}} {{column.trueClass}}"></i>
+                                        </span>
+                                        <span ng-if="!(item[column.name])">
+                                            <i class="zmdi zmdi-hc-2x zmdi-{{column.statusOffIcon}} {{column.customClass}} {{column.falseClass}}"></i>
+                                        </span>
+                                    </div>
+                                    <div ng-if="column.isRating" ng-init="rating = item[column.name]">
+                                        <star-rating-comp rating="rating"
+                                                          show-half-stars="true"
+                                                          read-only="true"
+                                                          num-of-stars="5"
+                                                          star-type="'icon'">
+                                        </star-rating-comp>
+                                    </div>
+                                    <span ng-if="column.isButton">
+                                        <md-button class="btn-toolbar btn-actions btn-portfolio"
+                                                    ng-disabled="column.isDisabled(item)"
+                                                    ng-show="column.applyValidation(item,column)"
+                                                    style="pointer-events:none;"
+                                                    data-toggle="tooltip" data-placement="top"
+                                                    ng-click="onAction(column.actionName,item, $event)">
+                                            <md-tooltip>{{column.tooltip}}</md-tooltip>
+                                            <md-icon class="s48" ng-show="column.icon" md-font-icon="zmdi zmdi-{{column.icon}}" aria-hidden="true" style="{{column.customStyle}};pointer-events: fill">
+                                            </md-icon>
+
+                                            <span ng-show="column.title">
+                                                {{column.title}}
+                                            </span>
+                                        </md-button>
+                                    </span>
+
+                                    <span ng-if="column.isCheckeable">
+                                        <md-checkbox ng-disabled="column.applyValidation(item)"
+                                                     ng-model="item[column.name]"
+                                                     ng-click="onAction(column.actionName,item, $event)">
+                                        </md-checkbox>
+                                        <md-tooltip md-direction="bottom" style="margin-top:12px;font-size:12px;"
+                                                    ng-show="column.applyValidation(item)">
+                                            {{column.tooltip}}
+                                        </md-tooltip>
+                                    </span>
+                                    <!--<a ng-if="column.link && !column.title && !column.isdate"
+                                        ng-click="onAction(column.link,item,$event)" href="">
+                                        item[column.name]
+                                    </a>-->
+                                    <div layout="row" class="actions-container" ng-if="column.applyValidation" ng-click="onAction(column.link,item,$event)">
+                                        <md-button ng-disabled="column.applyValidation(item)"
+                                                   ng-show="column.link && column.icon" class="btn-toolbar btn-actions"
+                                                   data-toggle="tooltip" data-placement="top">
+                                            <md-icon md-font-icon="{{column.icon}}"></md-icon>
+                                        </md-button>
+                                    </div>
+
+                                    <a ng-if="column.link && column.title"
+                                       ng-click="onAction(column.link,item,$event)" title="{{colum.title}}" href="">
+                                        {{column.title}}
+                                    </a>
+                                </div>
+                                <div ng-if="column.isArray">
+                                    <div ng-repeat="subItem in item[column.name]" ng-if="!column.applyFilter" class="middle-align table-items">
+                                        <span class="{{column.customClass}}">{{subItem[column.itemTitleName]}}</span>
+                                    </div>
+                                    <div ng-repeat="subItem in item[column.name]" ng-if="column.applyFilter" class="middle-align table-items">
+                                        <span class="{{column.customClass}}">{{column.applyFilter(subItem[column.itemTitleName])}}</span>
+                                    </div>
+                                    <div ng-if="!item[column.name] || item[column.name].length == 0" class="middle-align table-items">
+                                        <span class="{{column.customClass}}">{{column.noItemMessage}}</span>
+                                    </div>
+                                </div>
+                            </td>
+                            <td md-cell ng-show="showActions" class="action">
+                                <div layout="row" class="actions-container">
+                                    <md-button ng-show="allowEdit && !showMultiSelect && item.id != 0"
+                                               class="btn-toolbar btn-actions"
+                                               data-toggle="tooltip"
+                                               data-placement="top"
+                                               ng-click="edit(item.id,item)">
+                                        <md-icon class="s48" md-font-icon="zmdi zmdi-edit" aria-hidden="true"></md-icon>
+                                        <md-tooltip>Editar</md-tooltip>
+                                    </md-button>
+                                    <md-button ng-show="allowDelete && !showMultiSelect"
+                                               class="btn-toolbar btn-actions"
+                                               ng-click="remove(item.id)"
+                                               data-toggle="tooltip"
+                                               data-placement="top">
+                                        <md-icon class="s48" md-font-icon="zmdi zmdi-delete" aria-hidden="true"></md-icon>
+                                    </md-button>
+                                    <md-button ng-show="item.showDelete"
+                                               class="btn-toolbar btn-actions"
+                                               ng-click="remove(item.id)"
+                                               data-toggle="tooltip"
+                                               data-placement="top">
+                                        <md-icon class="s48" md-font-icon="zmdi zmdi-delete" aria-hidden="true"></md-icon>
+                                    </md-button>
+                                    <md-button class="btn-toolbar btn-actions btn-portfolio"
+                                               ng-repeat="action in actions"
+                                               ng-disabled="action.isDisabled(item, action)"
+                                               ng-show="action.applyValidation(item,action)"
+                                               ng-click="onAction(action.name,item,$event)"
+                                               data-toggle="tooltip"
+                                               data-placement="top">
+                                        <md-icon class="{{action.classes?action.classes:''}}" ng-show="action.icon" md-font-icon="{{action.icon}}" ng-attr-style="{{action.customStyle}}" aria-hidden="true"></md-icon>
+                                        <md-tooltip>{{action.tooltip}}</md-tooltip>
+                                        <span ng-show="action.title">
+                                            {{action.title}}
+                                        </span>
+                                    </md-button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </md-table-container>
+            <md-table-container ng-if="isMobile && !groupBy">
+                <table md-table class="md-primary md-data-table" md-row-select="allowSelection"
+                       ng-model="selected" md-progress="promise">
+                    <!--<thead md-head md-order="query.orderBy" md-on-reorder="getSource">
+
+                    </thead>
+                    {{query.order}}-->
+                    <tbody md-body>
+                        <tr md-row ng-show="data.length == 0">
+                            <td md-cell colspan="{{columns.length + 2}}" class="alert alert-info text-center">
+                                <span>
+                                    No se encontraron resultados.
+                                </span>
+                            </td>
+                        </tr>
+                        <tr md-row md-auto-select md-select="item" ng-dblclick="edit(item.id, item)" ng-repeat="item in data track by $index">
+                            <td ng-show="{{showMultiSelect}}" md-cell class="a-center middle-align col-check-action" ng-click="select(item)">
+                                <!--<md-checkbox ng-model="item.selected" ng-click="setData()" class="flat" aria-label="selected" />-->
+                                <md-checkbox ng-model="item.selected" aria-label="selected" class="flat" ng-click="select(item)" />
+                            </td>
+                            <!-- ng-click="edit(item.id)" -->
+                            <td md-cell>
+                                <div class="padding-bottom-10">
+                                    <div ng-repeat="column in columns track by $index" class="padding-top-10">
+                                        <div ng-show="!column.isArray">
+                                            <span><b>{{column.headerName}}:</b></span>
+                                            <span ng-if="!column.isDate && !column.link && !column.isCheckeable &&
+                                       !column.applyFilter && !column.isDecimal && !column.dynamicData && !column.isImage && !column.getClass &&
+                                       !column.isRating && !column.isStatus && !column.isHour && !column.isFullDate && !column.isEditable && !column.isCurrency && !column.customTemplate && !column.isBoolean">
+                                                {{item[column.name]}}
+                                            </span>
+                                            <div ng-if="column.isImage" class="column-image">
+                                                <div ng-if="column.parentRoot">
+                                                    <img ng-src="{{item[column.parentRoot][column.name]}}" alt="{{item[column.description]}}"
+                                                         ng-if="item[column.parentRoot][column.name] != ''" />
+                                                    <img ng-src="/Content/images/no_image.png" alt="No estableciste una imagen."
+                                                         ng-if="item[column.parentRoot][column.name] == ''" />
+                                                </div>
+                                                <div ng-if="!column.parentRoot">
+                                                    <img ng-src="{{item[column.name]}}" alt="{{item[column.description]}}"
+                                                         ng-if="item[column.name] != ''" />
+                                                    <img ng-src="/Content/images/no_image.png" alt="No estableciste una imagen."
+                                                         ng-if="item[column.name] == ''" />
+                                                </div>
+                                            </div>
+                                            <div ng-if="column.dynamicData">
+                                                {{column.dynamicData(item)}}
+                                            </div>
+                                            <div ng-if="column.getClass" ng-class="getClass(item)">
+                                                {{item[column.name]}}
+                                            </div>
+                                            <div ng-if="column.isRating" ng-init="rating = item[column.name]">
+                                                <star-rating-comp rating="rating"
+                                                                  show-half-stars="true"
+                                                                  read-only="true"
+                                                                  num-of-stars="5"
+                                                                  star-type="'icon'">
+                                                </star-rating-comp>
+                                            </div>
+                                            <div ng-if="column.isEditable">
+                                                <md-input-container>
+                                                    <label>{{column.label}}</label>
+                                                    <input ng-model="item[column.name]" name="mob-{{column.label}}{{$index}}" ng-if="!column.validationRules && !column.applyValidation" />
+                                                    <input ng-model="item[column.name]" name="mob-{{column.label}}{{$index}}" ng-if="column.validationRules && !colum.applyValidation" validation="{{column.validationRules}}" />
+                                                    <input ng-model="item[column.name]" name="mob-{{column.label}}{{$index}}" ng-if="column.applyValidation && !column.validationRules" validation="custom:validationFn(column,item)" />
+                                                    <input ng-model="item[column.name]" name="mob-{{column.label}}{{$index}}" ng-if="column.applyValidation && column.validationRules" validation="custom:validationFn(column,item)|{{column.validationRules}}" />
+
+                                                </md-input-container>
+                                            </div>
+                                            <span ng-if="column.isCurrency">
+                                                {{item[column.name] | currency: '$':2}}
+                                            </span>
+                                            <span ng-if="column.isHour">
+                                                {{item[column.name] | date:'HH:mm'}}
+                                            </span>
+                                            <span ng-if="column.isDate">
+                                                {{item[column.name] | date:'dd-MM-yyyy'}}
+                                            </span>
+                                            <span ng-if="column.isFullDate">
+                                                {{item[column.name] | date:'dd/MM/yyyy HH:mm}}
+                                            </span>
+                                            <span ng-if="column.isDecimal">
+                                                {{item[column.name] | number:2}}
+                                            </span>
+
+                                            <!--<div ng-if="column.customTemplate">
+                                                <span class="{{item.getCustomClass(item[column.name])}}">
+                                                    {{item[column.name]}}
+                                                </span>
+                                            </div>-->
+
+                                            <div ng-if="column.applyFilter">
+                                                <span ng-if="column.parentRoot">
+                                                    {{column.applyFilter(item[column.parentRoot][column.name])}}
+                                                </span>
+                                                <span ng-if="!column.parentRoot">
+                                                    {{column.applyFilter(item[column.name])}}
+                                                </span>
+                                            </div>
+                                            <span ng-if="column.isBoolean">
+                                                <md-checkbox ng-model="item[column.name]" class="flat readonly" aria-label="selected" ng-click="column.customCallback(item)" />
+                                            </span>
+                                            <div ng-if="column.isStatus">
+                                                <span ng-if="item[column.statusVariable]" ng-click="column.customCallback(item)">
+                                                    <i class="zmdi zmdi-hc-2x zmdi-{{column.statusOnIcon}} {{column.customClass}} {{column.trueClass}}"></i>
+                                                </span>
+                                                <span ng-if="!item[column.statusVariable]">
+                                                    <i class="zmdi zmdi-hc-2x zmdi-{{column.statusOffIcon}} {{column.customClass}} {{column.falseClass}}"></i>
+                                                </span>
+                                            </div>
+                                            <span ng-if="column.isCheckeable">
+                                                <md-checkbox ng-disabled="column.applyValidation(item)"
+                                                             ng-model="item[column.name]"
+                                                             ng-click="onAction(column.check,item)">
+                                                </md-checkbox>
+                                                <md-tooltip md-direction="bottom" style="margin-top:12px;font-size:12px;"
+                                                            ng-show="column.applyValidation(item)">
+                                                    {{column.tooltip}}
+                                                </md-tooltip>
+                                            </span>
+                                            <a ng-if="column.link && !column.title"
+                                               ng-click="onAction(column.link,item)" href="">
+                                                {{item[column.name]}}
+                                            </a>
+                                            <br />
+                                            <div layout="row" class="actions-container" ng-if="column.applyValidation" ng-click="onAction(column.link,item)">
+                                                <md-button ng-disabled="column.applyValidation(item)"
+                                                           ng-show="column.link && column.icon" class="btn-toolbar btn-actions"
+                                                           data-toggle="tooltip" data-placement="top">
+                                                    <md-icon md-font-icon="{{column.icon}}"></md-icon>
+                                                </md-button>
+                                            </div>
+
+                                            <a ng-if="column.link && column.title"
+                                               ng-click="onAction(column.link,item)" title="{{colum.title}}" href="">
+                                                {{column.title}}
+                                            </a>
+                                        </div>
+                                        <div ng-if="column.isArray">
+                                            <div ng-repeat="subItem in item[column.name]" ng-if="!column.applyFilter" class="middle-align table-items">
+                                                <span class="{{column.customClass}}">{{subItem[column.itemTitleName]}}</span>
+                                            </div>
+                                            <div ng-repeat="subItem in item[column.name]" ng-if="column.applyFilter" class="middle-align table-items">
+                                                <span class="{{column.customClass}}">{{column.applyFilter(subItem[column.itemTitleName])}}</span>
+                                            </div>
+                                            <div ng-if="!item[column.name] || item[column.name].length == 0" class="middle-align table-items">
+                                                <span class="{{column.customClass}}">{{column.noItemMessage}}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </td>
+                            <td md-cell ng-show="showActions && (!showMultiSelect || actions != null)" class="action">
+                                <div layout="row" class="actions-container">
+                                    <md-button ng-show="allowEdit && !showMultiSelect && item.id != 0"
+                                               class="btn-toolbar btn-actions"
+                                               data-toggle="tooltip"
+                                               data-placement="top"
+                                               ng-click="edit(item.id,item)">
+                                        <md-icon class="s48" md-font-icon="zmdi zmdi-edit" aria-hidden="true"></md-icon>
+                                        <md-tooltip>Editar</md-tooltip>
+                                    </md-button>
+                                    <md-button ng-show="allowDelete && !showMultiSelect"
+                                               class="btn-toolbar btn-actions"
+                                               ng-click="remove(item.id)"
+                                               data-toggle="tooltip"
+                                               data-placement="top">
+                                        <md-icon class="s48" md-font-icon="zmdi zmdi-delete" aria-hidden="true"></md-icon>
+                                        <md-tooltip>Borrar</md-tooltip>
+                                    </md-button>
+                                    <md-button ng-show="item.showDelete"
+                                               class="btn-toolbar btn-actions"
+                                               ng-click="remove(item.id)"
+                                               data-toggle="tooltip"
+                                               data-placement="top">
+                                        <md-icon class="s48" md-font-icon="zmdi zmdi-delete" aria-hidden="true"></md-icon>
+                                    </md-button>
+                                    <md-button class="btn-toolbar btn-actions btn-portfolio"
+                                               ng-repeat="action in actions"
+                                               ng-disabled="action.isDisabled(item)"
+                                               ng-show="action.applyValidation(item,action)"
+                                               ng-click="onAction(action.name,item, $event)"
+                                               data-toggle="tooltip"
+                                               data-placement="top">
+                                        <md-icon class="s48" ng-show="action.icon" md-font-icon="zmdi zmdi-{{action.icon}}" ng-attr-style="{{action.customStyle}}" aria-hidden="true"></md-icon>
+                                        <md-tooltip>{{action.tooltip}}</md-tooltip>
+                                        <span ng-show="action.title">
+                                            {{action.title}}
+                                        </span>
+                                    </md-button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </md-table-container>
+            <md-table-pagination md-label="{page: 'Página:', rowsPerPage: 'Filas por página:', of: 'de'}"
+                                 md-limit="query.size"
+                                 md-on-paginate="pageHasChanged"
+                                 md-limit-options="tableLimitOptions"
+                                 md-page-select md-page="query.page"
+                                 md-total="{{totalItems}}"
+                                 class="table-pagination-mobile table-pagination"
+                                 ng-disabled="isEditingOrder">
+            </md-table-pagination>
+            <div layout="row" class="customFooterDescription">
+                <div ng-repeat="item in customFooter" layout="row" class="padding-left-10">
+                    <p><i class="zmdi zmdi-{{item.icon}} {{item.viewColorClass}} padding-left-10 padding-right-10"></i>{{item.description}}</p>
+                </div>
+            </div>
+            <section layout="row" layout-align="end end" ng-show="showActions && showMultiSelect" style="position:fixed;bottom:30px;right:25px;" class="mvztablefabs">
+                <md-button class="md-fab md-accent"
+                           aria-label="add"
+                           ng-click="add()"
+                           ng-show="allowAdd && toolbar.showAdd">
+                    <md-icon md-font-icon="zmdi {{iconAdd}}"></md-icon>
+                    <md-tooltip>Nuevo</md-tooltip>
+                </md-button>
+                <md-button class="md-fab"
+                           aria-label="Ver"
+                           ng-click="editSelected()"
+                           ng-show="allowEdit && toolbar.showEdit">
+                    <md-icon md-font-icon="zmdi {{iconEdit}}"></md-icon>
+                    <md-tooltip>Ver/Editar</md-tooltip>
+                </md-button>
+                <md-button class="md-fab"
+                           aria-label="Remove Selected"
+                           ng-click="removeSelected()"
+                           ng-show="allowDelete && toolbar.showDelete">
+                    <md-icon md-font-icon="zmdi zmdi-delete"></md-icon>
+                    <md-tooltip>Borrar seleccionados</md-tooltip>
+                </md-button>
+                <md-button class="md-fab md-secondary"
+                           md-theme="alz-content"
+                           aria-label="Export"
+                           ng-click="exportToExcel()"
+                           ng-show="exportExcel && (data.length > 0)">
+                    <md-icon class="fa fa-file-excel-o fa-2x" style="color:#202020;"></md-icon>
+                    <md-tooltip>Exportar a Excel</md-tooltip>
+                </md-button> 
+            </section>
+            <section layout="row" layout-align="end end" ng-show="showActions && !showMultiSelect" style="position:fixed;bottom:30px;right:25px;" class="mvztablefabs">
+                <md-button class="md-fab md-accent"
+                           aria-label="add"
+                           ng-click="add()"
+                           ng-show="allowAdd">
+                    <md-icon md-font-icon="zmdi {{iconAdd}}"></md-icon>
+                    <md-tooltip>Nuevo</md-tooltip>
+                </md-button>
+                <md-button class="md-fab md-secondary"
+                           md-theme="alz-content"
+                           aria-label="Export"
+                           ng-click="exportToExcel()"
+                           ng-show="exportExcel && (data.length > 0)">
+                    <md-icon class="fa fa-file-excel-o fa-2x" style="color:#202020;"></md-icon>
+                    <md-tooltip>Exportar a Excel</md-tooltip>
+                </md-button>
+                <div ng-repeat="action in fabActions">
+                    <md-button class="md-fab md-{{action.fabType}}"
+                               md-theme="alz-content"
+                               ng-disabled="action.isDisabled(item)"
+                               ng-if="!action.children"
+                               ng-show="action.applyValidation(data,action.name)"
+                               ng-click="onAction(action.name,item,$event)">
+                        <md-icon class="fa {{action.icon}} fa-2x" style="color:#202020;"></md-icon>
+                        <md-tooltip>{{action.tooltip}}</md-tooltip>
+                    </md-button>
+                    <md-fab-speed-dial md-direction="up"
+                                       class="md-scale" ng-if="action.children">
+                        <md-fab-trigger>
+                            <md-button class="md-fab md-{{action.fabType}}"
+                                       md-theme="alz-content"
+                                       ng-disabled="action.isDisabled()"
+                                       ng-show="action.applyValidation(data,action.name)">
+                                <md-icon class="fa {{action.icon}} table-fab-size" style="color:#202020;"></md-icon>
+                                <md-tooltip>{{action.tooltip}}</md-tooltip>
+                            </md-button>
+                        </md-fab-trigger>
+
+                        <md-fab-actions>
+                            <md-button class="md-fab md-{{children.fabType}} md-mini"
+                                       md-theme="alz-content"
+                                       ng-repeat="children in action.children"
+                                       ng-disabled="children.isDisabled()"
+                                       ng-show="children.applyValidation(data,children.name)"
+                                       ng-click="onAction(children.name,data,$event)">
+                                <md-icon class="fa {{children.icon}} mvztablefabs-actions" style="color:#202020;"></md-icon>
+                                <md-tooltip>{{children.tooltip}}</md-tooltip>
+                            </md-button>
+                        </md-fab-actions>
+                    </md-fab-speed-dial>
+                </div>
+            </section>

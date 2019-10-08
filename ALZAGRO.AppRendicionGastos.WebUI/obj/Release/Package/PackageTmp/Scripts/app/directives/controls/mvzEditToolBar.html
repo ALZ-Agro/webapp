@@ -1,0 +1,6 @@
+﻿<div layout="row" layout-align="end center">
+    <md-button flex="none" ng-hide="showCustomCancel" ng-click="cancel()">Cancelar</md-button>
+    <md-button flex="none" ng-show="showCustomCancel" ng-click="cancelCallback()">Cancelar</md-button>
+    <md-button class="md-primary" ng-show="!showCustomSave" ng-click="saveCallback()">Guardar</md-button>
+    <md-button class="md-primary" ng-show="showCustomSave" ng-click="saveCallback()">{{customSaveLabel}}</md-button>
+</div>

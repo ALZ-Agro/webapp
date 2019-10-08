@@ -1,0 +1,23 @@
+﻿<md-content class="padded-content-page padding-35">
+    <md-card>
+        <mvz-table columns="columns"
+                   controller-name="payments"
+                   update-params="getParams()"
+                   allow-advanced-search="true"
+                   auto-load="true"
+                   show-actions="false"
+                   allow-edit="false"
+                   allow-delete="false"
+                   allow-selection="false"
+                   advanced-date-filters="advancedDateFilters"
+                   disable-search-description="true"
+                   title="Listado de Pagos por Usuario"
+                   show-filter="true" />
+        <div layout="row" layout-align="end">
+            <div>
+                <md-button class="md-primary" ng-click="goBack()">Volver</md-button>
+            </div>
+        </div>
+    </md-card>
+
+</md-content>

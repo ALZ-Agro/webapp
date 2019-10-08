@@ -1,0 +1,151 @@
+﻿<md-content class="padded-content-page padding-35 category-edit code-search">
+    <md-card class="padding-20">
+        <form name="form" novalidate class="margin-sides">
+            <md-expansion-panel-group md-component-id="panelGroupConfig">
+                <md-expansion-panel md-component-id="panelConfigOne">
+                    <md-expansion-panel-collapsed class="panels-header">
+                        <div class="md-title panels-header">ARTORI</div>
+                        <div class="md-summary panels-header"></div>
+                        <md-expansion-panel-icon></md-expansion-panel-icon>
+                    </md-expansion-panel-collapsed>
+                    <md-expansion-panel-expanded>
+                        <md-expansion-panel-header md-no-sticky class="panels-header" ng-click="$panel.collapse()">
+                            <div class="panels-header" translate>ARTORI</div>
+                            <div class="md-summary panels-header"></div>
+                            <md-expansion-panel-icon ng-click="$panel.collapse()"></md-expansion-panel-icon>
+                        </md-expansion-panel-header>
+                        <md-expansion-panel-content layout="row">
+                            <div layout="row" layout-align="center" layout-wrap>
+                                <div flex="100" class="details-title margin-bottom-30">
+                                    <h2 class="margin-0">Ingresar código</h2>
+                                </div>
+                                <div flex="20" flex-xs="100">
+                                    <mvz-select model="search.company"
+                                                display="id"
+                                                options="companies"
+                                                label=""
+                                                is-required="false"
+                                                value="name"
+                                                prevent-clear="true"
+                                                name="companyId"></mvz-select>
+                                </div>
+                                <div flex="30" flex-xs="100">
+                                    <mvz-select model="search.category"
+                                                display="code"
+                                                options="categories"
+                                                label=""
+                                                is-required="false"
+                                                value="description"
+                                                prevent-clear="true"
+                                                name="categoryId"></mvz-select>
+
+                                </div>
+                                <div flex="25" flex-xs="100">
+                                    <mvz-select model="search.userGroups"
+                                                display="code"
+                                                options="userGroups"
+                                                label=""
+                                                is-required="false"
+                                                value="description"
+                                                prevent-clear="true"
+                                                name="sectorId"></mvz-select>
+
+                                </div>
+                                <div flex="25" flex-xs="100">
+                                    <mvz-select model="search.tax"
+                                                display="id"
+                                                options="taxes"
+                                                label=""
+                                                is-required="false"
+                                                value="description"
+                                                prevent-clear="true"
+                                                name="taxId"></mvz-select>
+                                </div>
+                                <div flex="100" layout-align="center" class="information"> {{ 'Empresa: ' + getValue(search.company)  }}</div>
+                                <div flex="100" layout-align="center" class="information"> {{ 'Categoría: ' + getValue(search.category) }}</div>
+                                <div flex="100" layout-align="center" class="information"> {{ 'Grupo de Ventas: ' + getValue(search.userGroups) }}</div>
+                                <div flex="100" layout-align="center" class="information"> {{ 'Tipo de impuesto: ' + getValue(search.tax) }}</div>
+                            </div>
+                        </md-expansion-panel-content>
+                    </md-expansion-panel-expanded>
+
+                </md-expansion-panel>
+                <md-expansion-panel md-component-id="panelConfigTwo">
+                    <md-expansion-panel-collapsed class="panels-header">
+                        <div class="panels-header" translate>TIPORI</div>
+                        <div class="md-summary panels-header"></div>
+                        <md-expansion-panel-icon></md-expansion-panel-icon>
+                    </md-expansion-panel-collapsed>
+                    <md-expansion-panel-expanded>
+                        <md-expansion-panel-header md-no-sticky class="panels-header" ng-click="$panel.collapse()">
+                            <div class="panels-header" translate>TIPORI</div>
+                            <div class="md-summary panels-header"></div>
+                            <md-expansion-panel-icon ng-click="$panel.collapse()"></md-expansion-panel-icon>
+                        </md-expansion-panel-header>
+                        <md-expansion-panel-content layout="row" layout-wrap>
+                            <div layout="row" layout-align="center" layout-wrap>
+                                <div flex="100" class="details-title margin-bottom-30">
+                                    <h2 class="margin-0">Ingresar código</h2>
+                                </div>
+                                <div flex="100" flex-xs="100">
+                                    <mvz-select model="search.category2"
+                                                display="code"
+                                                options="categories"
+                                                label=""
+                                                is-required="false"
+                                                value="description"
+                                                prevent-clear="true"
+                                                name="categoryId2"></mvz-select>
+                                </div>
+                                <div flex="100" layout-align="center" class="information"> {{ 'Categoría: ' + getValue(search.category2)  }}</div>
+                            </div>
+                        </md-expansion-panel-content>
+                    </md-expansion-panel-expanded>
+                </md-expansion-panel>
+                <md-expansion-panel md-component-id="panelConfigThree">
+                    <md-expansion-panel-collapsed class="panels-header">
+                        <div class="panels-header" translate>CODCPT</div>
+                        <div class="md-summary panels-header"></div>
+                        <md-expansion-panel-icon></md-expansion-panel-icon>
+                    </md-expansion-panel-collapsed>
+                    <md-expansion-panel-expanded>
+                        <md-expansion-panel-header md-no-sticky class="panels-header" ng-click="$panel.collapse()">
+                            <div class="panels-header" translate>CODCPT</div>
+                            <div class="md-summary panels-header"></div>
+                            <md-expansion-panel-icon ng-click="$panel.collapse()"></md-expansion-panel-icon>
+                        </md-expansion-panel-header>
+                        <md-expansion-panel-content layout="row" layout-wrap>
+                            <div layout="row" layout-align="center" layout-wrap>
+                                <div flex="100" class="details-title margin-bottom-30">
+                                    <h2 class="margin-0">Ingresar código</h2>
+                                </div>
+                                <div flex="50" flex-xs="100">
+                                    <mvz-select model="search.company2"
+                                                display="id"
+                                                options="companies"
+                                                label=""
+                                                is-required="false"
+                                                value="name"
+                                                prevent-clear="true"
+                                                name="companyId2"></mvz-select>
+                                </div>
+                                <div flex="50" flex-xs="100">
+                                    <mvz-select model="search.payment"
+                                                display="id"
+                                                options="payments"
+                                                label=""
+                                                is-required="false"
+                                                value="description"
+                                                prevent-clear="true"
+                                                name="payment"></mvz-select>
+                                </div>
+                                <div flex="100" layout-align="center" class="information"> {{ 'Compañía: ' + getValue(search.company2)  }}</div>
+                                <div flex="100" layout-align="center" class="information"> {{ 'Pago: ' + getValue(search.payment)  }}</div>
+                            </div>
+                        </md-expansion-panel-content>
+                    </md-expansion-panel-expanded>
+                </md-expansion-panel>
+            </md-expansion-panel-group>
+        </form>
+    </md-card>
+</md-content>

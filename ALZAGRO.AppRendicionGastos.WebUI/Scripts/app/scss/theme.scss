@@ -1,0 +1,110 @@
+﻿/*** Sidebar theme ***/
+.md-alz-sidebar-theme {
+    /*color:white !important;*/
+    md-content {
+        background-color: rgba(153, 153, 153, 0.15) !important;
+
+        button.side-menu-link {
+            border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+            border-top: 1px solid rgba(0, 0, 0, 0.12);
+        }
+
+        ul.drop-down-list {
+            button.side-menu-link {
+                border-bottom: none;
+            }
+        }
+    }
+}
+/***End Sidebar theme ***/
+
+/*** Toolbar theme ***/
+.md-alz-toolbar-theme {
+    span.toolbar-button-badge {
+        background-color:black!important;
+        color: white !important;
+    }
+}
+/***End toolbar theme ***
+
+/*** Content Theme ***/
+.md-alz-content-theme {
+
+    .sub-title {
+        padding-bottom: 0.5em;
+    }
+
+    form {
+        .mvz-layout-row {
+            height: 52px;
+            margin: 18px 0;
+
+            md-input-container {
+                margin: 0 0;
+            }
+        }
+    }
+
+    .bg-desktop {
+        //  background: url(/Content/images/backgrounds/bg-desktop.jpg);
+        background-color: #3f5579;
+        background-size: cover;
+    }
+
+    md-toolbar.login-header {
+        background: #ffffff;
+    }
+
+    button.md-datepicker-button {
+        margin: 0 6px 0 0;
+        padding: 8px 8px 8px 0;
+    }
+
+    md-icon.btn-plus {
+        color: #ffffff !important;
+    }
+}
+/*** End content Theme ***/
+
+/*Begin Sidebar admin-alzagro*/
+.triangular-sidenav-left.md-locked-open {
+    min-width: 225px;
+    max-width: 225px;
+}
+
+.triangular-sidenav-left.md-locked-open.admin-sidebar-collapsed {
+    max-width: 74px;
+}
+/*end sidebar admin-alzagro*/
+
+/*Begin sidebar buttons*/
+.md-button.md-alz-sidebar-theme.md-primary.md-raised {
+    padding-left: 28px;
+    /*color:white!important;*/
+}
+/*End sidebar buttons*/
+
+/*Begin Scroll Mobile*/
+::-webkit-scrollbar {
+    -webkit-appearance: none;
+}
+
+::-webkit-scrollbar:vertical {
+    width: 12px;
+}
+
+::-webkit-scrollbar:horizontal {
+    height: 12px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, .5);
+    border-radius: 5px;
+    border: 2px solid #ffffff;
+}
+
+::-webkit-scrollbar-track {
+    border-radius: 5px;
+    background-color: #ffffff;
+}
+/*End Scroll Mobile*/

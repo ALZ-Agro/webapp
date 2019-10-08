@@ -1,0 +1,34 @@
+﻿<md-content class="padded-content-page padding-35 category-edit">
+    <md-card class="padding-20">
+        <form class="form-horizontal form-label form-label-left"
+              novalidate name="form">
+            <div layout="row" layout-align="center" layout-wrap>
+                <div flex="50" flex-xs="100">
+                    <mvz-editor label="Días de sincronización"
+                                name="syncDays"
+                                help="La antiguedad máxima de los gastos cargados en el servidor que sincronizará la aplicación móvil."
+                                type="number"
+                                model="config.syncDays"
+                                validation-rules="max_len:20|required|number"
+                                max-length="50">
+                    </mvz-editor>
+                </div>
+                <div flex="50" flex-xs="100">
+                    <mvz-editor label="Intervalo de sincronización (en segundos)"
+                                name="syncIntervalInSeconds"
+                                help="El intervalo de segundos en los que la aplicación web refrescará automáticamente los listados."
+                                type="number"
+                                model="config.syncIntervalInSeconds"
+                                validation-rules="max_len:20|required|number"
+                                max-length="50">
+                    </mvz-editor>
+                </div>
+            </div>
+        </form>
+        <div layout="row" layout-xs="column" class="view-button layout-align-end-center">
+            <div flex="20" flex-xs="10" layout="row" layout-align="end center">
+                <md-button class="md-primary" ng-click="save()">Guardar</md-button>
+            </div>
+        </div>
+    </md-card>
+</md-content>

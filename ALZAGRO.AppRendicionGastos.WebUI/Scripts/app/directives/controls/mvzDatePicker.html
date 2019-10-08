@@ -1,0 +1,15 @@
+﻿<md-input-container class="md-block">
+    <label for="{{label}}">
+        {{label}}
+    </label>
+    <md-datepicker ng-model="model"
+                   name="{{name}}"
+                   md-min-date="options.minDate"
+                   md-max-date="options.maxDate"
+                   validation="{{validationRules}}"
+                   ng-change="onChangeSelected(model)"
+                   ng-blur="onDateBlur(model)"
+                   id={{id}}
+                   ng-disabled="disabled">
+    </md-datepicker>
+</md-input-container>

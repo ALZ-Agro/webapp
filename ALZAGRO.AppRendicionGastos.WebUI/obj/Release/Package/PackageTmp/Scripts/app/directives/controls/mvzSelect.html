@@ -1,0 +1,42 @@
+﻿<div layout="row" flex layout-wrap>
+    <div flex>
+        <md-input-container class="md-block">
+            <label for="{{name}}">
+                {{label}}<span ng-if="isRequired">*</span>
+            </label>
+            <md-select md-no-asterisk
+                       id="{{name}}"
+                       name="{{name}}"
+                       ng-model="model"
+                       md-on-close="onClose(model)"
+                       ng-model-options="customOptions"
+                       ng-change="onSelect"
+                       ng-disabled="isDisabled"
+                       ng-required="isRequired"
+                       friendly-name="{{friendly}}"
+                       placeholder="{{placeholder}}"
+                       validation="{{validationRules}}"
+                       class="{{customClassAssigned}}"
+                       ng-class="{'{{customClassDinamic}}':applyCustomClassDinamicWhen}"
+                       >
+
+                <!-- ng-if="!item.choosed" -->
+                <md-option ng-value="item[value]" ng-repeat="item in options" style="background-color:#f0f0f0!important;">
+                    <span ng-repeat="field in display.split(',')">{{item[field]}}<span ng-if="!$last">,&nbsp;</span></span>
+                </md-option>    
+            </md-select>
+</md-input-container>
+    </div>
+    <div flex="10" ng-if="((model != null && !isDisabled) || !isRequired) && !preventClear">
+        <md-button class="md-icon-button margin-0 padding-0" ng-click="clear()">
+            <md-icon md-font-icon="zmdi zmdi-close-circle-o" class="md-48"></md-icon>
+            <md-tooltip>Limpiar</md-tooltip>
+        </md-button>
+    </div>
+    <div flex="10" ng-if="help">
+        <md-button class="md-icon-button margin-0 margin-top-10 padding-0">
+            <md-icon class="am-help md-48" aria-label=""></md-icon>
+            <md-tooltip>{{help}}</md-tooltip>
+        </md-button>
+    </div>
+</div>

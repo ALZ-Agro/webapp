@@ -1,0 +1,485 @@
+﻿
+/*toast*/
+.toast-success {
+    background-color: #31ace1 !important;
+   // color:white!important;
+}
+/*toast*/
+/*datepicker*/
+.md-icon-button + .md-datepicker-input-container {
+    margin-left: 34px !important;
+}
+/*datepicker*/
+/*** fix scroll sidebar ***/
+tri-menu {
+    overflow-y: hidden;
+    background-color: #FAFAFA !important;
+}
+md-toolbar.md-alz-sidebar-theme:not(.md-menu-toolbar) {
+background-color: #FAFAFA!important;
+}
+
+md-toolbar.triangular-toolbar.md-alz-toolbar-theme{
+    min-height:37px!important;
+    height:33px!important;
+}
+
+tri-menu-item {
+    button {
+        background-color: #FAFAFA !important;
+        color: rgba(0,0,0,0.54) !important;
+
+        md-icon {
+            color: rgba(0,0,0,0.54) !important;
+        }
+        span {
+            max-height:50px;
+        }
+    }
+
+    button:hover {
+        color: #7BA529 !important;
+        color: var(--currentCompanyColor, #7BA529) !important;
+
+        md-icon {
+            color: #7BA529 !important;
+            color: var(--currentCompanyColor, #7BA529) !important;
+        }
+    }
+}
+
+
+
+.app-loader img {
+    width: 500px;
+    height: 200px;
+    margin-bottom: 0.5em;
+}
+
+
+md-card {
+    margin: 0;
+    box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.2), 0px 1px 1px 1px rgba(0, 0, 0, 0.14), 0px 2px 1px -1px rgba(0, 0, 0, 0.12);
+}
+
+.alz-left-sidebar {
+    a {
+        display: block;
+    }
+
+    img {
+        max-height: 100%;
+        position: absolute;
+        left: 0;
+    }
+} 
+/* to footer scroll*/
+/*md-content {
+     overflow: initial;
+}*/
+/*** helper class ***/
+
+.btn-alzagro {
+    color: white !important;
+    font-weight: normal !important;
+    border-radius: 21px;
+    background-color: var(--currentCompanyColor, #7BA529) !important;
+}
+
+
+.text-danger {
+    color: rgb(221,44,0);
+    font-size: 12px;
+}
+
+.enabled {
+    color: green !important;
+}
+
+.disabled {
+    color: red !important;
+}
+
+.btn-lime {
+    color: #CDDC39;
+}
+/*** end helper class ***/
+/*tree view*/
+.tree-nav-item {
+    margin-left: 15px;
+}
+
+.a-tree-nav-item {
+    color: rgba(0,0,0,0.87);
+}
+/*tree view*/
+/*** md table ***/
+mvz-table {
+
+    table tr.md-selected td {
+        background: #FBFBB9 !important;
+    }
+
+    table tr td {
+        padding: 1.5em 0;
+    }
+
+    table tr td.action {
+        padding-right: 10px;
+        padding-left: 44px;
+        padding-top: 0px;
+        padding-bottom: 0px;
+    }
+
+    .btn-toolbar {
+        .fa-trash, .fa-pencil {
+            color: #757575;
+        }
+    }
+
+    .btn-actions {
+        margin: 0px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        padding-left: 0px;
+        padding-right: 0px;
+        min-width: 65px;
+    }
+
+    .btn-portfolio {
+        padding-right: 5px;
+        padding-left: 5px;
+    }
+
+    a.btn-toolbar:focus, a.btn-toolbar:hover {
+        border: none;
+        text-decoration: none;
+        outline: none;
+    }
+
+    div.md-toolbar-tools .search, div.md-toolbar-tools .search:focus {
+        border: none;
+        outline: none;
+    }
+
+    .md-table thead tr {
+        height: 0;
+    }
+
+    table.md-table:not(.md-row-select) td.md-cell:nth-child(n+2):nth-last-child(n+2),
+    table.md-table:not(.md-row-select) th.md-column:nth-child(n+2):nth-last-child(n+2) {
+        padding-right: 0px !important;
+    }
+
+    table.md-table.md-row-select td.md-cell:nth-child(n+3):nth-last-child(n+2),
+    table.md-table.md-row-select th.md-column:nth-child(n+3):nth-last-child(n+2) {
+        padding-right: 0px !important;
+    }
+    /*table td.text-right div {
+        padding-right: 1.5em;
+    }*/
+    .header-actions {
+        padding-right: 63px !important;
+        text-align: right !important;
+    }
+
+    .filters-container {
+        padding-left: 24px;
+        margin-top: 5px;
+    }
+
+    .filter {
+        margin-right: 15px;
+    }
+
+    .first-column-padding {
+        padding-left: 24px !important;
+    }
+
+    .actions-container {
+        float: right;
+    }
+
+    .text-right {
+        padding-right: 20px;
+    }
+
+    .header-padding-right {
+        padding-right: 60px !important;
+    }
+
+    .operation-actions {
+        padding-right: 29px !important;
+    }
+
+    md-checkbox {
+        margin-bottom: 0px;
+    }
+
+    .extras-container {
+        background-color: transparent;
+        padding-top: 8px;
+    }
+
+    .extra-title-container {
+        padding-left: 24px;
+    }
+
+    .extra-title {
+        font-size: 16px;
+    }
+
+    .extra-data-container {
+        padding-left: 24px;
+        white-space: nowrap;
+    }
+
+    .extra-label {
+        font-weight: 500;
+        font-size: 12px;
+    }
+
+    .extra-name {
+        font-size: 12px;
+    }
+
+    .mvz-table-img {
+        width: 70px;
+    }
+}
+/*** end md table ***/
+/*begin Sidebar img logo*/
+
+
+md-sidenav.triangular-sidenav-left.admin-sidebar-collapsed:not(.hover) {
+    button {
+        display: flex;
+        margin: 0 auto !important;
+        align-items: center;
+    }
+
+    @media (min-width:0) and (max-width: 960px) {
+        button {
+            display: block !important;
+        }
+
+        .md-toolbar-tools, .sidebar-left-toolbar {
+            height: 26%;
+            max-height: 26%;
+            width: 100%;
+            min-width: 100%;
+            max-width: 100%;
+        }
+}
+}
+
+md-sidenav.triangular-sidenav-left {
+    md-icon {
+        padding-top: 5px !important;
+    }
+}
+
+md-sidenav.triangular-sidenav-left:not(.admin-sidebar-collapsed) {
+
+    button {
+        display: block;
+        margin: 0 !important;
+        align-items: center;
+
+        /*md-icon {
+            padding-top: 5px !important;
+        }*/
+    }
+}
+
+
+.admin-sidebar-collapsed {
+
+    .sidebar-left-toolbar {
+        height: 37px;
+        min-height: 37px !important;
+        -webkit-transition: height 2s; /* Safari */
+        transition: height .5s;
+    }
+}
+.admin-sidebar-collapsed:not(.hover) {
+
+    .sidebar-left-toolbar {
+        md-icon {
+            display:none;
+        }
+        }
+}
+        .admin-sidebar-collapsed.hover {
+            .sidebar-left-toolbar {
+                height: 111px;
+
+                md-icon {
+                    color: black !important;
+                }
+            }
+        }
+
+        .sidebar-left-icon {
+            position: absolute;
+            right: 0;
+            top: 20px;
+        }
+
+        .triangular-sidenav-left {
+            .md-toolbar-tools {
+                display: block;
+            }
+        }
+
+        .sidebar-left-toolbar {
+            height: 111px;
+
+            md-icon {
+                color: black !important;
+            }
+        }
+
+        .sidebar-left-logo {
+            img {
+                max-width: none !important;
+            }
+        }
+        /*end sidebar img logo*/
+        /*** end mvz-table ***/
+        /*** mvz-select ***/
+        .mvz-select {
+            height: 52px;
+        }
+        /*** end mvz-select ***/
+        /*** mvz-autocomplete ***/
+        .mvz-autocomplete {
+            md-input-container {
+                margin-top: 0;
+            }
+        }
+        /*** end mvz-autocomplete ***/
+        /*** md-switch***/
+        md-switch {
+            height: 52px;
+            margin-top: 0;
+        }
+        /*** end md-switch ***/
+        /*Begin Sweet alert*/
+        .cancel-color-text {
+            color: rgba(0,0,0,0.54) !important;
+        }
+        /*end sweet alert*/
+        /*Begin rightSideNav*/
+        .notification-title-container {
+            /*width: 141px;*/
+        }
+
+        .notification-title {
+            margin-right: 0px !important;
+            display: table;
+            white-space: inherit !important;
+            margin-top: 0px !important;
+            margin-bottom: 0px !important;
+        }
+
+        .notification-date {
+            display: table;
+        }
+
+        .notification-date-container {
+            width: 97px;
+        }
+        /*End rightSideNav*/
+        /* Being material add bottn*/
+        .md-button.md-fab.md-fab-bottom-right {
+            bottom: 50px;
+        }
+        /* End material add bottn*/
+        /*End rightSideNav*/
+        /*Begin checkbox*/
+        md-checkbox.md-checked .md-icon:after, md-checkbox.md-indeterminate .md-icon:after {
+            display: inline-block; //This style is added to fix checkbox on IE
+        }
+        /*end checkbox*/
+        /*Begin mobile*/
+        @media only screen and (max-device-width: 480px) {
+            mvz-table table tr td {
+                padding-right: 10px;
+            }
+
+            .button-reset-password-container {
+                text-align: right;
+            }
+
+            .margin-edit {
+                .mvz-select-mobile {
+                    margin-bottom: 0;
+                }
+            }
+
+            .report-historic {
+                .mvz-select-mobile {
+                    margin-bottom: 0;
+                }
+
+                .position-autocomplete {
+                    margin-top: -9px;
+                }
+            }
+
+            .login-mobile {
+                height: 100%;
+                width: 100%;
+            }
+
+            .spread-edit {
+                .mvz-select-mobile {
+                    margin-bottom: 0;
+                }
+            }
+            /*Begin table-pagination*/
+            .table-pagination-mobile {
+                padding-right: 14px;
+                padding-left: 0px;
+            }
+
+            .md-table-pagination md-select {
+                min-width: 44px;
+            }
+
+            .md-table-pagination > .buttons > .label + .md-button.md-icon-button {
+                margin-left: 7px;
+            }
+
+            .md-table-pagination > .buttons:not(:first-child) {
+                margin-left: 15px;
+            }
+            /*End table-pagination*/
+            /*Begin Operations-edit*/
+            .contract-info-container {
+                margin-left: 0px !important;
+            }
+            /*End operations-edit*/
+        }
+        /*End Mobile*/
+        /* Mvz-dialog */
+        .mvz-dialog {
+            .dialog-info {
+                margin-bottom: 6px;
+            }
+
+            .info-title {
+                font-weight: 500;
+            }
+        }
+        /* End mvz-dialog */
+        /* Mvz-fileupload */
+        .mvz-file-upload {
+            margin-top: 20px;
+        }
+
+        .img-preview {
+            width: 150px;
+        }
+        /*Mvz-fileupload*/

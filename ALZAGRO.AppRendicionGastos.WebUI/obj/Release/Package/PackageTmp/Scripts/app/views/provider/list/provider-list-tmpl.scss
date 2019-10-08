@@ -1,0 +1,87 @@
+﻿.providerlist {
+    height: 100% !important;
+
+    #filters {
+        padding: 0px 20px !important;
+    }
+
+    .date-div {
+        > div {
+            width: 90% !important;
+        }
+
+        ._md-datepicker-floating-label._md-datepicker-has-calendar-icon > label:not(.md-no-float):not(.md-container-ignore) {
+            right: unset !important;
+        }
+
+        ._md-datepicker-floating-label > md-datepicker .md-datepicker-input-container {
+            width: 70% !important;
+            margin-left: 0px !important;
+            margin-top: 4px !important;
+        }
+
+        md-input-container {
+            margin: 30px 0px 0px !important
+        }
+    }
+
+    md-select-value {
+        border-color: rgba(0,0,0,0.12) !important;
+    }
+
+    mvz-table {
+        input {
+            background-color: rgba(0, 0, 0, 0) !important;
+        }
+    }
+
+    md-toolbar.md-table-toolbar.md-default-theme:not(.md-menu-toolbar).md-default, md-toolbar.md-table-toolbar:not(.md-menu-toolbar).md-default {
+        background-color: rgba(0,0,0,0.09) !important;
+    }
+
+
+    md-checkbox:not([disabled]).md-checked .md-ink-ripple {
+        color: #5B7823 !important;
+
+        .md-icon {
+            background-color: #5B7823 !important;
+
+            &::after {
+                border-color: white !important;
+            }
+        }
+    }
+
+    md-checkbox .md-alz-content-theme:not([disabled]).md-primary.md-checked .md-icon {
+        background-color: #5B7823 !important;
+    }
+
+    button.md-fab {
+        position: fixed !important;
+        bottom: 10px !important;
+        right: 10px !important;
+    }
+
+    td .ng-binding {
+        padding: 0px 10px;
+    }
+
+    .fa-2x {
+        font-size:1.5em!important;
+    }
+
+    @media (max-width: 599px) {
+        .date-div > div {
+            width: 100% !important;
+
+            md-datepicker {
+                padding: 0px !important;
+                margin: 0px !important;
+            }
+        }
+
+        .date-div ._md-datepicker-floating-label > md-datepicker .md-datepicker-input-container {
+            width: 87% !important;
+        }
+    }
+}

@@ -1,0 +1,29 @@
+﻿<ul class="md-nav-item">
+    <li class="md-nav-item">
+        <a href="#">
+            <div>
+                <span ng-show="branch.children.length>0 && !branch.isExpanded">
+                    <i class="fa fa-plus" ng-click="branch.isExpanded=true" ng-dblclick="expand(branch, true)"></i>
+                </span><span ng-show="branch.children.length>0 && branch.isExpanded">
+                    <i class="fa fa-minus"
+                       ng-click="branch.isExpanded=false"
+                       ng-dblclick="expand(branch, false)"></i>
+                </span>
+                &nbsp;
+                <span ng-show="!branch.isSelected" class="ng-hide">
+                    <i class="fa fa-square-o" ng-click="toggle(branch,true)"></i>
+                </span>
+                <span ng-show="branch.isSelected">
+                    <i class="fa fa-check-square-o" ng-click="toggle(branch,false)"></i>
+                </span> {{ branch.name }}
+            </div>
+        </a>
+    </li>
+    <div ng-if="branch.isExpanded" class="tree">
+        <ul class="md-nav-item">
+            <li class="md-nav-item" ng-repeat="child in branch.children">
+                <mvz-tree branch="child"></mvz-tree>
+            </li>
+        </ul>
+    </div>
+</ul>

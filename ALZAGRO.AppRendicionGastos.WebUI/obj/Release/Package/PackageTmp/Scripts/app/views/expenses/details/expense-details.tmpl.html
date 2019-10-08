@@ -1,0 +1,343 @@
+﻿<md-content class="expense-details">
+    <form name="forms.expenseForm" novalidate>
+        <div layout="column" layout-xs="row" layout-wrap id="expense-details">
+            <div layout-wrap layout="row" id="data-container">
+                <md-card flex="40" class="image-card margin-10" layout-xs="row" flex-md="100" flex-sm="40" flex-xs="100" style="border-radius:8px!important">
+                    <div ng-if="expense.images.length > 0">
+                        <ng-image-gallery images="images"
+                                          methods="methods"
+                                          on-open="onImageOpened"
+                                          thumbnails="true"
+                                          thumb-size="100"
+                                          inline="true"
+                                          bubbles="true"
+                                          bubble-size="20"
+                                          bg-close="true"
+                                          piracy="false"
+                                          img-anim="fadeup"></ng-image-gallery>
+                        <!-- Root element of PhotoSwipe. Must have class pswp. -->
+                        <div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+                            <!-- Background of PhotoSwipe.
+             It's a separate element as animating opacity is faster than rgba(). -->
+                            <div class="pswp__bg"></div>
+
+                            <!-- Slides wrapper with overflow:hidden. -->
+                            <div class="pswp__scroll-wrap">
+
+                                <!-- Container that holds slides.
+                PhotoSwipe keeps only 3 of them in the DOM to save memory.
+                Don't modify these 3 pswp__item elements, data is added later on. -->
+                                <div class="pswp__container">
+                                    <div class="pswp__item"></div>
+                                    <div class="pswp__item" style="transform:rotate({{rotation}}deg);"></div>
+                                    <div class="pswp__item"></div>
+                                </div>
+
+                                <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+                                <div class="pswp__ui pswp__ui--hidden">
+
+                                    <div class="pswp__top-bar">
+
+                                        <!--  Controls are self-explanatory. Order can be changed. -->
+
+                                        <div class="pswp__counter"></div>
+
+                                        <button class="pswp__button pswp__button--close" title="Cerrar (Esc)"></button>
+                                        <button class="pswp__button pswp__button--fs" title="Cambiar a pantalla completa"></button>
+                                        <button class="pswp__button pswp__button--zoom" title="Zoom"></button>
+                                        <button class="pswp__button pswp__rotate" title="Rotar hacia la izquierda" ng-click="rotateIcon('left')">
+                                            <md-icon class="fa fa-undo"></md-icon>
+                                        </button>
+                                        <button class="pswp__button pswp__rotate" title="Rotar hacia la derecha" ng-click="rotateIcon('right')">
+                                            <md-icon class="fa fa-repeat"></md-icon>
+                                        </button>
+                                       
+
+                                        <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                                        <!-- element will get class pswp__preloader--active when preloader is running -->
+                                        <div class="pswp__preloader">
+                                            <div class="pswp__preloader__icn">
+                                                <div class="pswp__preloader__cut">
+                                                    <div class="pswp__preloader__donut"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                                        <div class="pswp__share-tooltip"></div>
+                                    </div>
+
+                                    <button class="pswp__button pswp__button--arrow--left" title="Anterior (flecha izquierda)"></button>
+                                    <button class="pswp__button pswp__button--arrow--right" title="Siguiente (flecha derecha)"></button>
+
+                                    <div class="pswp__caption">
+                                        <div class="pswp__caption__center"></div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                    <div ng-if="expense && expense.images.length == 0">
+                        <img src="Content/images/no_image.jpg" class="no-image width-100" />
+                    </div>
+                    <div class="sync-status" ng-class="{'green': expense.syncStatus.description == 'Aprobado',
+                                'red':expense.syncStatus.description == 'Rechazado',
+                                'background-grey': expense.syncStatus.description == 'Duplicado',
+                                'background-orange': expense.syncStatus.description == 'Pendiente',
+                                'background-lightblue': expense.syncStatus.description == 'Editando'}"
+                         layout="row" layout-wrap ng-click="viewExpenseStatusesLog($event)" ng-if="expense && expense.id">
+                        <div class="color-white" flex="50">
+                            {{expense.syncStatus.description}}
+                        </div>
+                    </div>
+                </md-card>
+                <md-card flex="55" layout="row" flex-md="100" flex-sm="55" flex-xs="100" class="margin-left-10 margin-top-10 padding-10 details-card" layout-wrap ng-if="expense && expense.id">
+                    <div flex="100" class="details-title">
+                        <h2 class="margin-0">Detalles</h2>
+                    </div>
+                    <div flex="50" ng-if="!isEdit">
+                        <small>Fecha</small>
+                        <h4 class="details-subtitle">{{getFormattedDate()}}</h4>
+                    </div>
+                    <div flex="50" ng-if="!isEdit">
+                        <small>Recibo</small>
+                        <h4 class="details-subtitle">{{getFormattedReceipt()}}</h4>
+                    </div>
+                    <div flex="50" ng-if="!isEdit">
+                        <small>Proveedor</small>
+                        <h4 class="details-subtitle">{{expense.provider.legalName}}</h4>
+                    </div>
+                    <div flex="50" ng-if="!isEdit">
+                        <small>Forma de pago</small>
+                        <h4 class="details-subtitle">{{expense.payment.description}}</h4>
+                    </div>
+                    <div flex="50" ng-if="!isEdit">
+                        <small>Tipo de gasto</small>
+                        <h4 class="details-subtitle">{{expense.aliquot?expense.aliquot.description: 'N/A'}}</h4>
+                    </div>
+                    <div flex="50" ng-if="!isEdit">
+                        <small>Categoría del gasto</small>
+                        <h4 class="details-subtitle">{{expense.category.description}}</h4>
+                    </div>
+                    <!--<div flex="50" ng-if="!isEdit">
+                        <small>Concepto</small>
+                        <h4 class="details-subtitle">{{(expense.concept != '' && expense.concept != null)?expense.concept: 'N/A' }}</h4>
+                    </div>-->
+                    <div flex="50" ng-if="!isEdit">
+                        <small>Total</small>
+                        <h4 class="details-subtitle">{{getValueOfFloat(expense.total)}}</h4>
+                    </div>
+                    <div flex="50" ng-if="!isEdit">
+                        <small>Neto sin IVA</small>
+                        <h4 class="details-subtitle">{{getValueOfFloat(expense.netValue)}}</h4>
+                    </div>
+                    <div flex="50" ng-if="!isEdit">
+                        <small>IVA</small>
+                        <h4 class="details-subtitle">{{getValueOfFloat(expense.iva)}}</h4>
+                    </div>
+                    <!--<div flex="50" ng-if="!isEdit">
+                        <small>IIBB y percepciones</small>
+                        <h4 class="details-subtitle">{{expense.grossIncome | currency:'$':2}}</h4>
+                    </div>-->
+                    <div flex="50" ng-if="!isEdit">
+                        <small>Conceptos no gravados</small>
+                        <h4 class="details-subtitle">{{getValueOfFloat(expense.notTaxedConcepts)}}</h4>
+                    </div>
+                    <!--<div flex="50" ng-if="!isEdit">
+                        <small>Provincia</small>
+                        <h4 class="details-subtitle">{{expense.state? expense.state.description: 'N/A' }}</h4>
+                    </div>-->
+                    <div flex="50" ng-if="!isEdit">
+                        <small>Kilometraje del vehículo al momento de la carga</small>
+                        <h4 class="details-subtitle">{{expense.vehiculeMileage? expense.vehiculeMileage : 'N/A' }}</h4>
+                    </div>
+                    <div flex="50" ng-if="!isEdit">
+                        <small>Notas</small>
+                        <h4 class="details-subtitle" style="word-break: break-all!important;">{{expense.notes? expense.notes : 'N/A' }}</h4>
+                    </div>
+                    <div ng-if="isEdit" layout="row" layout-wrap layout-align="start start" flex="100" class="edit-container">
+                        <div flex="50" flex-xs="100">
+                            <mvz-date-picker model="expense.date"
+                                             options="dateoptions"
+                                             on-change="onDateChange"
+                                             on-blur="onDateChange"
+                                             label="Fecha*"
+                                             validation-rules="required"
+                                             disabled="false"
+                                             name="date"></mvz-date-picker>
+                        </div>
+                        <div flex="50" flex-xs="100">
+                            <mvz-editor model="expense.receipt"
+                                        label="Recibo"
+                                        name="recibo"
+                                        type="text"
+                                        is-disabled="receiptIsDisabled"
+                                        validation-rules="required|exact_len:13"
+                                        on-change="onReceiptChanged"
+                                        ></mvz-editor>
+                        </div>
+                        <div flex="50" flex-xs="100" class="edit-search">
+                            <mvz-search model="expense.provider"
+                                        is-disabled="true"
+                                        on-select="onProviderSelected"
+                                        display="legalName"
+                                        dinamic-display="'generico'"
+                                        selected-display="legalName"
+                                        update-params="null"
+                                        label="Proveedor"
+                                        controller-name="provider"
+                                        action-name="search"
+                                        required="false"
+                                        name="provider"></mvz-search>
+                        </div>
+
+                        <div flex="50" flex-xs="100">
+                            <mvz-select model="expense.payment.id"
+                                        is-disabled="true"
+                                        on-select="onPaymentSelected"
+                                        value="id"
+                                        display="description"
+                                        options="payments"
+                                        placeholder="Forma de pago"
+                                        label="Forma de pago"
+                                        is-required="false"
+                                        prevent-clear="true"
+                                        required-message="La forma de pago es requerida."
+                                        name="payment"
+                                        validation-rules="required"
+                                        friendly="payment"></mvz-select>
+                        </div>
+                        <div flex="50" flex-xs="100" class="margin-top-10">
+                            <mvz-select model="expense.aliquot.id"
+                                        is-disabled="true"
+                                        on-select="onAliquotSelected"
+                                        value="id"
+                                        display="description"
+                                        options="aliquots"
+                                        placeholder="Tipo de gasto"
+                                        label="Tipo de gasto"
+                                        is-required="false"
+                                       prevent-clear="true"
+                                        required-message="El tipo de gasto es requerido."
+                                        name="paymentType"
+                                        validation-rules="required"
+                                        friendly="paymentType"></mvz-select>
+                        </div>
+                        <div flex="50" flex-xs="100" class="margin-top-10">
+                            <mvz-select model="expense.category.id"
+                                        is-disabled="true"
+                                        on-select="onCategorySelected"
+                                        value="id"
+                                        display="description"
+                                        options="categories"
+                                        placeholder="Categoría"
+                                        label="Categoría"
+                                        is-required="false"
+                                        prevent-clear="true"
+                                        required-message="La categoría es requerida."
+                                        name="category"
+                                        validation-rules="required"
+                                        friendly="category"></mvz-select>
+                        </div>
+                        <div flex="50" flex-xs="100" class="margin-top-20">
+                            <mvz-editor model="expense.total"
+                                        type="text"
+                                        label="Total"
+                                        name="total"
+                                      
+                                        custom-class="showMoneySign"
+                                        validation-rules="required|pattern=/^\d+(\.?\d+)?$/:alt=El formato no es válido. Sólo puedes ingresar números separados con punto."
+                                        
+                                        ></mvz-editor>
+                        </div>
+                        <div flex="50" flex-xs="100" class="margin-top-20">
+                            <mvz-editor model="expense.netValue"
+                                        type="text"
+                                        label="Neto sin IVA"
+                                      
+                                        name="netValue"
+                                         custom-class="showMoneySign"
+                                        validation-rules="required|pattern=/^\d+(\.?\d+)?$/:alt=El formato no es válido. Sólo puedes ingresar números separados con punto."
+                                        ></mvz-editor>
+                        </div>
+                        <div flex="50" flex-xs="100" class="margin-top-20">
+                            <mvz-editor model="expense.iva"
+                                        type="text"
+                                        label="IVA"
+                                        custom-class="showMoneySign"
+                                       
+                                        name="iva"
+                                        validation-rules="required|pattern=/^\d+(\.?\d+)?$/:alt=El formato no es válido. Sólo puedes ingresar números separados con punto."
+                                        ></mvz-editor>
+                        </div>
+                        <div flex="50" flex-xs="100" class="margin-top-20">
+                            <mvz-editor model="expense.notTaxedConcepts"
+                                        type="text"
+                                      
+                                        label="Conceptos no gravados"
+                                        custom-class="showMoneySign"
+                                        name="notTaxedConcepts"
+                                        validation-rules="required|pattern=/^\d+(\.?\d+)?$/:alt=El formato no es válido. Sólo puedes ingresar números separados con punto."
+                                        ></mvz-editor>
+                        </div>
+                        <div flex="100" flex-xs="100">
+                            <mvz-editor model="expense.vehiculeMileage"
+                                        type="text"
+                                        label="Kilometraje del vehículo al momento de la carga"
+                                        name="vehiculeMileage"
+                                        validation-rules="required"></mvz-editor>
+                        </div>
+                        <div flex="100" flex-xs="100">
+                            <mvz-textarea model="expense.notes"
+                                        type="text"
+                                        validation-rules="max_length:120"
+                                        label="Notas"
+                                        name="notes"></mvz-textarea>
+                        </div>
+
+                    </div>
+                    <div flex="100" layout="row" class="margin-0" layout-align="end center">
+                        <md-button class="margin-0" ng-click="viewExpenseStatusesLog($event)">
+                            Cambios de estado
+                            <md-tooltip md-direction="top">Ver tabla de cambios de estado para este gasto</md-tooltip>
+                        </md-button>
+                    </div>
+                </md-card>
+            </div>
+        </div>
+    </form>
+    <div flex-xs="100" layout-xs="column" layout="row" class="margin-top-10" ng-if="expense && expense.id" id="buttons-bar">
+        <div flex="50" flex-xs="10" layout-xs="row" layout-align-xs="center center" class="margin-left-10 margin-top-10">
+            <md-button class="md-fab md-mini" aria-label="Anterior" ng-if="!enteredViaNotifications" ng-click="goToPreviusExpense()" ng-disabled="!previusExpense">
+                <md-tooltip>Ir al gasto anterior</md-tooltip>
+                <md-icon class="fa fa-chevron-left left-arrow"></md-icon>
+            </md-button>
+            <md-button class="md-raised close-button" ng-click="goBack()">
+                CERRAR
+            </md-button>
+            <md-button class="md-fab md-mini" aria-label="Siguiente" ng-if="!enteredViaNotifications" ng-click="goToNextExpense()" ng-disabled="!nextExpense">
+                <md-tooltip position="top">Ir al gasto siguiente</md-tooltip>
+                <md-icon class="fa fa-chevron-right right-arrow"></md-icon>
+            </md-button>
+        </div>
+        <div flex="50" flex-xs="10" layout-xs="row" layout-align-xs="center center" layout="row" class="margin-top-10" layout-align="end start" ng-if="hasPrivilege">
+            <md-button class="md-raised close-button margin-top-10 color-black" ng-click="switchEdit()" ng-disabled="expenseForm.$invalid || !canEdit" ng-class="{'margin-right-30':(!actionsEnabled || isEdit), 'margin-right-10':actionsEnabled}">
+                <md-icon class="alz-check-circle color-black"></md-icon>
+                {{isEdit?'Guardar':'Editar'}}
+            </md-button>
+            <md-button class="md-raised close-button margin-top-10 padding-right-10 margin-right-10 green color-white" ng-click="approve()" ng-disabled="expense.syncStatus.description == 'Aprobado'" ng-if="actionsEnabled && !isEdit">
+                <md-icon class="alz-check-circle color-white"></md-icon>
+                APROBAR
+            </md-button>
+            <md-button class="md-raised close-button margin-top-10 padding-right-10 margin-right-30 red color-white" ng-click="reject()" ng-disabled="expense.syncStatus.description == 'Rechazado'" ng-if="actionsEnabled && !isEdit">
+                <md-icon class="alz-cancel-circle color-white"></md-icon>
+                RECHAZAR
+            </md-button>
+        </div>
+    </div>
+</md-content>

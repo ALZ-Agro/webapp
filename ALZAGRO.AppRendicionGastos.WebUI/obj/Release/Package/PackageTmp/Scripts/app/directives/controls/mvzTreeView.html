@@ -1,0 +1,18 @@
+﻿<div ivh-treeview="data">
+    <script type="text/ng-template">
+        <div style="display:inline-flex">
+            <div>
+                <div ivh-treeview-toggle>
+                    <span ivh-treeview-twistie></span>
+                </div>
+            </div>
+            <div style="display:inline-flex">
+                <div ivh-treeview-checkbox></div>
+                <div class="ivh-treeview-node-label" ng-click="setChildren(node, !node.selected)" style="cursor: pointer">
+                    {{trvw.label(node)}}
+                </div>
+            </div>
+        </div>
+        <div style="padding-left:30px" ivh-treeview-children></div>
+    </script>
+</div>

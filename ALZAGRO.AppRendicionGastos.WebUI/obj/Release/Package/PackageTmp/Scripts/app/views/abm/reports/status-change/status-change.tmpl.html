@@ -1,0 +1,72 @@
+﻿<md-content class="padded-content-page providerlist status-change-report">
+    <div layout="row" layout-wrap class="margin-bottom-20">
+        <md-card class="filters-card layout-align-center-stretch" layout="row" layout-sm="column" flex="100">
+            <div flex="100" layout="row" layout-wrap id="filters" layout-align="center center">
+                <div flex="25" flex-sm="100" flex-xs="100" class="layout layout-align-center-center margin-5">
+                    <mvz-select model="config.userId"
+                                display="fullName"
+                                options="users"
+                                prevent-clear="true"
+                                is-required="false"
+                                label="Vendedor"
+                                on-select="refreshView"
+                                value="id"
+                                name="users"></mvz-select>
+                </div>
+                <div flex="25" flex-sm="100" flex-xs="100" class="layout layout-align-center-end margin-5 date-div">
+                    <div>
+                        <mvz-date-picker model="config.startDate"
+                                         options="startDateOptions"
+                                         label="Fecha desde"
+                                         on-change="startDateSelected"
+                                         name="fromDate">
+                        </mvz-date-picker>
+                    </div>
+                </div>
+                <div flex="25" flex-sm="100" flex-xs="100" class="layout margin-5 date-div"
+                     layout-align-sm="center end">
+                    <div>
+                        <mvz-date-picker model="config.endDate"
+                                         options="endDateOptions"
+                                         label="Fecha hasta"
+                                         on-change="endDateSelected"
+                                         name="toDate">
+                        </mvz-date-picker>
+                    </div>
+                </div>
+                <div flex="25" flex-sm="100" flex-xs="100" class="layout margin-5"
+                     layout-align-sm="center end">
+                    <div>
+                        <button class="md-button" ng-click="cleanFilters()">
+                            Limpiar filtros
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </md-card>
+    </div>
+    <md-card style="margin-bottom:50px!important;">
+        <mvz-table columns="columns"
+                   action-name="statusLogs"
+                   controller-name="expense"
+                   update-params="getParams()"
+                   auto-load="true"
+                   show-actions="false"
+                   allow-edit="false"
+                   allow-delete="false"
+                   show-multi-select="false"
+                   table-limit-options="tableLimitOptions"
+                   allow-selection="false"
+                   title="Reporte de cambios de estado" />
+    </md-card>
+    <div style="position:relative;">
+        <button class="md-button md-fab md-fab-bottom-right"
+                style="background-color:#7BA529!important;"
+                md-theme="alz-content"
+                aria-label="Export"
+                ng-click="generateReport()">
+            <md-icon class="fa fa-bar-chart fa-2x" style="color:white;"></md-icon>
+            <md-tooltip md-direction="top">Generar reporte</md-tooltip>
+        </button>
+    </div>
+</md-content>

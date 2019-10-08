@@ -1,0 +1,659 @@
+<?xml version="1.0" encoding="Windows-1252"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{32415527-525D-490D-8B46-7BA4C3D45F7C}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ALZAGRO.AppRendicionGastos.WebUI</RootNamespace>
+    <AssemblyName>ALZAGRO.AppRendicionGastos.WebUI</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <TypeScriptToolsVersion>1.8</TypeScriptToolsVersion>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <Use64BitIISExpress />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Autofac">
+      <HintPath>..\packages\Autofac.3.5.0\lib\net40\Autofac.dll</HintPath>
+    </Reference>
+    <Reference Include="Autofac.Integration.WebApi">
+      <HintPath>..\packages\Autofac.WebApi2.3.4.0\lib\net45\Autofac.Integration.WebApi.dll</HintPath>
+    </Reference>
+    <Reference Include="AutoMapper">
+      <HintPath>..\packages\AutoMapper.3.3.1\lib\net40\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="AutoMapper.Net4">
+      <HintPath>..\packages\AutoMapper.3.3.1\lib\net40\AutoMapper.Net4.dll</HintPath>
+    </Reference>
+    <Reference Include="CsvHelper, Version=7.0.0.0, Culture=neutral, PublicKeyToken=8c4959082be5c823, processorArchitecture=MSIL">
+      <HintPath>..\packages\CsvHelper.7.1.1\lib\net45\CsvHelper.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Excel, Version=2.1.2.3, Culture=neutral, PublicKeyToken=93517dbe6a4012fa, processorArchitecture=MSIL">
+      <HintPath>..\packages\ExcelDataReader.2.1.2.3\lib\net45\Excel.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="FluentValidation, Version=5.6.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\FluentValidation.5.6.2.0\lib\Net45\FluentValidation.dll</HintPath>
+    </Reference>
+    <Reference Include="FluentValidation.WebApi">
+      <HintPath>..\packages\FluentValidation.WebApi.5.6.2.0\lib\Net45\FluentValidation.WebApi.dll</HintPath>
+    </Reference>
+    <Reference Include="ICSharpCode.SharpZipLib, Version=0.86.0.518, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL">
+      <HintPath>..\packages\SharpZipLib.0.86.0\lib\20\ICSharpCode.SharpZipLib.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="mercadopago, Version=0.3.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\mercadopago-sdk.1.0.5\lib\net35\MercadoPago.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Owin, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.3.0.1\lib\net45\Microsoft.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.framework, Version=3.6.1.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
+      <HintPath>..\packages\NUnit.3.6.1\lib\net45\nunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="Owin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f0ebd12fd5e55cc5, processorArchitecture=MSIL">
+      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest" />
+    <Reference Include="System.Web.Cors, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Cors.5.2.3\lib\net45\System.Web.Cors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Http, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.Cors, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Cors.5.2.3\lib\net45\System.Web.Http.Cors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System.Web.Razor">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.2\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Webpages">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.2.2\lib\net45\System.Web.Webpages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Webpages.Deployment">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.2.2\lib\net45\System.Web.Webpages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Webpages.Razor">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.2.2\lib\net45\System.Web.Webpages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Helpers">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.2.2\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure">
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.2\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.2\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="bower_components\ng-image-gallery\res\icons\close-inline.svg" />
+    <Content Include="bower_components\ng-image-gallery\res\icons\close.svg" />
+    <Content Include="bower_components\ng-image-gallery\res\icons\delete-inline.svg" />
+    <Content Include="bower_components\ng-image-gallery\res\icons\delete.svg" />
+    <Content Include="bower_components\ng-image-gallery\res\icons\external-link-inline.svg" />
+    <Content Include="bower_components\ng-image-gallery\res\icons\external-link.svg" />
+    <Content Include="bower_components\ng-image-gallery\res\icons\next-inline.svg" />
+    <Content Include="bower_components\ng-image-gallery\res\icons\next.svg" />
+    <Content Include="bower_components\ng-image-gallery\res\icons\prev-inline.svg" />
+    <Content Include="bower_components\ng-image-gallery\res\icons\prev.svg" />
+    <Content Include="Content\Alzagro-Font\demo-files\demo.css" />
+    <Content Include="Content\Alzagro-Font\demo-files\demo.js" />
+    <Content Include="Content\Alzagro-Font\demo.html" />
+    <Content Include="Content\Alzagro-Font\fonts\AlzAgro-Icons-Font.svg" />
+    <Content Include="Content\Alzagro-Font\ie7\ie7.css" />
+    <Content Include="Content\Alzagro-Font\ie7\ie7.js" />
+    <Content Include="Content\Alzagro-Font\Read Me.txt" />
+    <Content Include="bower_components\ng-image-gallery\res\icons\README.md" />
+    <None Include="Content\Alzagro-Font\alz-font.scss" />
+    <Content Include="Content\fonts\AlzAgro-Icons-Font.svg" />
+    <Content Include="Content\fonts\ie7\ie7.css" />
+    <Content Include="Content\fonts\ie7\ie7.js" />
+    <Content Include="Content\images\1500x500-dark-min.png" />
+    <Content Include="Content\images\1500x500-dark.png" />
+    <Content Include="Content\images\avatars\avatar-1.png" />
+    <Content Include="Content\images\avatars\avatar-2.png" />
+    <Content Include="Content\images\avatars\avatar-3.png" />
+    <Content Include="Content\images\avatars\avatar-4.png" />
+    <Content Include="Content\images\avatars\avatar-5.png" />
+    <Content Include="Content\images\avatars\avatar-6.png" />
+    <Content Include="Content\images\avatars\avatar-big.png" />
+    <Content Include="Content\images\avatars\hair-black-eyes-blue-green-skin-tanned.png" />
+    <Content Include="Content\images\avatars\hair-black-eyes-brown-skin-dark.png" />
+    <Content Include="Content\images\avatars\hair-black-eyes-brown-skin-tanned-2.png" />
+    <Content Include="Content\images\avatars\hair-black-eyes-brown-skin-tanned.png" />
+    <Content Include="Content\images\avatars\hair-black-eyes-dark-skin-dark.png" />
+    <Content Include="Content\images\avatars\hair-blonde-eyes-blue-green-skin-light.png" />
+    <Content Include="Content\images\avatars\hair-blonde-eyes-brown-skin-light.png" />
+    <Content Include="Content\images\avatars\hair-blonde-eyes-brown-skin-tanned.png" />
+    <Content Include="Content\images\avatars\hair-grey-eyes-dark-skin-tanned.png" />
+    <Content Include="Content\images\favicon.ico" />
+    <Content Include="Content\images\header-menu.png" />
+    <Content Include="Content\images\icons-square.png" />
+    <Content Include="Content\images\logo-movizen.png" />
+    <Content Include="Content\images\logo_top.jpg" />
+    <Content Include="Content\images\mdp-color.png" />
+    <Content Include="Content\images\no_image.jpg" />
+    <Content Include="Content\images\popup_download.png" />
+    <Content Include="Content\imgs\loading.gif" />
+    <Content Include="Content\svg\bg-login.svg" />
+    <Content Include="Content\vendors\angular-directives\treeView\ivh-treeview.min.css" />
+    <Content Include="Content\vendors\angular-directives\treeView\ivh-treeview.min.js" />
+    <Content Include="Content\vendors\angular-translate-loader-static-files.min.js" />
+    <Content Include="Content\vendors\angular-directives\ghiscoding.angular-validation\dist\angular-validation.min.js" />
+    <Content Include="Content\vendors\angular-directives\ghiscoding.angular-validation\MIT-license.txt" />
+    <Content Include="Content\vendors\angular-directives\ghiscoding.angular-validation\style.css" />
+    <Content Include="Content\vendors\angular-directives\smartTable\smart-table.js" />
+    <Content Include="Content\vendors\angular-directives\sweetalert\ng-sweetalert.js" />
+    <Content Include="Content\vendors\angular-directives\sweetalert\sweetalert.css" />
+    <Content Include="Content\vendors\loading-bar.css" />
+    <Content Include="Content\vendors\loading-bar.js" />
+    <Content Include="Global.asax" />
+    <Content Include=".bowerrc" />
+    <Content Include="gulpfile.js" />
+    <Content Include="packages.config" />
+    <Content Include="Scripts\app\common.core.js" />
+    <Content Include="Scripts\app\directives\controls\ivhTreeviewCheckbox.directive.js" />
+    <Content Include="Scripts\app\directives\controls\mvzEditToolBar.html" />
+    <Content Include="Scripts\app\directives\controls\mvzEditToolBar.directive.js" />
+    <Content Include="Scripts\app\directives\controls\mvzSearch.html" />
+    <Content Include="Scripts\app\directives\controls\mvzSearch.directive.js" />
+    <Content Include="Scripts\app\directives\controls\mvzTitle.html" />
+    <Content Include="Scripts\app\directives\controls\mvzTitle.directive.js" />
+    <Content Include="Scripts\app\directives\controls\mvzCheckbox.directive.js" />
+    <Content Include="Scripts\app\directives\controls\mvzCheckbox.html" />
+    <Content Include="Scripts\app\directives\controls\mvzDatePicker.directive.js" />
+    <Content Include="Scripts\app\directives\controls\mvzDatePicker.html" />
+    <Content Include="Scripts\app\directives\controls\mvzEditor.directive.js" />
+    <Content Include="Scripts\app\directives\controls\mvzEditor.html" />
+    <Content Include="Scripts\app\directives\controls\mvzSelect.directive.js" />
+    <Content Include="Scripts\app\directives\controls\mvzSelect.html" />
+    <Content Include="Scripts\app\directives\controls\mvzPaginator.html" />
+    <Content Include="Scripts\app\directives\controls\mvzPaginator.directive.js" />
+    <Content Include="Scripts\app\directives\controls\mvzTextarea.directive.js" />
+    <Content Include="Scripts\app\directives\controls\mvzTextarea.html" />
+    <Content Include="Scripts\app\directives\controls\mvzTree.html" />
+    <Content Include="Scripts\app\directives\controls\mvzTreeSingle.directive.js" />
+    <Content Include="Scripts\app\directives\controls\mvzTreeSingle.html" />
+    <Content Include="Scripts\app\directives\controls\mvzTreeView.directive.js" />
+    <Content Include="Scripts\app\directives\controls\mvzTreeView.html" />
+    <Content Include="Scripts\app\directives\controls\mvzFileUpload.directive.js" />
+    <Content Include="Scripts\app\directives\controls\mvzFileUpload.html" />
+    <Content Include="Scripts\app\directives\layout\menuFooter.directive.js" />
+    <Content Include="Scripts\app\directives\layout\menuFooter.html" />
+    <Content Include="Scripts\app\directives\layout\menuProfile.directive.js" />
+    <Content Include="Scripts\app\directives\layout\footerContent.html" />
+    <Content Include="Scripts\app\directives\layout\footerContent.directive.js" />
+    <Content Include="Scripts\app\directives\layout\menuProfile.html" />
+    <Content Include="Scripts\app\directives\controls\mvzTable.directive.js" />
+    <Content Include="Scripts\app\directives\controls\mvzTable.html" />
+    <Content Include="Scripts\app\directives\layout\topBar.directive.js" />
+    <Content Include="Scripts\app\directives\layout\topBar.html" />
+    <Content Include="Scripts\app\services\expenseService.js" />
+    <Content Include="Scripts\app\translate\translate.config.js" />
+    <Content Include="Scripts\app\translate\translate.module.js" />
+    <Content Include="Scripts\app\value.googlechart.js" />
+    <Content Include="Scripts\app\views\abm\code-search\code-search.controller.js" />
+    <Content Include="Scripts\app\views\abm\code-search\code-search.tmpl.html" />
+    <Content Include="Scripts\app\views\abm\config\system-config.controller.js" />
+    <Content Include="Scripts\app\views\abm\config\system-config.tmpl.html" />
+    <Content Include="Scripts\app\views\abm\reports\status-change\status-change.controller.js" />
+    <Content Include="Scripts\app\views\abm\code-search\code-search.tmpl.scss" />
+    <None Include="Properties\PublishProfiles\alianzasemillas - Web Deploy.pubxml" />
+    <None Include="Scripts\app\views\abm\reports\status-change\status-change.templ.scss" />
+    <Content Include="Scripts\app\views\abm\reports\status-change\status-change.tmpl.html" />
+    <Content Include="Scripts\app\views\account\account.config.js" />
+    <Content Include="Scripts\app\views\account\account.module.js" />
+    <Content Include="Scripts\app\views\account\forgot\forgot.controller.js" />
+    <Content Include="Scripts\app\views\account\forgot\forgot.tmpl.html" />
+    <Content Include="Scripts\app\views\account\login\login.controller.js" />
+    <Content Include="Scripts\app\views\account\login\login.tmpl.html" />
+    <Content Include="Scripts\app\views\abm\category\edit\category-edit.controller.js" />
+    <Content Include="Scripts\app\views\abm\category\edit\category-edit.tmpl.html" />
+    <Content Include="Scripts\app\views\abm\category\list\category-list.controller.js" />
+    <Content Include="Scripts\app\views\abm\category\list\category-list.tmpl.html" />
+    <Content Include="Scripts\app\views\companies\companies.config.js" />
+    <Content Include="Scripts\app\views\companies\companies.module.js" />
+    <Content Include="Scripts\app\views\expenses\details\expense-details.controller.js" />
+    <Content Include="Scripts\app\views\expenses\details\expense-details.tmpl.html" />
+    <Content Include="Scripts\app\views\expenses\expenses.config.js" />
+    <Content Include="Scripts\app\views\expenses\expenses.module.js" />
+    <Content Include="Scripts\app\views\expenses\list\expenses-list.controller.js" />
+    <Content Include="Scripts\app\views\expenses\list\expenses-list.tmpl.html" />
+    <Content Include="Scripts\app\views\expenses\statuschangelog\statuschange-log.controller.js" />
+    <Content Include="Scripts\app\views\expenses\statuschangelog\statuschange-log.tmpl.html" />
+    <Content Include="Scripts\app\views\payments\list\payments-list.controller.js" />
+    <Content Include="Scripts\app\views\payments\list\payments-list.tmpl.html" />
+    <Content Include="Scripts\app\views\payments\payments.config.js" />
+    <Content Include="Scripts\app\views\payments\payments.module.js" />
+    <Content Include="Scripts\app\views\abm\payment\edit\payment-edit.controller.js" />
+    <Content Include="Scripts\app\views\abm\payment\edit\payment-edit.tmpl.html" />
+    <Content Include="Scripts\app\views\abm\payment\list\payment-list.controller.js" />
+    <Content Include="Scripts\app\views\abm\payment\list\payment-list.tmpl.html" />
+    <Content Include="Scripts\app\views\abm\abm.config.js" />
+    <Content Include="Scripts\app\views\abm\abm.module.js" />
+    <Content Include="Scripts\app\views\provider\details\provider-details.controller.js" />
+    <Content Include="Scripts\app\views\provider\details\provider-details.tmpl.html" />
+    <Content Include="Scripts\app\views\provider\import\import.controller.js" />
+    <Content Include="Scripts\app\views\provider\import\import.tmpl.html" />
+    <Content Include="Scripts\app\views\provider\list\provider-list.controller.js" />
+    <Content Include="Scripts\app\views\provider\list\provider-list.tmpl.html" />
+    <Content Include="Scripts\app\views\provider\provider.config.js" />
+    <Content Include="Scripts\app\views\provider\provider.module.js" />
+    <Content Include="Scripts\app\views\requests\list\requests-list.tmpl.html" />
+    <Content Include="Scripts\app\views\requests\list\requests-list.controller.js" />
+    <Content Include="Scripts\app\views\requests\requests.config.js" />
+    <Content Include="Scripts\app\views\requests\requests.module.js" />
+    <Content Include="Scripts\app\views\home\admin\admin-home.controller.js" />
+    <Content Include="Scripts\app\views\home\admin\admin-home.tmpl.html" />
+    <Content Include="Scripts\app\views\home\home.config.js" />
+    <Content Include="Scripts\app\views\home\home.module.js" />
+    <Content Include="Scripts\app\views\users\password\password.controller.js" />
+    <Content Include="Scripts\app\views\users\password\users-password.tmpl.html" />
+    <Content Include="Scripts\app\views\users\profile\profile.controller.js" />
+    <Content Include="Scripts\app\views\users\profile\users-profile.tmpl.html" />
+    <Content Include="Scripts\app\views\views.module.js" />
+    <Content Include="Scripts\app\views\users\edit\edit.controller.js" />
+    <Content Include="Scripts\app\views\users\edit\users-edit.tmpl.html" />
+    <Content Include="Scripts\app\views\users\list\users-list.tmpl.html" />
+    <Content Include="Scripts\app\views\users\list\users-list.controller.js" />
+    <Content Include="Scripts\app\views\users\users.config.js" />
+    <Content Include="Scripts\app\views\users\users.module.js" />
+    <Content Include="Scripts\app\directives\controls\mvzTree.directive.js" />
+    <Content Include="Scripts\app\directives\layout\sideBar.directive.js" />
+    <Content Include="Scripts\app\directives\layout\sideBar.html" />
+    <Content Include="Scripts\app\common.ui.js" />
+    <Content Include="Scripts\app\services\apiService.js" />
+    <Content Include="Scripts\app\services\fileUploadService.js" />
+    <Content Include="Scripts\app\services\listService.js" />
+    <Content Include="Scripts\app\services\membershipService.js" />
+    <Content Include="Scripts\app\services\notificationService.js" />
+    <Content Include="Scripts\app\app.module.js" />
+    <Content Include="Scripts\app\app.config.js" />
+    <Content Include="Scripts\app\app.run.js" />
+    <Content Include="Scripts\app\config.chartjs.js" />
+    <Content Include="Scripts\app\config.route.js" />
+    <Content Include="Scripts\app\config.triangular.layout.js" />
+    <Content Include="Scripts\app\config.triangular.settings.js" />
+    <Content Include="Scripts\app\config.triangular.themes.js" />
+    <Content Include="Scripts\app\error-page.controller.js" />
+    <Content Include="Scripts\app\layouts\footer\footer.controller.js" />
+    <Content Include="Scripts\app\layouts\footer\footer.tmpl.html" />
+    <Content Include="Scripts\app\layouts\leftsidenav\leftsidenav.controller.js" />
+    <Content Include="Scripts\app\layouts\leftsidenav\leftsidenav.tmpl.html" />
+    <Content Include="Scripts\app\layouts\loader\loader.controller.js" />
+    <Content Include="Scripts\app\layouts\loader\loader.tmpl.html" />
+    <Content Include="Scripts\app\layouts\rightsidenav\rightsidenav.controller.js" />
+    <Content Include="Scripts\app\layouts\rightsidenav\rightsidenav.tmpl.html" />
+    <Content Include="Scripts\app\layouts\toolbar\toolbar.controller.js" />
+    <Content Include="Scripts\app\layouts\toolbar\toolbar.tmpl.html" />
+    <Content Include="Scripts\app\permission\pages\permission-define.tmpl.html" />
+    <Content Include="Scripts\app\permission\pages\permission-routes.tmpl.html" />
+    <Content Include="Scripts\app\permission\pages\permission-views.tmpl.html" />
+    <Content Include="Scripts\app\permission\permission.module.js" />
+    <Content Include="Scripts\app\permission\permission.run.js" />
+    <Content Include="Scripts\app\seed-module\seed-page.controller.js" />
+    <Content Include="Scripts\app\seed-module\seed-page.tmpl.html" />
+    <Content Include="Scripts\app\seed-module\seed.config.js" />
+    <Content Include="Scripts\app\seed-module\seed.module.js" />
+    <Content Include="Scripts\app\triangular\components\breadcrumbs\breadcrumbs.service.js" />
+    <Content Include="Scripts\app\triangular\components\components.module.js" />
+    <Content Include="Scripts\app\triangular\components\footer\footer.controller.js" />
+    <Content Include="Scripts\app\triangular\components\footer\footer.tmpl.html" />
+    <Content Include="Scripts\app\triangular\components\loader\loader-service.js" />
+    <Content Include="Scripts\app\triangular\components\loader\loader.directive.js" />
+    <Content Include="Scripts\app\triangular\components\menu\menu-item-divider.tmpl.html" />
+    <Content Include="Scripts\app\triangular\components\menu\menu-item-dropdown.tmpl.html" />
+    <Content Include="Scripts\app\triangular\components\menu\menu-item-link.tmpl.html" />
+    <Content Include="Scripts\app\triangular\components\menu\menu-item.directive.js" />
+    <Content Include="Scripts\app\triangular\components\menu\menu.directive.js" />
+    <Content Include="Scripts\app\triangular\components\menu\menu.provider.js" />
+    <Content Include="Scripts\app\triangular\components\notifications-panel\notifications-panel.controller.js" />
+    <Content Include="Scripts\app\triangular\components\notifications-panel\notifications-panel.tmpl.html" />
+    <Content Include="Scripts\app\triangular\components\table\table-cell-image.filter.js" />
+    <Content Include="Scripts\app\triangular\components\table\table-directive.tmpl.html" />
+    <Content Include="Scripts\app\triangular\components\table\table-start-from.filter.js" />
+    <Content Include="Scripts\app\triangular\components\table\table.directive.js" />
+    <Content Include="Scripts\app\triangular\components\toolbars\toolbar.controller.js" />
+    <Content Include="Scripts\app\triangular\components\toolbars\toolbar.tmpl.html" />
+    <Content Include="Scripts\app\triangular\components\widget\widget.directive.js" />
+    <Content Include="Scripts\app\triangular\components\widget\widget.tmpl.html" />
+    <Content Include="Scripts\app\triangular\components\wizard\wizard-form.directive.js" />
+    <Content Include="Scripts\app\triangular\components\wizard\wizard.directive.js" />
+    <Content Include="Scripts\app\triangular\config.route.js" />
+    <Content Include="Scripts\app\triangular\directives\countupto.directive.js" />
+    <Content Include="Scripts\app\triangular\directives\directives.module.js" />
+    <Content Include="Scripts\app\triangular\directives\palette-background.directive.js" />
+    <Content Include="Scripts\app\triangular\directives\same-password.directive.js" />
+    <Content Include="Scripts\app\triangular\directives\theme-background.directive.js" />
+    <Content Include="Scripts\app\triangular\layouts\default\default-content.directive.js" />
+    <Content Include="Scripts\app\triangular\layouts\default\default-content.tmpl.html" />
+    <Content Include="Scripts\app\triangular\layouts\default\default-layout.controller.js" />
+    <Content Include="Scripts\app\triangular\layouts\default\default-no-scroll.tmpl.html" />
+    <Content Include="Scripts\app\triangular\layouts\default\default.tmpl.html" />
+    <Content Include="Scripts\app\triangular\layouts\layouts.module.js" />
+    <Content Include="Scripts\app\triangular\layouts\layouts.provider.js" />
+    <Content Include="Scripts\app\triangular\layouts\states\triangular\triangular.controller.js" />
+    <Content Include="Scripts\app\triangular\layouts\states\triangular\triangular.tmpl.html" />
+    <Content Include="Scripts\app\triangular\profiler\profiler.config.js" />
+    <Content Include="Scripts\app\triangular\profiler\profiler.module.js" />
+    <Content Include="Scripts\app\triangular\router\router.module.js" />
+    <Content Include="Scripts\app\triangular\router\router.provider.js" />
+    <Content Include="Scripts\app\triangular\router\router.run.js" />
+    <Content Include="Scripts\app\triangular\settings.provider.js" />
+    <Content Include="Scripts\app\triangular\themes\skins.provider.js" />
+    <Content Include="Scripts\app\triangular\themes\themes.module.js" />
+    <Content Include="Scripts\app\triangular\themes\theming.provider.js" />
+    <Content Include="Scripts\app\triangular\triangular.module.js" />
+    <Content Include="Scripts\app\triangular\triangular.run.js" />
+    <Content Include="Scripts\app\views\users\edit\users-edit.tmpl.scss" />
+    <Content Include="Scripts\app\views\users\list\users-page.tmpl.scss" />
+    <Content Include="Scripts\bundles\css\app.css" />
+    <Content Include="Scripts\bundles\css\default-skin.png" />
+    <Content Include="Scripts\bundles\css\libs.min.css" />
+    <Content Include="Scripts\bundles\css\vendors.css" />
+    <Content Include="Scripts\bundles\fonts\default-skin.svg" />
+    <Content Include="Scripts\bundles\fonts\fontawesome-webfont.svg" />
+    <Content Include="Scripts\bundles\fonts\Material-Design-Iconic-Font.svg" />
+    <Content Include="Scripts\bundles\fonts\weathericons-regular-webfont.svg" />
+    <Content Include="Scripts\bundles\images\default-skin.png" />
+    <Content Include="Scripts\bundles\images\default-skin.svg" />
+    <Content Include="Scripts\bundles\images\fontawesome-webfont.svg" />
+    <Content Include="Scripts\bundles\images\Material-Design-Iconic-Font.svg" />
+    <Content Include="Scripts\bundles\images\preloader.gif" />
+    <Content Include="Scripts\bundles\images\weathericons-regular-webfont.svg" />
+    <Content Include="Scripts\bundles\js\libs.min.js" />
+    <Content Include="Scripts\bundles\js\site.min.js" />
+    <Content Include="Scripts\bundles\js\vendors.js" />
+    <Content Include="Scripts\bundles\res\icons\close-inline.svg" />
+    <Content Include="Scripts\bundles\res\icons\delete-inline.svg" />
+    <Content Include="Scripts\bundles\res\icons\external-link-inline.svg" />
+    <Content Include="Scripts\bundles\res\icons\next-inline.svg" />
+    <Content Include="Scripts\bundles\res\icons\prev-inline.svg" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\AutofacValidatorFactory.cs" />
+    <Compile Include="App_Start\AutofacWebapiConfig.cs" />
+    <Compile Include="App_Start\Bootstrapper.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\Api\CompaniesController.cs" />
+    <Compile Include="Controllers\Api\ConfigController.cs" />
+    <Compile Include="Controllers\Api\DeviceController.cs" />
+    <Compile Include="Controllers\Api\ExportDataController.cs" />
+    <Compile Include="Controllers\Api\CategoryController.cs" />
+    <Compile Include="Controllers\Api\ImportDataController.cs" />
+    <Compile Include="Controllers\Api\NotificationController.cs" />
+    <Compile Include="Controllers\Api\LegalConditionController.cs" />
+    <Compile Include="Controllers\Api\ChangeReasonController.cs" />
+    <Compile Include="Controllers\Api\PaymentController.cs" />
+    <Compile Include="Controllers\Api\ProviderController.cs" />
+    <Compile Include="Controllers\Api\AliquotController.cs" />
+    <Compile Include="Controllers\Api\ExpenseController.cs" />
+    <Compile Include="Controllers\Api\AccountController.cs" />
+    <Compile Include="Controllers\Api\FileUploadController.cs" />
+    <Compile Include="Controllers\Api\SyncStatusController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\Api\UsersController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\web.config" />
+    <Content Include="ConnectionStrings.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Views\Home\index.cshtml" />
+    <Content Include="package.json" />
+    <Content Include="bower.json" />
+    <Content Include="Scripts\app\scss\general.scss" />
+    <Content Include="Content\vendors\angular-directives\ghiscoding.angular-validation\.bower.json" />
+    <Content Include="Content\vendors\angular-directives\ghiscoding.angular-validation\bower.json" />
+    <Content Include="Content\vendors\angular-directives\ghiscoding.angular-validation\locales\validation\ca.json" />
+    <Content Include="Content\vendors\angular-directives\ghiscoding.angular-validation\locales\validation\en.json" />
+    <Content Include="Content\vendors\angular-directives\ghiscoding.angular-validation\locales\validation\es.json" />
+    <Content Include="Content\vendors\angular-directives\ghiscoding.angular-validation\locales\validation\fr.json" />
+    <Content Include="Content\vendors\angular-directives\ghiscoding.angular-validation\locales\validation\nl.json" />
+    <Content Include="Content\vendors\angular-directives\ghiscoding.angular-validation\locales\validation\no.json" />
+    <Content Include="Content\vendors\angular-directives\ghiscoding.angular-validation\locales\validation\pl.json" />
+    <Content Include="Content\vendors\angular-directives\ghiscoding.angular-validation\locales\validation\pt-br.json" />
+    <Content Include="Content\vendors\angular-directives\ghiscoding.angular-validation\locales\validation\ro.json" />
+    <Content Include="Content\vendors\angular-directives\ghiscoding.angular-validation\locales\validation\ru.json" />
+    <Content Include="Content\vendors\angular-directives\ghiscoding.angular-validation\package.json" />
+    <None Include="bundleconfig.json" />
+    <Content Include="Content\Alzagro-Font\fonts\AlzAgro-Icons-Font.eot" />
+    <Content Include="Content\Alzagro-Font\fonts\AlzAgro-Icons-Font.ttf" />
+    <Content Include="Content\Alzagro-Font\fonts\AlzAgro-Icons-Font.woff" />
+    <Content Include="Content\Alzagro-Font\selection.json" />
+    <Content Include="Content\fonts\AlzAgro-Icons-Font.eot" />
+    <Content Include="Content\fonts\AlzAgro-Icons-Font.ttf" />
+    <Content Include="Content\fonts\AlzAgro-Icons-Font.woff" />
+    <Content Include="Content\fonts\selection.json" />
+    <Content Include="Content\fonts\Ubuntu-Regular.ttf" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
+    <None Include="Properties\PublishProfiles\Simulador.pubxml" />
+    <None Include="Properties\PublishProfiles\Test.pubxml" />
+    <Content Include="Scripts\app\app.scss" />
+    <Content Include="Scripts\app\layouts\loader\loader.scss" />
+    <Content Include="Scripts\app\layouts\toolbar\toolbar.scss" />
+    <Content Include="Scripts\app\layouts\triangular.scss" />
+    <Content Include="Scripts\app\scss\_material-backgrounds.scss" />
+    <Content Include="Scripts\app\seed-module\seed-page.tmpl.scss" />
+    <Content Include="Scripts\app\triangular\scss\components\_footer.scss" />
+    <Content Include="Scripts\app\triangular\scss\components\_loader.scss" />
+    <Content Include="Scripts\app\triangular\scss\components\_menu.scss" />
+    <Content Include="Scripts\app\triangular\scss\components\_notifications-panel.scss" />
+    <Content Include="Scripts\app\triangular\scss\components\_table.scss" />
+    <Content Include="Scripts\app\triangular\scss\components\_toolbar.scss" />
+    <Content Include="Scripts\app\triangular\scss\components\_widget.scss" />
+    <Content Include="Scripts\app\triangular\scss\components\_wizard.scss" />
+    <Content Include="Scripts\app\triangular\scss\layouts\states\_triangular.scss" />
+    <Content Include="Scripts\app\triangular\scss\layouts\_default.scss" />
+    <Content Include="Scripts\app\triangular\scss\_contextual.scss" />
+    <Content Include="Scripts\app\triangular\scss\_dialogs.scss" />
+    <Content Include="Scripts\app\triangular\scss\_material-overrides.scss" />
+    <Content Include="Scripts\app\triangular\scss\_print.scss" />
+    <Content Include="Scripts\app\triangular\scss\_reset.scss" />
+    <Content Include="Scripts\app\triangular\scss\_social.scss" />
+    <Content Include="Scripts\app\triangular\scss\_tables.scss" />
+    <Content Include="Scripts\app\triangular\scss\_typography.scss" />
+    <Content Include="Scripts\app\triangular\scss\_utilities.scss" />
+    <Content Include="Scripts\app\triangular\triangular.scss" />
+    <Content Include="Scripts\app\triangular\variables.scss" />
+    <Content Include="Scripts\app\views\account\account.module.scss" />
+    <Content Include="Scripts\app\views\account\login\login.tmpl.scss" />
+    <Content Include="Scripts\app\i18n\en.json" />
+    <Content Include="Scripts\app\i18n\fr.json" />
+    <Content Include="Scripts\app\i18n\pt.json" />
+    <Content Include="Scripts\app\i18n\zh.json" />
+    <Content Include="Scripts\app\scss\theme.scss" />
+    <Content Include="Scripts\app\views\users\password\users-password.tmpl.scss" />
+    <Content Include="Scripts\app\views\account\layouts\authentication.tmpl.html" />
+    <Content Include="Scripts\app\layouts\footer\footer.tmpl.scss" />
+    <Content Include="Views\EmailTemplate\Index.cshtml" />
+    <Content Include="Views\EmailTemplate\Password.cshtml" />
+    <Content Include="Scripts\app\views\account\forgot\forgot.tmpl.scss" />
+    <Content Include="Scripts\app\views\home\admin\admin-home.tmpl.scss" />
+    <Content Include="Scripts\app\alz-font.scss" />
+    <Content Include="Scripts\app\views\expenses\list\expenses-list-tmpl.scss" />
+    <Content Include="Scripts\app\views\expenses\details\expense-details-tmpl.scss" />
+    <Content Include="Scripts\app\views\provider\list\provider-list-tmpl.scss" />
+    <Content Include="Scripts\app\views\provider\details\provider-details-tmpl.scss" />
+    <Content Include="Scripts\app\layouts\rightsidenav\right-sidenav.scss" />
+    <Content Include="Scripts\app\views\expenses\statuschangelog\statuschange-log.tmpl.scss" />
+    <Content Include="Scripts\app\views\provider\import\import.tmpl.scss" />
+    <Content Include="Scripts\app\views\abm\category\edit\category-edit.tmpl.scss" />
+    <Content Include="Scripts\app\views\abm\payment\edit\payment-edit.tmpl.scss" />
+    <Content Include="Scripts\app\views\abm\config\system-config.tmpl.scss" />
+    <Content Include="Scripts\bundles\css\triangular.scss" />
+    <Content Include="Scripts\bundles\fonts\AlzAgro-Icons-Font.eot" />
+    <Content Include="Scripts\bundles\fonts\AlzAgro-Icons-Font.ttf" />
+    <Content Include="Scripts\bundles\fonts\AlzAgro-Icons-Font.woff" />
+    <Content Include="Scripts\bundles\fonts\fontawesome-webfont.eot" />
+    <Content Include="Scripts\bundles\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Scripts\bundles\fonts\fontawesome-webfont.woff" />
+    <Content Include="Scripts\bundles\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Scripts\bundles\fonts\Material-Design-Iconic-Font.eot" />
+    <Content Include="Scripts\bundles\fonts\Material-Design-Iconic-Font.ttf" />
+    <Content Include="Scripts\bundles\fonts\Material-Design-Iconic-Font.woff" />
+    <Content Include="Scripts\bundles\fonts\Material-Design-Iconic-Font.woff2" />
+    <Content Include="Scripts\bundles\fonts\Ubuntu-Regular.ttf" />
+    <Content Include="Scripts\bundles\fonts\weathericons-regular-webfont.eot" />
+    <Content Include="Scripts\bundles\fonts\weathericons-regular-webfont.ttf" />
+    <Content Include="Scripts\bundles\fonts\weathericons-regular-webfont.woff" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Content\images\branding\" />
+    <Folder Include="Resources\Export\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ALZAGRO.AppRendicionGastos.Application\ALZAGRO.AppRendicionGastos.Application.csproj">
+      <Project>{2B0131AB-CD43-47FE-8D0E-2C80EE069762}</Project>
+      <Name>ALZAGRO.AppRendicionGastos.Application</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ALZAGRO.AppRendicionGastos.Data\ALZAGRO.AppRendicionGastos.Data.csproj">
+      <Project>{FDB8609C-3FA4-425C-BA71-4A71A7C43EC6}</Project>
+      <Name>ALZAGRO.AppRendicionGastos.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ALZAGRO.AppRendicionGastos.Domain\ALZAGRO.AppRendicionGastos.Domain.csproj">
+      <Project>{3E8BB046-05BD-4D27-94A7-C13AD4F3E192}</Project>
+      <Name>ALZAGRO.AppRendicionGastos.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ALZAGRO.Reports.Data\ALZAGRO.Reports.Data.csproj">
+      <Project>{852dabd1-2fca-4638-a7a4-30c0612becf3}</Project>
+      <Name>ALZAGRO.Reports.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Mvz.CrossCutting\Mvz.CrossCutting.csproj">
+      <Project>{edfd2adc-b97b-40d2-85bf-a63561791e7b}</Project>
+      <Name>Mvz.CrossCutting</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Mvz.Fwk\Mvz.Fwk.csproj">
+      <Project>{1efca742-2ad1-4941-8a62-7ce1d1bb7efd}</Project>
+      <Name>Mvz.Fwk</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>1487</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:1478/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Import Project="..\packages\AutoMapper.3.3.1\tools\AutoMapper.targets" Condition="Exists('..\packages\AutoMapper.3.3.1\tools\AutoMapper.targets')" />
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <!-- <Target Name="EnsureNmpPackageBuildAndGulpBuild" BeforeTargets="BeforeBuild">
+    <Exec Command="PreBuild.bat" WorkingDirectory="$(ProjectDir)" />
+  </Target>  -->
+</Project>

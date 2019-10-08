@@ -1,0 +1,190 @@
+/*$sidenav-mobile-width: 225px;
+$sidenav-desktop-width: 300px;*/
+
+// import angular material scss
+@import "angular-material/angular-material.scss";
+
+@import "alz-font.scss";
+
+
+:root {
+    --currentCompanyColor: #7BA529;
+}
+
+
+tri-menu {
+    overflow-y:scroll!important;
+}
+
+.trasparent {
+    /*.galleria {
+        opacity: 0 !important;
+    }*/
+}
+
+.swal2-modal .swal2-input  {
+    margin:20px auto!important;
+    width:85%!important;
+
+}
+.swal2-modal  {
+    padding:10px!important;
+}
+
+.swal-grid-container {
+    display: grid !important;
+    display: table-cell;
+    grid-template-columns: auto auto;
+    text-align: left;
+    padding: 0px 10px;
+}
+.swal-grid-item {
+    border: 1px solid black;
+    padding: 0px 5px;
+    border-top:none;
+}
+.swal-grid-item:nth-child(1), .swal-grid-item:nth-child(2) {
+    border-top: 1px solid black!important;
+}
+.swal-grid-item:nth-child(even) {
+    border-left: none;
+}
+
+
+.btn-alzagro:hover, .btn-alzagro:focus {
+    background-color: #7BA529!important;
+    background-color: var(--currentCompanyColor, #7BA529) !important;
+    filter: brightness(85%);
+}
+.width-100 {
+    width:100%!important;
+}
+
+.red {
+    background-color: #AF4D42 !important;
+}
+
+.green {
+    background-color: #7BA529!important;
+}
+
+button[disabled].green, button[disabled].red {
+    background-color: #a5a5a5 !important;
+    color: whitesmoke !important;
+
+    md-icon {
+        color: whitesmoke !important;
+    }
+    /** {
+        color: rgba(0, 0, 0, 0.55) !important;
+    }*/
+}
+
+.yellow {
+    background-color: #F3C330!important;
+}
+
+.background-orange {
+    background-color: #FF9C51!important;
+}
+
+.background-grey {
+    background-color: #A1A1A1!important;
+}
+
+.background-green {
+    background-color: #A1DB2F!important;
+}
+.background-lightblue {
+    background-color: #607d8b!important;
+}
+
+.background-red {
+    background-color: #FF5151!important;
+}
+
+.brown {
+    background-color: #AF9442!important;
+}
+
+button[disabled] {
+    .color-green, .color-red, .color-blue {
+        color:rgba(0,0,0,0.38)!important;
+    }
+}
+
+.color-green {
+    color:#A1DB2F!important;
+}
+.color-red {
+    color: #FF5151!important;
+}
+.color-blue {
+    color: #5191FF!important;
+}
+
+.color-white {
+    color:white!important;
+}
+
+
+.triangular-sidenav-left md-content {
+    margin-top:20px!important;
+}
+
+.customToolbar {
+    button {
+        margin: 0px !important;
+        padding: 0px !important;
+        min-width: 35px !important;
+
+        .md-ripple-container {
+            min-height: 35px !important;
+        }
+    }
+}
+
+.notification-date-info {
+    /*display: block;*/
+}
+
+body {
+  color: #212121;
+}
+
+.md-button.md-alz-sidebar-theme.md-hue-1.md-raised {
+    color: #7BA529 !important;
+    color: var(--currentCompanyColor, #7BA529) !important;
+
+    md-icon {
+        color: #7BA529 !important;
+        color: var(--currentCompanyColor, #7BA529) !important;
+    }
+}
+
+.no-border{
+    border:unset!important;
+}
+// set template font family
+button, select, html, textarea, input {
+    font-family: RobotoDraft, Roboto, 'Helvetica Neue', sans-serif;
+}
+
+// import app scss
+@import "scss/material-backgrounds";
+
+// injector
+// endinjector
+
+
+// Add your CSS here
+
+@import "scss/theme.scss";
+@import "scss/general.scss";
+
+
+/**
+ *  Do not remove this comments bellow. It's the markers used by gulp-inject to inject
+ *  all your sass files automatically
+ */
+

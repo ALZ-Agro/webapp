@@ -1,0 +1,14 @@
+[
+  {
+    "outputFileName": "Scripts/app/views/dashboard/user/dashboard-user.tmpl.min.html",
+    "inputFiles": [
+      "Scripts/app/views/dashboard/user/dashboard-user.tmpl.html"
+    ]
+  },
+  {
+    "outputFileName": "Scripts/app/views/dashboard/widgets/info-widget/info-widget.component.min.js",
+    "inputFiles": [
+      "Scripts/app/views/dashboard/widgets/info-widget/info-widget.component.js"
+    ]
+  }
+]

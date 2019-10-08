@@ -1,0 +1,18 @@
+{
+  "name": "jss",
+  "main": "jss.js",
+  "ignore": [
+    "test",
+    "test/*"
+  ],
+  "homepage": "https://github.com/Box9/jss",
+  "_release": "0.6",
+  "_resolution": {
+    "type": "tag",
+    "tag": "0.6",
+    "commit": "1faffdf9373149a8874fc8df0ba0512b782dba3f"
+  },
+  "_source": "https://github.com/Box9/jss.git",
+  "_target": "0.6",
+  "_originalSource": "jss"
+}

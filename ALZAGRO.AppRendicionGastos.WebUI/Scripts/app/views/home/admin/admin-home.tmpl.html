@@ -1,0 +1,123 @@
+﻿<md-content class="padded-content-page padding-35 admin-home">
+    <md-card class="filters-card">
+        <div layout="row" layout-wrap id="filters">
+            <div flex="30" flex-xs="50" class="date-div">
+                <mvz-date-picker model="startDate"
+                                 options="startDateOptions"
+                                 label="Fecha desde"
+                                 on-change="startDateSelected"
+                                 name="fromDate">
+                </mvz-date-picker>
+            </div>
+            <div flex="30" flex-xs="50"  class="date-div">
+                <mvz-date-picker model="endDate"
+                                 options="endDateOptions"
+                                 label="Fecha hasta"
+                                 on-change="endDateSelected"
+                                 name="toDate">
+                </mvz-date-picker>
+            </div>
+        </div>
+    </md-card>
+    <div flex="100" layout="row" layout-sm="row" layout-xs="column" id="info-cards">
+        <div flex="25" flex-sm="25" flex-xs="100">
+            <md-card class="green">
+                <div layout="row">
+                     <!-- icon -->
+                    <div flex="30" class="layout-row layout-align-center-end">
+                        <md-icon class="alz-gas-pump margin-0"></md-icon>
+                    </div>
+                    <div flex="70" layout="column" class="card-category-amount">
+                        <div flex="70" class="layout-align-end-end layout-row padding-bottom-20">
+                            {{ totals.fuel | currency:'$':2}}
+                        </div>
+                        <div flex="30" class="category-title">
+                            Combustible
+                        </div>
+                    </div>
+                </div>
+            </md-card>
+        </div>
+        <div flex="25" flex-sm="25" flex-xs="100">
+            <md-card class="yellow">
+                <div layout="row">
+                    <!-- icon -->
+                    <div flex="30" class="layout-row layout-align-center-end">
+                        <md-icon class="alz-hotel margin-0"></md-icon>
+                    </div>
+                    <div flex="70" layout="column" class="card-category-amount">
+                        <div flex="70" class="layout-align-end-end layout-row padding-bottom-20">
+                            {{ totals.hotels | currency:'$':2}}
+                        </div>
+                        <div flex="30" class="category-title">
+                            Alojamiento
+                        </div>
+                    </div>
+                </div>
+            </md-card>
+        </div>
+        <div flex="25" flex-sm="25" flex-xs="100">
+            <md-card class="red">
+                <div layout="row">
+                    <!-- icon -->
+                    <div flex="30" class="layout-row layout-align-center-end">
+                        <md-icon class="alz-coffee margin-0"></md-icon>
+                    </div>
+                    <div flex="70" layout="column" class="card-category-amount">
+                        <div flex="70" class="layout-align-end-end layout-row padding-bottom-20">
+                            {{ totals.food | currency:'$':2}}
+                        </div>
+                        <div flex="30" class="category-title">
+                            Comida
+                        </div>
+                    </div>
+                </div>
+            </md-card>
+        </div>
+        <div flex="25" flex-sm="25" flex-xs="100">
+            <md-card class="brown">
+                <div layout="row">
+                    <!-- icon -->
+                    <div flex="30" class="layout-row layout-align-center-end">
+                        <md-icon class="alz-coins margin-0">
+                        </md-icon>
+                    </div>
+                    <div flex="70" layout="column" class="card-category-amount">
+                        <div flex="70" class="layout-align-end-end layout-row padding-bottom-20">
+                            {{ totals.other | currency:'$':2}}
+                        </div>
+                        <div flex="30" class="category-title">
+                            Otros
+                        </div>
+                    </div>
+                </div>
+            </md-card>
+        </div>
+    </div>
+    <div flex="100" layout-wrap layout="row" layout-sm="row" layout-xs="row" class="charts layout-align-space-between">
+        <div flex="49" layout-align="center start" flex-sm="49" flex-xs="100">
+            <md-card flex="100" ng-if="byVendorIsReady">
+                <div google-chart chart="byVendor" class="vendorChart" id="byVendorChartId"></div>
+            </md-card>
+            <md-card class="loading-spinner" ng-if="!byVendorIsReady">
+                <div flex="100" class="layout-row layout-align-center-center vendorChart">
+                    <div>
+                        <i class="fa fa-circle-o-notch fa-spin" style="font-size:3em;color:cadetblue;"></i>
+                    </div>
+                </div>
+            </md-card>
+        </div>
+        <div flex="49" layout-align="center end" flex-sm="49" flex-xs="100">
+           <md-card ng-show="totalChartReady">
+                <div google-chart chart="totalChart" class="vendorChart" id="totalChartId"></div>
+            </md-card>
+            <md-card class="loading-spinner" ng-if="!totalChartReady">
+                <div flex="100" class="layout-row layout-align-center-center">
+                    <div>
+                        <i class="fa fa-circle-o-notch fa-spin" style="font-size:3em;color:cadetblue;"></i>
+                    </div>
+                </div>
+            </md-card>
+        </div>
+    </div>
+</md-content>

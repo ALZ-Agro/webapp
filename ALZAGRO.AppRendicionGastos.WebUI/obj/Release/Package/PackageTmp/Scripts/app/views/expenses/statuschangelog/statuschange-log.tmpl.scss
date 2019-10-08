@@ -1,0 +1,24 @@
+﻿.statusChangeDialog {
+    width: 80vw !important;
+
+    .md-toolbar-tools {
+        color: white !important;
+
+        h2 {
+            color: white !important;
+        }
+    }
+
+
+    .md-toolbar-tools md-icon {
+        color: white !important;
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: center !important;
+    }
+
+    md-toolbar {
+        background-color: rgb(80,184,230);
+        background-color: var(--currentCompanyColor,rgb(80,184,230)) !important;
+    }
+}

@@ -1,0 +1,152 @@
+@font-face {
+    font-family: 'AlzAgro-Icons-Font';
+    src: url('fonts/AlzAgro-Icons-Font.eot?l717ix');
+    src: url('fonts/AlzAgro-Icons-Font.eot?l717ix#iefix') format('embedded-opentype'), url('fonts/AlzAgro-Icons-Font.ttf?l717ix') format('truetype'), url('fonts/AlzAgro-Icons-Font.woff?l717ix') format('woff'), url('fonts/AlzAgro-Icons-Font.svg?l717ix#AlzAgro-Icons-Font') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+[class^="alz-"], [class*=" alz-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'AlzAgro-Icons-Font' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.alz-rotate-image:before {
+  content: "\e900";
+}
+.alz-seed:before {
+  content: "\e901";
+}
+.alz-solidum:before {
+  content: "\e902";
+}
+.alz-switch-camera:before {
+  content: "\e903";
+}
+.alz-angle-left:before {
+  content: "\e904";
+}
+.alz-angle-right:before {
+  content: "\e905";
+}
+.alz-arrow-left:before {
+  content: "\e906";
+}
+.alz-arrow-right:before {
+  content: "\e907";
+}
+.alz-bell:before {
+  content: "\e908";
+}
+.alz-bell-alt:before {
+  content: "\e909";
+}
+.alz-bolt:before {
+  content: "\e90a";
+}
+.alz-camera:before {
+  content: "\e90b";
+}
+.alz-cancel:before {
+  content: "\e90c";
+}
+.alz-cancel-circle:before {
+  content: "\e90d";
+}
+.alz-caret-down:before {
+  content: "\e90e";
+}
+.alz-caret-up:before {
+  content: "\e90f";
+}
+.alz-chart-bar:before {
+  content: "\e910";
+}
+.alz-checksquare:before {
+  content: "\e911";
+}
+.alz-check-circle:before {
+  content: "\e912";
+}
+.alz-coffee:before {
+  content: "\e913";
+}
+.alz-coins:before {
+  content: "\e914";
+}
+.alz-compress:before {
+  content: "\e915";
+}
+.alz-expand:before {
+  content: "\e916";
+}
+.alz-folder:before {
+  content: "\e917";
+}
+.alz-folder-open:before {
+  content: "\e918";
+}
+.alz-gas-pump:before {
+  content: "\e919";
+}
+.alz-home:before {
+  content: "\e91a";
+}
+.alz-hotel:before {
+  content: "\e91b";
+}
+.alz-images:before {
+  content: "\e91c";
+}
+.alz-menu:before {
+  content: "\e91d";
+}
+.alz-more:before {
+  content: "\e91e";
+}
+.alz-plus:before {
+  content: "\e91f";
+}
+.alz-plus-circle:before {
+  content: "\e920";
+}
+.alz-question-circle:before {
+  content: "\e921";
+}
+.alz-search:before {
+  content: "\e922";
+}
+.alz-cloud-download:before {
+  content: "\e923";
+}
+.alz-sign-out:before {
+  content: "\e924";
+}
+.alz-square:before {
+  content: "\e925";
+}
+.alz-store:before {
+  content: "\e926";
+}
+.alz-sync:before {
+  content: "\e927";
+}
+.alz-trash:before {
+  content: "\e928";
+}
+.alz-users:before {
+  content: "\e929";
+}
+.alz-seeding:before {
+  content: "\e92a";
+}

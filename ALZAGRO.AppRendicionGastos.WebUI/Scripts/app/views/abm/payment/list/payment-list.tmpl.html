@@ -1,0 +1,22 @@
+﻿<md-content class="padded-content-page padding-35">
+    <md-card>
+        <mvz-table columns="columns"
+                   controller-name="payments"
+                   allow-advanced-search="false"
+                   actions="actions"
+                   update-params="getParams()"
+                   on-action-callback="onLink"
+                   auto-load="true"
+                   show-actions="true"
+                   allow-edit="true"
+                   allow-delete="true"
+                   allow-selection="false"
+                   action-name="search"
+                   edit-url="triangular.payment-edit"
+                   table-limit-options="tableLimitOptions"
+                   title="Listado de formas de pago" />
+    </md-card>
+</md-content>
+<md-button class="md-fab md-fab-bottom-right" style="background-color:var(--currentCompanyColor, #7BA529) !important;bottom:20px!important;" aria-label="add" ng-click="add()">
+    <md-icon class="btn-plus" md-font-icon="zmdi zmdi-plus"></md-icon>
+</md-button>

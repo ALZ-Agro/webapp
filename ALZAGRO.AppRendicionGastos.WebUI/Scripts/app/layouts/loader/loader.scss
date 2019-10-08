@@ -1,0 +1,20 @@
+.triangular-loader {
+    background: #fff;
+}
+
+// make progress bar not use full width
+.app-loader {
+    margin-top: -80px !important;
+
+    md-progress-linear {
+        width: 80%;
+    }
+
+    .logo-loader {
+        width: 336px;
+        height: 119px;
+    }
+    /*width:50%;
+  height:50%;
+  vertical-align:middle;*/
+}

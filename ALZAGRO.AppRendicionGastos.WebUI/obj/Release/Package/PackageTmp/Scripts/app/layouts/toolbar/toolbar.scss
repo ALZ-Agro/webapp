@@ -1,0 +1,24 @@
+.triangular-toolbar {
+    background-color: #7BA529!important;
+    background-color: var(--currentCompanyColor, #7BA529) !important;
+
+    h2 {
+        color: white !important;
+    }
+
+    &.ng-enter {
+        transition: .5s;
+    }
+
+    &.ng-enter {
+        @include slideInDown();
+    }
+
+    &.ng-leave {
+        display: none;
+    }
+
+    .aula-virtual {
+        font-weight: normal;
+    }
+}

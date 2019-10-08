@@ -1,0 +1,33 @@
+﻿.code-search {
+    input {
+        border-bottom-color: rgba(0,0,0,0.54) !important;
+    }
+
+    md-input-container {
+        margin: 2px 15px;
+    }
+
+    md-card {
+        padding-top: 35px !important;
+    }
+
+    .information {
+        margin: 2px 15px;
+    }
+
+    .panels-header, .md-expansion-panel-header-container {
+        font-size: 16px;
+        font-weight: 600;
+        letter-spacing: 0.005em;
+        background-color: #7BA529 !important;
+        background: #7BA529 !important;
+        color: white !important;
+
+        .md-expansion-panel-icon {
+            color:white!important;
+            svg { 
+                fill:white!important;
+            }
+        }
+    }
+}

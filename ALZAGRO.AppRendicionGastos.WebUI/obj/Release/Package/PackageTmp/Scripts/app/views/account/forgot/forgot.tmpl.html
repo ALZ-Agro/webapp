@@ -1,0 +1,27 @@
+﻿<md-card class="forgot">
+    <md-toolbar class="text-center logo-container">
+        <img ng-src="{{::vm.triSettings.logo}}" alt="{{vm.triSettings.name}}" style="margin: 0!important;">
+        <h1 class="md-headline headline-text">¿Olvidaste tu clave?</h1>
+    </md-toolbar>
+    <md-content class="md-padding">
+        <form name="forgot">
+            <mvz-editor label="Ingresa tu correo electronico"
+                        name="inputMail"
+                        type="text"
+                        model="vm.user.email"
+                        validation-rules="required|email"
+                        disabled="false">
+            </mvz-editor>
+            <md-button  md-theme="alz-sidebar" class="md-raised md-accent md-hue-1 btn-alzagro full-width margin-left-0 margin-right-0 
+                                                       margin-top-10 margin-bottom-10" 
+                       ng-click="vm.resetClick()" 
+                       aria-label="Restaurar Clave">
+                Restaurar Clave
+            </md-button>
+            <md-button class="md-primary full-width margin-left-0 margin-right-0 margin-top-10 margin-bottom-10" 
+                       ng-click="vm.login()" aria-label="Volver al Login">
+                Volver al Login
+            </md-button>
+        </form>
+    </md-content>
+</md-card>

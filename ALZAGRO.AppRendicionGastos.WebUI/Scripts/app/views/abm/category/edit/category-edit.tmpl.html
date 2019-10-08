@@ -1,0 +1,48 @@
+﻿<md-content class="padded-content-page padding-35 category-edit">
+    <md-card class="padding-20">
+        <form class="form-horizontal form-label form-label-left"
+              novalidate name="form">
+            <div layout="row" layout-align="start center" layout-wrap>
+                <div flex="50" flex-xs="100">
+                    <mvz-editor label="Descripción de la categoría"
+                                name="categoryDescription"
+                                type="text"
+                                model="category.description"
+                                validation-rules="max_len:100|required"
+                                max-length="50">
+                    </mvz-editor>
+                </div>
+                <div flex="50" flex-xs="100">
+                    <mvz-select model="category.showTo"
+                                is-disabled="false"
+                                on-select="onShowToChanged"
+                                value="id"
+                                display="description"
+                                label="Mostrar para proveedor"
+                                required="false"
+                                options="showToFieldOptions"
+                                validation-rules="required"
+                                friendly="showTo"
+                                placeholder="Mostrar para proveedor"
+                                help="Selecciona cuándo se le debería mostrar esta categoría al usuario. Si sólo con el proveedor genérico o para todos los proveedores."
+                                name="showTo"></mvz-select>
+                </div>
+                <div flex="50" flex-xs="100">
+                    <mvz-editor label="Código"
+                                name="code"
+                                type="text"
+                                model="category.code"
+                                validation-rules="max_len:2|required|numeric"
+                                max-length="2">
+                    </mvz-editor>
+                </div>
+            </div>
+        </form>
+        <div layout="row" layout-xs="column" class="view-button layout-align-end-center">
+            <div flex="20" flex-xs="10">
+                <mvz-edit-tool-bar cancel-url="triangular.category-list"
+                                   save-callback="save()" />
+            </div>
+        </div>
+    </md-card>
+</md-content>

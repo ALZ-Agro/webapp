@@ -1,0 +1,25 @@
+﻿<div class="item form-group">
+    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="{{name}}">
+        {{label}} <span class="required" ng-if="validationRules.indexOf('required') != -1">*</span>
+    </label>
+    <div class="col-md-6 col-sm-6 col-xs-12">
+        <textarea class="form-control" 
+                  name="{{name}}" 
+                  type="{{type}}"
+                  rows="4"
+                  ng-model="model"
+                  validate-on="blur"
+                  autocomplete="off"
+                  required-message="'{{requiredMessage}}'"
+                  validation="{{validationRules}}"></textarea>
+    <div ng-if="limit" 
+         style="display:block;width:100%;text-align:end;font-size:11px!important;" 
+         ng-class="{'text-danger': getLength() > limit}">
+        {{getLength()}}/{{limit}}
+    </div>
+    </div>
+</div>
+
+
+
+

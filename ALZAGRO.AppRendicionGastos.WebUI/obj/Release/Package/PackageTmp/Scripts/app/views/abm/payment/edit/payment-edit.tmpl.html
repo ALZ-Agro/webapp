@@ -1,0 +1,37 @@
+﻿<md-content class="padded-content-page padding-35 payment-edit">
+    <md-card class="padding-20">
+        <form class="form-horizontal form-label form-label-left"
+              novalidate name="form">
+            <div layout="row" layout-align="center" layout-wrap>
+                <div flex="50" flex-xs="100">
+                    <mvz-editor label="Descripción del tipo de pago"
+                                name="paymentDescription"
+                                type="text"
+                                model="payment.description"
+                                validation-rules="max_len:100|required"
+                                max-length="50">
+                    </mvz-editor>
+                </div>
+                <div flex="50" flex-xs="100">
+                    <mvz-search model="payment.user"
+                                is-disabled="false"
+                                on-select="onUserSelected"
+                                display="fullName"
+                                selected-display="fullName"
+                                update-params="null"
+                                label="Usuario asignado"
+                                controller-name="users"
+                                action-name="search"
+                                required="false"
+                                name="user"></mvz-search>
+                </div>
+            </div>
+        </form>
+        <div layout="row" layout-xs="column" class="view-button layout-align-end-center">
+        <div flex="20" flex-xs="10">
+            <mvz-edit-tool-bar cancel-url="triangular.payment-list"
+                               save-callback="save()" />
+        </div>
+        </div>
+    </md-card>
+</md-content>
